@@ -1,0 +1,30 @@
+@import "../../global.scss";
+
+.conversation-container{
+    margin-left: 30px;
+    border: 2px solid black;
+    text-align: left;
+    box-shadow: -8px 8px 3px -4px rgba(0, 0, 0, 0.247);
+    padding: 20px 20px 20px;
+
+
+    .conversation-title{
+        text-align: left;
+        font-family: $mainfont;
+        color: $mainText;
+        font-size: 20px;
+        font-weight: 700;
+    }
+
+    .see-btn{
+        font-family: $mainfont;
+        height: 30px;
+        width: 100px;
+        border-radius: 50px;
+        color: white;
+        font-size: 10px;
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+}
+

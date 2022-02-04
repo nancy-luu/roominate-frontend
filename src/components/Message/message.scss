@@ -1,0 +1,23 @@
+@import "../../global.scss";
+
+.message-sender{
+    text-align: left;
+    font-family: $mainfont;
+    color: $mainText;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.chat-input{
+    border: 2px solid black;
+    box-shadow: -8px 8px 3px -4px rgba(0, 0, 0, 0.247);
+}
+
+.message-blob{
+    font-family: $mainfont;
+    border-radius: 10px;
+    background-color: $secondarycolor;
+    color: white;
+    font-size: 20px;
+    font-weight: 500;
+}

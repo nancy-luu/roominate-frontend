@@ -1,0 +1,25 @@
+@import "../../global.scss";
+
+.roominator-card-container{
+    margin-top: 20px;
+
+    .roominator-image{
+        justify-content: center;
+        text-align: center;
+        margin-left: 22%;
+    }
+
+
+    .contact-btn{
+        justify-content: center;
+        text-align: center;
+        font-family: $mainfont;
+        height: 50px;
+        width: 90px;
+        border-radius: 50px;
+        color: white;
+        font-size: 20px;
+        font-weight: 700;
+    }
+}
+

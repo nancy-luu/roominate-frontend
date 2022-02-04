@@ -1,0 +1,41 @@
+@import "../../global.scss";
+
+
+.navBar{
+  width: 100%;
+
+  .wrapper{
+    padding: 20px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .left{
+        display: flex;
+        align-items: center;
+
+        .logo {
+            font-family: $mainfont;
+            margin-right: 30px;
+            margin-top: 10px;
+        }
+    }
+
+    .right {
+      display: flex;
+      align-items: center;
+
+
+        .navlink{
+            font-family: $mainfont;
+            color: $mainText;
+            font-size: 25px;
+            font-weight: 700;
+            text-decoration: none;
+            margin-right: 40px
+        }
+    }
+
+
+  }
+}

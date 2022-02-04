@@ -1,0 +1,59 @@
+@import "../../global.scss";
+
+
+.listing-btn-wrapper{
+    display: relative;
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+}
+
+.listings-btn{
+    font-family: $mainfont;
+    height: 60px;
+    width: 150px;
+    border-radius: 50px;
+    color: white;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.help-search-container{
+    padding-top: 10px;
+    padding-bottom: 8px;
+    display:relative;
+    width: 100%;
+    justify-content: space-between;
+    text-align: center;
+    border: 2px solid black;
+    box-shadow: -8px 8px 3px -4px rgba(0, 0, 0, 0.247);
+
+}
+
+.basic-multi-select{
+    text-align: left;
+}
+
+.find-btn-container{
+    justify-content: center;
+}
+
+.find-btn{
+    font-family: $mainfont;
+    justify-content: center;
+    height: 40px;
+    width: 100px;
+    border-radius: 50px;
+    color: white;
+    font-size: 20px;
+    font-weight: 700;
+    margin-right: 190px
+}
+
+h3{
+    font-family: $mainfont;
+    color: $mainText;
+    font-size: 20px;
+    font-weight: 700;
+    margin-left: 190px
+}

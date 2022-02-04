@@ -1,0 +1,54 @@
+@import "../../global.scss";
+
+.inbox-wrapper{
+
+    .inbox-img-container{
+        margin-left: 30%;
+        display:flex;
+
+        .inbox-img{
+            text-align: center;
+        }
+    }
+
+    .inbox-container{
+        padding-top: 10px;
+        justify-content: center;
+        text-align: center;
+        display: flex;
+    
+        .inbox-left{
+            flex: 0.5;
+        }
+    
+        .inbox-right{
+            flex: 0.5;
+
+            .message-container{
+                margin-left: 5%;
+                margin-top: 10px;
+
+                .chat-input{
+                    margin-left: 5%;
+                    margin-top: 10px;
+                    width: 95%;
+                }
+
+                .send-btn{
+                    font-family: $mainfont;
+                    height: 30px;
+                    width: 150px;
+                    border-radius: 50px;
+                    color: white;
+                    font-size: 10px;
+                    font-weight: 700;
+                    margin-bottom: 10px;
+                }
+            }
+            
+
+        }
+    }
+
+}
+

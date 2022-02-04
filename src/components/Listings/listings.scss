@@ -1,0 +1,37 @@
+@import "../../global.scss";
+
+
+.search-container{
+    display:relative;
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    border: 2px solid black;
+}
+
+.basic-multi-select{
+    text-align: left;
+}
+
+.find-btn-container{
+    justify-content: center;
+}
+
+
+.find-btn{
+    font-family: $mainfont;
+    height: 40px;
+    width: 100px;
+    border-radius: 50px;
+    color: white;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+h3{
+    font-family: $mainfont;
+    color: $mainText;
+    font-size: 20px;
+    font-weight: 700;
+    margin-left: 190px
+}
