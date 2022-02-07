@@ -1,6 +1,6 @@
 @import "../../global.scss";
 
-.my-listing-card-container{
+.my-listing-card-wrapper{
     margin-top: -10px;
 
     .my-listing-image{
@@ -13,11 +13,23 @@
         justify-content: center;
         text-align: center;
         font-family: $mainfont;
-        height: 50px;
-        width: 90px;
+        height: 30px;
+        width: 60px;
         border-radius: 50px;
         color: white;
-        font-size: 20px;
+        font-size: 15px;
+        font-weight: 700;
+    }
+
+    .mylisting-edit-btn{
+        justify-content: center;
+        text-align: center;
+        font-family: $mainfont;
+        height: 30px;
+        width: 60px;
+        border-radius: 50px;
+        color: white;
+        font-size: 15px;
         font-weight: 700;
     }
 }

@@ -5,19 +5,22 @@ import "./navbar.scss"
 export default function NavBar( {setUser} ) {
 
   function handleLogoutClick() {
-    console.log("LOGOUT!")
-    // fetch("/logout", { method: "DELETE" }).then((r) => {
-    //   if (r.ok) {
-    //     setUser({username:"", email:"" , vacations:[]});
-    //   }
-    // });
+    fetch("http://localhost:3000/logout", { 
+      method: "DELETE" 
+    }).then((r) => {
+      if (r.ok) {
+        console.log("LOGOUT!")
+        setUser({username:"", email:"" , listings:[]});
+      }
+    });
   }
 
   return (
     <nav className="navBar">
         <div className="wrapper">
               <div className="left">
-                <Link className="logo" to="/about" ><img src="images/RoomLogo.png"/></Link> 
+                <Link className="logo" to="/about" ><img src="images/RoomLogo.png" style={{ width: '3.5rem', height: '3rem' }}
+/></Link> 
               </div>
               <div className="right">
                 <Link className="navlink" to="/" ><span>listings</span></Link> 
