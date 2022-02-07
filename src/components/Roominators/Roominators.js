@@ -28,7 +28,6 @@ export default function Roominators ({userType, locationList, isLoading, setIsLo
                     </Col>
                     <Col>
                         <Select 
-                            isMulti 
                             className="basic-multi-select"
                             classNamePrefix="select"
                             placeholder="by location?"

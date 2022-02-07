@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import NavBar from "../NavBar/NavBar";
 import Landing from "../Landing/Landing";
+import About from "../About/About";
 import Listings from "../Listings/Listings"; 
 import Roominators from "../Roominators/Roominators"; 
 import Profile from "../Profile/Profile"; 
@@ -59,6 +60,9 @@ export default function Home ( {
                             : 
                             <Landing user={user} onLogin={onLogin} loadingRequest={loadingRequest} 
                             setLoadingRequest={setLoadingRequest} isLoading={isLoading} setIsLoading={setIsLoading}/>
+                        } />
+                         <Route exact path="/about" element={
+                            <About />
                         } />
                         <Route exact path="/hire" element={
                             <Roominators 

@@ -121,7 +121,12 @@ export default function Profile ({isLoading, setIsLoading, categoryList, locatio
                             onClick={() => setListingModalShow(true)} 
                         >add Listing</button>
                     </Col>
-                    <MyListingCard/>
+                    <MyListingCard 
+                        isLoading={isLoading}
+                        setIsLoading={setIsLoading} 
+                        categoryList={categoryList} 
+                        locationList={locationList}
+                    />
                 </Col>
                 <AddListingModal
                     show={listingModalShow}

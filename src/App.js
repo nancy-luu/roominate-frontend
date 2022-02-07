@@ -4,24 +4,26 @@ import Home from './components/Home/Home';
 import "./app.scss"
 
 export default function App() {
-  const [user, setUser] = useState({username:"", email:"" , vacations:[]})
+  const [user, setUser] = useState({username:"", email:"" , Listings:[]})
   // const [userList, setUserList] = useState([])
+  const [listing, setListing] = useState(null)
   const [isLoading, setIsLoading] = useState(false);
   const [loadingRequest, setLoadingRequest] = useState(0)
 
 
-  // useEffect(() => {
-  //   // auto-login
-  //   setIsLoading(true)
-  //   fetch("/me").then((r) => {
-  //     if (r.ok) {
-  //       r.json().then((user) => setUser(user));
-  //       setIsLoading(false)
-  //     } else {
-  //       setIsLoading(false)
-  //     }
-  //   });
-  // }, [loadingRequest]);
+  useEffect(() => {
+    // auto-login
+    setIsLoading(true)
+    fetch("http://localhost:3000/me").then((r) => {
+      if (r.ok) {
+        r.json().then((user) => setUser(user));
+        setIsLoading(false)
+        console.log("Auto-login!")
+      } else {
+        setIsLoading(false)
+      }
+    });
+  }, []);
 
   
   // useEffect(() => {
@@ -33,11 +35,24 @@ export default function App() {
   // }, [loadingRequest]);
 
 
-  // if (!user.username && !isLoading) return (
-  //   <div className="App">
-  //     <Landing onLogin={setUser} loadingRequest={loadingRequest} setLoadingRequest={setLoadingRequest}/>
-  //   </div>
-  // )
+  useEffect(() => {
+    setIsLoading(true)
+    fetch("http://localhost:3000/listings").then((r) => {
+      if (r.ok) {
+        r.json().then((listing) => setListing(listing));
+        setIsLoading(false)
+        console.log("Listings Fetched!")
+      }
+    });
+    console.log(listing)
+  }, []);
+
+
+  if (!user.username && !isLoading) return (
+    <div className="App">
+      <Landing onLogin={setUser} loadingRequest={loadingRequest} setLoadingRequest={setLoadingRequest}/>
+    </div>
+  )
   
   return (
     <div className="app">
