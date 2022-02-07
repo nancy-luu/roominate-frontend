@@ -36,6 +36,14 @@ export default function Profile ({isLoading, setIsLoading, categoryList, locatio
                         // onSubmit={handleSubmitActivity} 
                         // id={listing.id} 
                         >
+                        <input 
+                            type="file"
+                            name='photo' 
+                            accept='image/*'
+                            // onChange={handlePic}
+                        />
+                        {/* <input type="hidden" name="user_id" value={setUserId(currentUser.id)}/> */}
+                        <button type='submit' value='Submit'>Submit</button>
                         <div className="form-group">
                             <label>Title*</label>
                             <input 

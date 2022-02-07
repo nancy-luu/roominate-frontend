@@ -12,8 +12,7 @@ export default function ProfileCard ({ isLoading, setIsLoading, categoryList, lo
     const [file, setFile] = useState(null);
 
     const handlePic = (e) => {
-        const pic = e.target.files[0]
-        setFile(pic);
+        setFile({[e.target.name]: e.target.files[0]});
     }
 
     function EditProfileModal(props) {
