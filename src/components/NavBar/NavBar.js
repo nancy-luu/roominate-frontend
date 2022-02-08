@@ -1,18 +1,23 @@
 import { Link } from 'react-router-dom';
 
+
 import "./navbar.scss"
 
 export default function NavBar( {setUser} ) {
+  const API = 'http://localhost:3000'
 
   function handleLogoutClick() {
-    fetch("http://localhost:3000/logout", { 
-      method: "DELETE" 
-    }).then((r) => {
-      if (r.ok) {
-        console.log("LOGOUT!")
-        setUser({username:"", email:"" , listings:[]});
-      }
-    });
+    // fetch(`${API}/logout`, { 
+    //   method: "DELETE" 
+    // }).then((r) => {
+    //   if (r.ok) {
+    //     console.log("LOGOUT!")
+    //     setUser({username:"", email:"" , listings:[]});
+    //   }
+    // });
+
+    localStorage.removeItem("token");
+    setUser({username:"", email:"" , Listings: []});
   }
 
   return (
