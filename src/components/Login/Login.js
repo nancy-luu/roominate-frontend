@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -7,43 +8,44 @@ import "./login.scss"
 
 
 export default function Login( { onLogin }) {
+    const API = 'http://localhost:3000'
     const [modalShow, setModalShow] = React.useState(false);
-    const [errors, setErrors] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
-    let username
-    let password
-
-    
-    function handleSubmit(e) {
-        e.preventDefault();
-        setIsLoading(true);
-        fetch("http://localhost:3000/login", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ username, password }),
-        }).then((r) => {
-          setIsLoading(false);
-          if (r.ok) {
-            r.json().then((user) => onLogin(user));
-          } else {
-            r.json().then((err) => setErrors(err.errors));
-          }
-        });
-    }
-    
-    function handleSetName(e){
-        e.preventDefault();
-        username = e.target.value
-    }
-
-    function handleSetPassword(e){
-        e.preventDefault();
-        password = e.target.value
-    }
 
     function MyVerticallyCenteredModal(props) {
+        const [errors, setErrors] = useState([]);
+        const [isLoading, setIsLoading] = useState(false);
+        const [username, setUsername] = useState("");
+        const [password, setPassword] = useState("");
+
+        function handleLoginSubmit(e) {
+            e.preventDefault();
+            setIsLoading(true);
+            fetch(`${API}/login`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+              },
+              body: JSON.stringify({ 
+                    username: username,
+                    password: password,
+                }),
+            })
+            .then((r) => {
+              setIsLoading(false);
+              if (r.ok) {
+                r.json().then((user) => {
+                    localStorage.setItem("token", user.token);
+                    setUsername("");
+                    setPassword("");
+                    onLogin(user);
+                });
+              } else {
+                r.json().then((err) => setErrors(err));
+              }
+            });
+        }
+
         return (
             <Modal
                 {...props}
@@ -57,7 +59,7 @@ export default function Login( { onLogin }) {
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                    <Form onSubmit={handleSubmit}>
+                    <Form onSubmit={handleLoginSubmit}>
                         <div className="form-group">
                             <label>User Name*</label>
                             <input 
@@ -65,8 +67,9 @@ export default function Login( { onLogin }) {
                                 className="form-control" 
                                 id="username-input" 
                                 placeholder="Enter User Name" 
-                                onChange={handleSetName}
+                                onChange={(e) => setUsername(e.target.value)}
                                 autoComplete="off"
+                                value={username}
                             ></input>
                         </div>
                         <div className="form-group">
@@ -77,7 +80,8 @@ export default function Login( { onLogin }) {
                                 id="password-input" 
                                 placeholder="Password"
                                 autoComplete="current-password"
-                                onChange={handleSetPassword}
+                                onChange={(e) => setPassword(e.target.value)}
+                                value={password}
                             ></input>
                         </div>
                         <div>

@@ -4,6 +4,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
 export default function SignUp( {onLogin, setLoadingRequest, loadingRequest}) {
+    const API = 'http://localhost:3000'
     const [modalShow, setModalShow] = React.useState(false);
     const [errors, setErrors] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -16,7 +17,7 @@ export default function SignUp( {onLogin, setLoadingRequest, loadingRequest}) {
         e.preventDefault();
         setErrors([]);
         setIsLoading(true);
-        fetch("/signup", {
+        fetch(`${API}/signup`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
