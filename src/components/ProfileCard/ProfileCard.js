@@ -13,7 +13,9 @@ export default function ProfileCard ({ user, setUser, isLoading, setIsLoading, c
     const [profileEditShow, setProfileEditShow] = React.useState(false);
     const [file, setFile] = useState(null);
 
-    // console.log(user.username)
+    console.log(user.username)
+    console.log(user.user_type)
+
 
     const handlePic = (e) => {
         setFile({[e.target.name]: e.target.files[0]});
@@ -117,19 +119,13 @@ export default function ProfileCard ({ user, setUser, isLoading, setIsLoading, c
             <div className="profile-card">
                 <div className="profile-left">
                     <MyProfilePhoto isLoading={isLoading} setIsLoading={setIsLoading} token={token} user={user}/>
-                    {/* <Card.Img 
-                        className="profile-image"
-                        variant="top" 
-                        src="https://nanuntio.com/wp-content/uploads/2020/03/service_default_avatar_182956.png" 
-                        style={{ width: '10rem', height: '10rem' }}
-                    /> */}
                 </div>
                 <div className="profile-right">
-                    <h5>Name:</h5>
-                    <h5>Account:</h5>
-                    <h5>Charge:</h5>
-                    <h5>Location:</h5>
-                    <h5>Description:</h5>
+                    <h5><b>Name: </b>{user.username}</h5>
+                    <h5><b>Account: </b> {user.user_type}</h5>
+                    <h5><b>Charge: </b> ${user.user_charge}/hr</h5>
+                    <h5><b>Location: </b> {user.user_location}</h5>
+                    <h5><b>Description: </b> {user.user_desc}</h5>
                     <div className="image-btn-container">
                         <button 
                             className="edit-image-btn"

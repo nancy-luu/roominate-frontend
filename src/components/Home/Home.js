@@ -7,6 +7,8 @@ import Listings from "../Listings/Listings";
 import Roominators from "../Roominators/Roominators"; 
 import Profile from "../Profile/Profile"; 
 import Inbox from "../Inbox/Inbox"; 
+import Footer from "../Footer/Footer"; 
+
 
 import "./home.scss"
  
@@ -83,6 +85,7 @@ export default function Home ( {
                         } />
                         <Route exact path="/roominators" element={
                             <Roominators 
+                                token={token}
                                 user={user} 
                                 setUser={setUser}
                                 userList={userList} 
@@ -113,6 +116,7 @@ export default function Home ( {
                         } />
                     </Routes>
                 </div>
+                <Footer />
             </div>
         </Router>
 

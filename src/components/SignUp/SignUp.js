@@ -21,6 +21,7 @@ export default function SignUp( {onLogin, setLoadingRequest, loadingRequest}) {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            "Accept": "application/json",
           },
           body: JSON.stringify({
             username,

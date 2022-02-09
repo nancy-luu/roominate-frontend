@@ -10,11 +10,45 @@ import ProfilePhoto from "../ProfilePhoto/ProfilePhoto";
 import "./roominatorcard.scss"
 
 
-export default function RoominatorCard({ isLoading, setIsLoading, userList, setUserList, singleUser, token }){
+export default function RoominatorCard({ isLoading, setIsLoading, userList, setUserList, singleUser, token, setErrors }){
     const [messageRoominatorShow, setMessageRoominatorShow] = React.useState(false);
 
 
     function StartConvoModal(props) {
+        const API = 'http://localhost:3000'
+        const [header, setHeader] = useState("")
+        const [userId, setUserId] = useState("")
+        const [userId2, setUserId2] = useState("")
+
+        function handleStartConversation(e){
+            e.preventDefault();
+            setIsLoading(true);
+            fetch(`${API}/conversation`, {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                  "Accept": "application/json",
+                },
+                body: JSON.stringify({ 
+                      header: header,
+                      user_id: userId,
+                      user2_id: userId2
+                  }),
+              })
+              .then((r) => {
+                setIsLoading(false);
+                if (r.ok) {
+                  r.json().then((user) => {
+                      setHeader("");
+                      setUserId("");
+                      setUserId2("");
+                  });
+                } else {
+                  r.json().then((err) => setErrors(err));
+                }
+              });
+        }
+        
         return (
             <Modal
                 {...props}
@@ -29,15 +63,15 @@ export default function RoominatorCard({ isLoading, setIsLoading, userList, setU
             </Modal.Header>
             <Modal.Body>
                     <Form 
-                        // onSubmit={handleSubmitMessage} 
-                        // id={conversation.id} 
+                        onSubmit={handleStartConversation} 
+                        id={singleUser.id} 
                         >
                         <div className="form-group">
                             <label>Header*</label>
                             <input 
                                 className="form-control" 
                                 placeholder="What task do you need help with?" 
-                                // onChange={handleSetConversationHeader}
+                                onChange={(e) => setHeader(e.target.value)}
                             ></input>
                         </div>
                         <div>
@@ -70,7 +104,7 @@ export default function RoominatorCard({ isLoading, setIsLoading, userList, setU
                         <Card.Text><b>Account Type: </b>{singleUser.user_type}</Card.Text>
                     </Row>
                     <Row>
-                        <Card.Text><b>Charge: </b>{singleUser.user_charge}</Card.Text>
+                        <Card.Text><b>Charge: </b>${singleUser.user_charge} hr</Card.Text>
                     </Row>
                     <Row>
                         <Card.Text><b>Location: </b>{singleUser.user_location}</Card.Text>
