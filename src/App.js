@@ -7,7 +7,7 @@ const API = 'http://localhost:3000'
 export default function App() {
   const [user, setUser] = useState({username:"", email:"" , Listings:[]});
   const [userList, setUserList] = useState([])
-  const [listings, setListings] = useState([])
+  const [listing, setListing] = useState([])
   const [isLoading, setIsLoading] = useState(false);
   const [loadingRequest, setLoadingRequest] = useState(0)
   const token = localStorage.getItem("token");
@@ -15,7 +15,6 @@ export default function App() {
 
   useEffect(() => {
     setIsLoading(true);
-
     if (token) {
       fetch(`${API}/auto_login`, {
         headers: {
@@ -32,6 +31,8 @@ export default function App() {
       setIsLoading(false);
     }
   }, []);
+  console.log(user)
+  // console.log(user)
 
 
   useEffect(() => {
@@ -44,12 +45,12 @@ export default function App() {
     })
     .then((r) => {
       if (r.ok){
-        console.log("users fetched!")
         r.json().then((userList) => setUserList(userList));
         setIsLoading(false)
       }
     })
   }, [loadingRequest])
+  // console.log(userList)
 
 
 
@@ -62,8 +63,7 @@ export default function App() {
       }, })
     .then((r) => {
       if (r.ok){
-        console.log("listings fetched!")
-        r.json().then((listings) => setListings(listings));
+        r.json().then((listing) => setListing(listing));
         setIsLoading(false)
       }
     })
@@ -73,24 +73,30 @@ export default function App() {
 
   if (user.username === "") return (
     <div className="App">
-      <Landing onLogin={setUser} loadingRequest={loadingRequest} setLoadingRequest={setLoadingRequest}/>
+      <Landing 
+        onLogin={setUser} 
+        loadingRequest={loadingRequest}
+        setLoadingRequest={setLoadingRequest}
+      />
     </div>
   )
   
   return (
     <div className="app">
-      <Home 
-        setUser={setUser} 
-        user={user} 
-        // userList={userList}
-        // setUserList={setUserList}
-        isLoading={isLoading}
-        setIsLoading={setIsLoading}
-        loadingRequest={loadingRequest}
-        setLoadingRequest={setLoadingRequest}
+      <Home
+        token={token} 
         onLogin={setUser}
+        user={user} 
+        setUser={setUser}
+        listing={listing} 
+        setListing={setListing}
+        userList={userList} 
+        setUserList={setUserList}
+        isLoading={isLoading} 
+        setIsLoading={setIsLoading}
+        loadingRequest={loadingRequest} 
+        setLoadingRequest={setLoadingRequest}
       />
-      {/* <Landing onLogin={setUser} loadingRequest={loadingRequest} setLoadingRequest={setLoadingRequest}/> */}
     </div>
   )
 

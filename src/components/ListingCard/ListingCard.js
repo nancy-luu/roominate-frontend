@@ -4,10 +4,13 @@ import { RiMailSendLine } from 'react-icons/ri'
 import Card from 'react-bootstrap/Card'
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
+import ListingPhoto from "../ListingPhoto/ListingPhoto"; 
+
 
 import "./listingcard.scss"
 
-export default function ListingCard ({ isLoading, setIsLoading }){
+
+export default function ListingCard ({ isLoading, setIsLoading, user, setUser, listing, setListing, singlelisting, token }){
     const [messageModalShow, setMessageModalShow] = React.useState(false);
 
 
@@ -51,34 +54,41 @@ export default function ListingCard ({ isLoading, setIsLoading }){
         );
     }    
 
+    // console.log(singlelisting.user)
+    // console.log(singlelisting.listing_photo)
+    // console.log(userList)
+
+
     return (
         <div className="listing-card-container">
-            <Card style={{ width: '20rem', height: '27rem' }}>
-                <Card.Img 
-                    className="listing-image"
-                    variant="top" 
-                    src="https://media.istockphoto.com/vectors/home-icon-flat-vector-illustration-design-vector-id1162202962?k=20&m=1162202962&s=170667a&w=0&h=q9Y9VlP2pgoJOpSdwLLTIS64_cyREBOULeVXf2OtBuU=" 
-                    style={{ width: '10rem', height: '10rem' }}
-                />
+            <Card style={{width: '20rem', height: '28rem' }}>
+                <ListingPhoto 
+                    isLoading={isLoading} 
+                    setIsLoading={setIsLoading} 
+                    token={token} 
+                    singlelisting={singlelisting}/>
                 <Card.Body>
-                    <Card.Title>Title</Card.Title>
+                    <Card.Title><b>{singlelisting.title}</b></Card.Title>
                     <Row>
-                        <Card.Text>Category:</Card.Text>
+                        {/* <Card.Text><b>Post By:</b> {singlelisting.user.username}</Card.Text> */}
                     </Row>
                     <Row>
-                        <Card.Text>Charge:</Card.Text>
+                        <Card.Text><b>Category:</b> {singlelisting.category}</Card.Text>
                     </Row>
                     <Row>
-                        <Card.Text>Location:</Card.Text>
+                        <Card.Text><b>Charge:</b> ${singlelisting.price} /hr</Card.Text>
                     </Row>
                     <Row>
-                        <Card.Text>Description:</Card.Text>
+                        <Card.Text><b>Location:</b> {singlelisting.location}</Card.Text>
+                    </Row>
+                    <Row>
+                        <Card.Text><b>Description:</b> {singlelisting.desc} </Card.Text>
                     </Row>
                     <button 
                     className="contact-btn"
                     style={{ backgroundColor: "#6C63FF", margin: "1%"}}
                     onClick={() => setMessageModalShow(true)} 
-                    ><RiMailSendLine style={{ width: '4rem', height: '2rem' }}/></button>
+                    ><RiMailSendLine style={{ width: '3rem', height: '1rem' }}/></button>
                 </Card.Body>
             </Card>
             <StartConvoModal

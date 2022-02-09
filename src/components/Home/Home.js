@@ -12,11 +12,13 @@ import "./home.scss"
  
 
 export default function Home ( { 
-    user, setUser, 
-    userList, setUserList, 
     onLogin, 
+    user, setUser, 
+    userList, setUserList,
+    listing, setListing,
     loadingRequest, setLoadingRequest,
-    isLoading, setIsLoading
+    isLoading, setIsLoading,
+    token
 }){
 
         
@@ -55,20 +57,37 @@ export default function Home ( {
                     <Routes>
                         <Route exact path="/" element={
                             user ? 
-                            <Listings user={user} isLoading={isLoading} setIsLoading={setIsLoading} 
-                            categoryList={categoryList} locationList={locationList}/> 
+                            <Listings
+                                token={token}
+                                user={user} 
+                                setUser={setUser}
+                                isLoading={isLoading} 
+                                setIsLoading={setIsLoading} 
+                                listing={listing} 
+                                setListing={setListing}
+                                categoryList={categoryList} 
+                                locationList={locationList}
+                            /> 
                             : 
-                            <Landing user={user} onLogin={onLogin} loadingRequest={loadingRequest} 
-                            setLoadingRequest={setLoadingRequest} isLoading={isLoading} setIsLoading={setIsLoading}/>
+                            <Landing 
+                                user={user} 
+                                onLogin={onLogin} 
+                                loadingRequest={loadingRequest} 
+                                setLoadingRequest={setLoadingRequest} 
+                                isLoading={isLoading} 
+                                setIsLoading={setIsLoading}
+                            />
                         } />
                          <Route exact path="/about" element={
                             <About />
                         } />
-                        <Route exact path="/hire" element={
+                        <Route exact path="/roominators" element={
                             <Roominators 
-                                userList={userList}
+                                user={user} 
+                                setUser={setUser}
+                                userList={userList} 
                                 setUserList={setUserList}
-                                isLoading={isLoading}
+                                isLoading={isLoading} 
                                 setIsLoading={setIsLoading}
                                 userType={userType}
                                 locationList={locationList}

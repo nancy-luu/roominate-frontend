@@ -1,12 +1,16 @@
 import React, { useState } from "react";
+import { Row, Col } from "react-bootstrap";
 import { RiMailSendLine } from 'react-icons/ri';
 import Card from 'react-bootstrap/Card'
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
+import ProfilePhoto from "../ProfilePhoto/ProfilePhoto"; 
+
 
 import "./roominatorcard.scss"
 
-export default function RoominatorCard({ isLoading, setIsLoading }){
+
+export default function RoominatorCard({ isLoading, setIsLoading, userList, setUserList, singleUser, token }){
     const [messageRoominatorShow, setMessageRoominatorShow] = React.useState(false);
 
 
@@ -51,27 +55,34 @@ export default function RoominatorCard({ isLoading, setIsLoading }){
     }
 
 
-
     return (
         <div className="roominator-card-container">
-            <Card style={{ width: '18rem' }}>
-                <Card.Img 
-                    className="roominator-image"
-                    variant="top" 
-                    src="https://nanuntio.com/wp-content/uploads/2020/03/service_default_avatar_182956.png" 
-                    style={{ width: '10rem', height: '10rem' }}
+            <Card style={{ width: '20rem', height: '25rem' }}>
+                <ProfilePhoto 
+                    token={token}
+                    singleUser={singleUser}
                 />
                 <Card.Body>
-                    <Card.Title>USER NAME</Card.Title>
-                    <Card.Text>Type</Card.Text>
-                    <Card.Text>Charge</Card.Text>
-                    <Card.Text>Location</Card.Text>
-                    <Card.Text>Description</Card.Text>
+                    <Row>
+                        <Card.Title><b>{singleUser.username}</b></Card.Title>
+                    </Row>
+                    <Row>
+                        <Card.Text><b>Account Type: </b>{singleUser.user_type}</Card.Text>
+                    </Row>
+                    <Row>
+                        <Card.Text><b>Charge: </b>{singleUser.user_charge}</Card.Text>
+                    </Row>
+                    <Row>
+                        <Card.Text><b>Location: </b>{singleUser.user_location}</Card.Text>
+                    </Row>
+                    <Row>
+                        <Card.Text><b>Description: </b>{singleUser.user_desc}</Card.Text>
+                    </Row>
                     <button 
                     className="contact-btn"
                     style={{ backgroundColor: "#6C63FF", margin: "1%"}}
                     onClick={() => setMessageRoominatorShow(true)} 
-                    ><RiMailSendLine style={{ width: '4rem', height: '2rem' }}/></button>
+                    ><RiMailSendLine style={{ width: '3rem', height: '1rem' }}/></button>
                 </Card.Body>
             </Card>
             <StartConvoModal

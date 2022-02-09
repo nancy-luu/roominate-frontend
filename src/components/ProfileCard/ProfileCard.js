@@ -3,13 +3,17 @@ import Modal from "react-bootstrap/Modal";
 import Card from 'react-bootstrap/Card'
 import Form from "react-bootstrap/Form";
 import Select from 'react-select'
+import MyProfilePhoto from "../MyProfilePhoto/MyProfilePhoto"; 
+
 
 import "./profilecard.scss"
 
 
-export default function ProfileCard ({ isLoading, setIsLoading, categoryList, locationList }){
+export default function ProfileCard ({ user, setUser, isLoading, setIsLoading, categoryList, locationList, token }){
     const [profileEditShow, setProfileEditShow] = React.useState(false);
     const [file, setFile] = useState(null);
+
+    // console.log(user.username)
 
     const handlePic = (e) => {
         setFile({[e.target.name]: e.target.files[0]});
@@ -112,12 +116,13 @@ export default function ProfileCard ({ isLoading, setIsLoading, categoryList, lo
         <div className="profile-container">
             <div className="profile-card">
                 <div className="profile-left">
-                    <Card.Img 
+                    <MyProfilePhoto isLoading={isLoading} setIsLoading={setIsLoading} token={token} user={user}/>
+                    {/* <Card.Img 
                         className="profile-image"
                         variant="top" 
                         src="https://nanuntio.com/wp-content/uploads/2020/03/service_default_avatar_182956.png" 
                         style={{ width: '10rem', height: '10rem' }}
-                    />
+                    /> */}
                 </div>
                 <div className="profile-right">
                     <h5>Name:</h5>

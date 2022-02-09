@@ -11,7 +11,7 @@ import ProfileCard from "../ProfileCard/ProfileCard"
 import "./profile.scss"
 
 
-export default function Profile ({isLoading, setIsLoading, categoryList, locationList}){
+export default function Profile ({ user, setUser, isLoading, setIsLoading, categoryList, locationList}){
     const [listingModalShow, setListingModalShow] = React.useState(false);
 
     function handleAddListing(){
@@ -107,7 +107,13 @@ export default function Profile ({isLoading, setIsLoading, categoryList, locatio
 
     return (
         <div className="profile-page">
-            <ProfileCard isLoading={isLoading} setIsLoading={setIsLoading} categoryList={categoryList} locationList={locationList}/>
+            <ProfileCard 
+                user={user} 
+                setUser={setUser} 
+                isLoading={isLoading} 
+                setIsLoading={setIsLoading} 
+                categoryList={categoryList} 
+                locationList={locationList}/>
             <div className="middle-bar">
                 <Col>
                     <Col>

@@ -1,21 +1,10 @@
 import { Link } from 'react-router-dom';
 
-
 import "./navbar.scss"
 
 export default function NavBar( {setUser} ) {
-  const API = 'http://localhost:3000'
 
   function handleLogoutClick() {
-    // fetch(`${API}/logout`, { 
-    //   method: "DELETE" 
-    // }).then((r) => {
-    //   if (r.ok) {
-    //     console.log("LOGOUT!")
-    //     setUser({username:"", email:"" , listings:[]});
-    //   }
-    // });
-
     localStorage.removeItem("token");
     setUser({username:"", email:"" , Listings: []});
   }
@@ -29,7 +18,7 @@ export default function NavBar( {setUser} ) {
               </div>
               <div className="right">
                 <Link className="navlink" to="/" ><span>listings</span></Link> 
-                <Link className="navlink" to="/hire" ><span>hire</span></Link> 
+                <Link className="navlink" to="/roominators" ><span>roominators</span></Link> 
                 <Link className="navlink" to="/profile"><span>profile</span></Link>
                 <Link className="navlink" to="/inbox" ><span>inbox</span></Link> 
                 <div className="navlink" onClick={handleLogoutClick}>logout</div>

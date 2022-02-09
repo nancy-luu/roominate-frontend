@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Container from "react-bootstrap/Container";
 import { Row, Col } from "react-bootstrap";
 import { Link } from 'react-router-dom';
 import Select from 'react-select'
@@ -6,8 +7,7 @@ import ListingCard from "../ListingCard/ListingCard";
 
 import "./listings.scss"
 
-
-export default function Listings ({ isLoading, setIsLoading, categoryList, locationList }){
+export default function Listings ({ token, user, setUser, isLoading, setIsLoading, listing, setListing, categoryList, locationList }){
 
     return (
         <div>
@@ -44,7 +44,28 @@ export default function Listings ({ isLoading, setIsLoading, categoryList, locat
                     </Col>
                 </Row>
             </div>
-            <ListingCard isLoading={isLoading} setIsLoading={setIsLoading}/>
+            <Container className="listings-wrapper">
+                <Row
+                    xs={1}
+                    md={4}
+                    className="g-4"
+                    className="d-flex justify-content-center"
+                >
+                {listing.map((l) => 
+                    <ListingCard 
+                        token={token}
+                        isLoading={isLoading} 
+                        setIsLoading={setIsLoading} 
+                        user={user} 
+                        setUser={setUser}
+                        listing={listing}
+                        setListing={setListing}
+                        singlelisting={l} 
+                        key={l.id}
+                    />
+                )}
+                </Row>
+            </Container>
         </div>
     )
 

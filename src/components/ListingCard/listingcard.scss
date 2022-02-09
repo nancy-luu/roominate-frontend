@@ -1,7 +1,8 @@
 @import "../../global.scss";
 
 .listing-card-container{
-    margin-top: 20px;
+    margin-top: 5%;
+    display: relative;
 
     .listing-image{
         justify-content: center;
@@ -10,14 +11,15 @@
     }
 
     .contact-btn{
+        display: absolute;
         justify-content: center;
         text-align: center;
         font-family: $mainfont;
-        height: 50px;
-        width: 90px;
+        height: 30px;
+        width: 60px;
         border-radius: 50px;
         color: white;
-        font-size: 20px;
+        font-size: 10px;
         font-weight: 700;
     }
 }

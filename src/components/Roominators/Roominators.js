@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Container from "react-bootstrap/Container";
 import Select from 'react-select'
 import { Row, Col } from "react-bootstrap";
 
@@ -6,7 +7,7 @@ import RoominatorCard from "../RoominatorCard/RoominatorCard";
 
 import "./roominators.scss"
 
-export default function Roominators ({userType, locationList, isLoading, setIsLoading}){
+export default function Roominators ({ userType, locationList, isLoading, setIsLoading, userList, setUserList, token }){
 
 
     return (
@@ -44,7 +45,26 @@ export default function Roominators ({userType, locationList, isLoading, setIsLo
                     </Col>
                 </Row>
             </div>
-            <RoominatorCard isLoading={isLoading} setIsLoading={setIsLoading} />
+            <Container className="roominators-wrapper">
+                <Row
+                    xs={1}
+                    md={4}
+                    className="g-4"
+                    className="d-flex justify-content-center"
+                >
+                {userList.map((u) => 
+                    <RoominatorCard 
+                        isLoading={isLoading} 
+                        setIsLoading={setIsLoading} 
+                        userList={userList} 
+                        setUserList={userList} 
+                        singleUser={u}
+                        key={u.id}
+                        token={token}
+                    />
+                )}
+                </Row>
+            </Container>
         </div>
     )
 
