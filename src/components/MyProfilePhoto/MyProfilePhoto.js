@@ -9,7 +9,7 @@ export default function MyProfilePhoto ({ isLoading, setIsLoading, token, user }
     const [myPhoto, setMyPhoto] = useState([])    
 
     // useEffect(() => {
-    //     fetch(`${API}/user_photos/${singleUser.user_photo.id}`, {
+    //     fetch(`${API}/user_photos/${user.user_photo.id}`, {
     //       headers: {
     //         "Content-Type": "application/json",
     //         Authorization: `Bearer ${token}`,
@@ -18,17 +18,20 @@ export default function MyProfilePhoto ({ isLoading, setIsLoading, token, user }
     //     .then((r) => {
     //       if (r.ok){
     //         // console.log("user photos fetched!")
-    //         r.json().then((myPhoto) => setUserPhoto(setMyPhoto));
+    //         r.json().then((myPhoto) => setMyPhoto(myPhoto));
     //       }
     //     })
     // }, [])
 
-    // console.log(singleUser.user_photo.image)
+    console.log(user)
+
+    const image = myPhoto ? myPhoto : "not here"
+    console.log(myPhoto)
 
     return(
         <img 
         className="roominator-image"
-        src={user.user_photo}
+        src={image}
         style={{ width: '10rem', height: '10rem' }}
         ></img>
     )

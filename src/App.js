@@ -23,7 +23,7 @@ export default function App() {
       })
       .then(resp => resp.json())
       .then(data => {
-        setUser(data)
+        setUser(data.user)
         // console.log(data)
       })
       setIsLoading(false);
@@ -31,11 +31,12 @@ export default function App() {
       setIsLoading(false);
     }
   }, []);
-  console.log(user)
-  // console.log(user)
+  // console.log(JSON.stringify(user))
+  // console.log(user.username)
 
 
   useEffect(() => {
+    console.log(token)
     setIsLoading(true)
     fetch(`${API}/users`, {
       headers: {
@@ -99,5 +100,4 @@ export default function App() {
       />
     </div>
   )
-
 }
