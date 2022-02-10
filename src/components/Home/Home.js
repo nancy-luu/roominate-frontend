@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-
 import NavBar from "../NavBar/NavBar";
 import Landing from "../Landing/Landing";
 import About from "../About/About";
@@ -114,6 +113,7 @@ export default function Home ( {
                             <Inbox 
                                 user={user} 
                                 setUser={setUser} 
+                                currUser={currUser}
                             /> 
                         } />
                     </Routes>

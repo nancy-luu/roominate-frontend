@@ -108,45 +108,55 @@ export default function Profile ({ user, setUser, userList, isLoading, setIsLoad
     // console.log(userList)
     console.log(currUser)
 
-    return (
-        <div className="profile-page">
-            <ProfileCard 
-                currUser={currUser}
-                user={user} 
-                setUser={setUser} 
-                userList={userList}
-                isLoading={isLoading} 
-                setIsLoading={setIsLoading} 
-                categoryList={categoryList} 
-                locationList={locationList}/>
-            <div className="middle-bar">
-                <Col>
+    
+    if (currUser.username) {
+        // console.log(currUser.listings)
+        return (
+            <div className="profile-page">
+                <ProfileCard 
+                    currUser={currUser}
+                    user={user} 
+                    setUser={setUser} 
+                    userList={userList}
+                    isLoading={isLoading} 
+                    setIsLoading={setIsLoading} 
+                    categoryList={categoryList} 
+                    locationList={locationList}/>
+                <div className="middle-bar">
                     <Col>
-                        <div className="mylistingtitle">my listings:</div>
+                        <Col>
+                            <div className="mylistingtitle">my listings:</div>
+                        </Col>
+                        <Col>
+                            <button 
+                                className="add-listings-btn"
+                                variant="primary"
+                                style={{ backgroundColor: "#6C63FF", margin: "1%"}}
+                                onClick={() => setListingModalShow(true)} 
+                            >add Listing</button>
+                        </Col>
+                        {currUser.listings.map((mlc) => 
+                            <MyListingCard 
+                                isLoading={isLoading}
+                                setIsLoading={setIsLoading} 
+                                categoryList={categoryList} 
+                                locationList={locationList}
+                                mySingleListing={mlc}
+                                key={mlc.id}
+                            />
+                        )}
                     </Col>
-                    <Col>
-                        <button 
-                            className="add-listings-btn"
-                            variant="primary"
-                            style={{ backgroundColor: "#6C63FF", margin: "1%"}}
-                            onClick={() => setListingModalShow(true)} 
-                        >add Listing</button>
-                    </Col>
-                    {/* {currUser.listing.map((mlc) => {
-                        <MyListingCard 
-                            isLoading={isLoading}
-                            setIsLoading={setIsLoading} 
-                            categoryList={categoryList} 
-                            locationList={locationList}
-                        />
-                    })} */}
-                </Col>
-                <AddListingModal
-                    show={listingModalShow}
-                    onHide={() => setListingModalShow(false)}
-                />
+                    <AddListingModal
+                        show={listingModalShow}
+                        onHide={() => setListingModalShow(false)}
+                    />
+                </div>
             </div>
-        </div>
-    )
+        )
+    } else{
+        return(
+            <></>
+        )
+    }
 
 }
