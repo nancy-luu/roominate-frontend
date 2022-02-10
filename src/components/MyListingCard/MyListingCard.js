@@ -9,9 +9,8 @@ import Select from 'react-select'
 
 import "./mylistingcard.scss"
 
-export default function MyListingCard ({ isLoading, setIsLoading, categoryList, locationList }){
+export default function MyListingCard ({ isLoading, setIsLoading, categoryList, locationList, mySingleListing }){
     const [myListModalShow, setMyListModalShow] = React.useState(false);
-
 
     function handleRemove(){
         console.log("DELETE!")
@@ -115,18 +114,18 @@ export default function MyListingCard ({ isLoading, setIsLoading, categoryList, 
                         style={{ width: '10rem', height: '10rem' }}
                     />
                     <Card.Body>
-                        <Card.Title>Title</Card.Title>
+                        <Card.Title>Title: {mySingleListing.title}</Card.Title>
                         <Row>
-                            <Card.Text>Category:</Card.Text>
+                            <Card.Text>Category: {mySingleListing.category}</Card.Text>
                         </Row>
                         <Row>
-                            <Card.Text>Charge:</Card.Text>
+                            <Card.Text>Charge: {mySingleListing.charge}</Card.Text>
                         </Row>
                         <Row>
-                            <Card.Text>Location:</Card.Text>
+                            <Card.Text>Location: {mySingleListing.location}</Card.Text>
                         </Row>
                         <Row>
-                            <Card.Text>Description:</Card.Text>
+                            <Card.Text>Description: {mySingleListing.desc}</Card.Text>
                         </Row>
                         <button 
                             className="delete-btn"

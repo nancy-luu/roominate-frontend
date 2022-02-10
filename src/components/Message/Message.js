@@ -2,7 +2,13 @@ import { Row, Col } from "react-bootstrap";
 
 import "./message.scss"
 
-export default function Message (){
+export default function Message ({ singleMessage }){
+
+    if (!singleMessage) {
+        return(
+            <></>
+        )
+    }
     return (
         <div className="message-container">
             <Row>
@@ -15,12 +21,11 @@ export default function Message (){
                 />
                 </Col>
                 <Col>
-                <div className="message-sender">Sender Name</div>
+                <div className="message-sender">{singleMessage.user_id}</div>
                 </Col>
-
             </Row>
             <div className="message-blob">
-                something something something something something something something something something something something something something something something something something something something something
+                {singleMessage.message}
             </div>
         </div>
     )

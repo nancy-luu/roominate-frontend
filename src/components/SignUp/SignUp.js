@@ -113,9 +113,9 @@ export default function SignUp( {onLogin, setLoadingRequest, loadingRequest}) {
                             </Button>
                         </div>
                         <div>
-                            {errors.map((err) => (
+                            {/* {errors.map((err) => (
                                 <div key={err}>{err}</div>
-                            ))}
+                            ))} */}
                         </div>
                     </Form>
             </Modal.Body>
