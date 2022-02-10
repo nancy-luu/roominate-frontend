@@ -9,13 +9,27 @@ import MyProfilePhoto from "../MyProfilePhoto/MyProfilePhoto";
 import "./profilecard.scss"
 
 
-export default function ProfileCard ({ user, setUser, isLoading, setIsLoading, categoryList, locationList, token }){
+export default function ProfileCard ({ user, setUser, userList, isLoading, setIsLoading, categoryList, locationList, token, currUser }){
     const [profileEditShow, setProfileEditShow] = React.useState(false);
     const [file, setFile] = useState(null);
 
-    console.log(user.username)
-    console.log(user.user_type)
+    // console.log(user)
+    // console.log(user.username)
+    // console.log(user.user_type)
 
+    // let newCurrentUser = userList.filter((n) => {
+    //     if (n.id == user.id) {
+    //         return true
+    //     }
+    // })
+    // // console.log(newCurrentUser)
+    
+    // let profileUser = {
+    //     ...user,
+    //     ...newCurrentUser[0]
+    // }
+    // // console.log(profileUser)
+    console.log(currUser)
 
     const handlePic = (e) => {
         setFile({[e.target.name]: e.target.files[0]});
@@ -113,19 +127,23 @@ export default function ProfileCard ({ user, setUser, isLoading, setIsLoading, c
             </Modal>
         );
     }    
-
     return(
         <div className="profile-container">
             <div className="profile-card">
                 <div className="profile-left">
-                    <MyProfilePhoto isLoading={isLoading} setIsLoading={setIsLoading} token={token} user={user}/>
+                    <MyProfilePhoto 
+                        isLoading={isLoading} 
+                        setIsLoading={setIsLoading} 
+                        token={token} user={user} 
+                        currUser={currUser}
+                    />
                 </div>
                 <div className="profile-right">
-                    <h5><b>Name: </b>{user.username}</h5>
-                    <h5><b>Account: </b> {user.user_type}</h5>
-                    <h5><b>Charge: </b> ${user.user_charge}/hr</h5>
-                    <h5><b>Location: </b> {user.user_location}</h5>
-                    <h5><b>Description: </b> {user.user_desc}</h5>
+                    <h5><b>Name: </b>{currUser.username}</h5>
+                    <h5><b>Account: </b> {currUser.user_type}</h5>
+                    <h5><b>Charge: </b> ${currUser.user_charge}/hr</h5>
+                    <h5><b>Location: </b> {currUser.user_location}</h5>
+                    <h5><b>Description: </b> {currUser.user_desc}</h5>
                     <div className="image-btn-container">
                         <button 
                             className="edit-image-btn"

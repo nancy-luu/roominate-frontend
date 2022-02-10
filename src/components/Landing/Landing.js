@@ -5,7 +5,7 @@ import SignUp from '../SignUp/SignUp';
 
 import "./landing.scss"
 
-export default function Landing( { onLogin, setLoadingRequest, loadingRequest }) {
+export default function Landing( { onLogin, setLoadingRequest, loadingRequest, setCurrUser }) {
 
     return (
         <div>
@@ -28,7 +28,12 @@ export default function Landing( { onLogin, setLoadingRequest, loadingRequest })
                             <h2 className="intro__text">Find The Right Help!</h2>
                         </div>
                     <div className="login-wrapper">
-                        <Login onLogin={onLogin}/>
+                        <Login
+                            setLoadingRequest={setLoadingRequest}
+                            loadingRequest={loadingRequest} 
+                            onLogin={onLogin}
+                            setCurrUser={setCurrUser}
+                            />
                         <SignUp 
                             onLogin={onLogin}
                             loadingRequest={loadingRequest} setLoadingRequest={setLoadingRequest}

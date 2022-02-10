@@ -11,7 +11,7 @@ import ProfileCard from "../ProfileCard/ProfileCard"
 import "./profile.scss"
 
 
-export default function Profile ({ user, setUser, isLoading, setIsLoading, categoryList, locationList}){
+export default function Profile ({ user, setUser, userList, isLoading, setIsLoading, categoryList, locationList, currUser}){
     const [listingModalShow, setListingModalShow] = React.useState(false);
 
     function handleAddListing(){
@@ -105,11 +105,16 @@ export default function Profile ({ user, setUser, isLoading, setIsLoading, categ
         );
     }    
 
+    // console.log(userList)
+    console.log(currUser)
+
     return (
         <div className="profile-page">
             <ProfileCard 
+                currUser={currUser}
                 user={user} 
                 setUser={setUser} 
+                userList={userList}
                 isLoading={isLoading} 
                 setIsLoading={setIsLoading} 
                 categoryList={categoryList} 
@@ -127,12 +132,14 @@ export default function Profile ({ user, setUser, isLoading, setIsLoading, categ
                             onClick={() => setListingModalShow(true)} 
                         >add Listing</button>
                     </Col>
-                    <MyListingCard 
-                        isLoading={isLoading}
-                        setIsLoading={setIsLoading} 
-                        categoryList={categoryList} 
-                        locationList={locationList}
-                    />
+                    {/* {currUser.listing.map((mlc) => {
+                        <MyListingCard 
+                            isLoading={isLoading}
+                            setIsLoading={setIsLoading} 
+                            categoryList={categoryList} 
+                            locationList={locationList}
+                        />
+                    })} */}
                 </Col>
                 <AddListingModal
                     show={listingModalShow}

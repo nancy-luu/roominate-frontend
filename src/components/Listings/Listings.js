@@ -14,7 +14,7 @@ export default function Listings ({ token, user, setUser, isLoading, setIsLoadin
             <div className="help-search-container">
                 <Row>
                     <Col>
-                        <h3>Search:</h3>
+                        <h7>search:</h7>
                     </Col>
                     <Col>
                         <Select 

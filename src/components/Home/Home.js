@@ -20,10 +20,10 @@ export default function Home ( {
     listing, setListing,
     loadingRequest, setLoadingRequest,
     isLoading, setIsLoading,
-    token
+    token, currUser
 }){
 
-        
+    console.log(currUser)    
     const categoryList = [ 
         { value: "Furniture", label: "Furniture" }, 
         { value: "Design", label: "Design" },
@@ -100,8 +100,10 @@ export default function Home ( {
                         } />
                         <Route exact path="/profile" element={
                             <Profile 
+                                currUser={currUser}
                                 user={user} 
                                 setUser={setUser} 
+                                userList={userList}
                                 isLoading={isLoading}
                                 setIsLoading={setIsLoading} 
                                 categoryList={categoryList} 

@@ -6,7 +6,7 @@ import Button from "react-bootstrap/Button";
 import "./login.scss"
 
 
-export default function Login( { onLogin }) {
+export default function Login( { onLogin, setCurrUser, setLoadingRequest, loadingRequest }) {
     const API = 'http://localhost:3000'
     const [modalShow, setModalShow] = React.useState(false);
 
@@ -37,6 +37,8 @@ export default function Login( { onLogin }) {
                     localStorage.setItem("token", user.token);
                     setUsername("");
                     setPassword("");
+                    setCurrUser({username:"", email:"" , Listings:[]})
+                    setLoadingRequest(loadingRequest+1)
                     onLogin(user);
                 });
               } else {

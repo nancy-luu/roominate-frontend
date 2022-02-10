@@ -1,0 +1,45 @@
+@import "../../global.scss";
+
+
+.container{
+    background-color: white;
+}
+
+.footer-container {
+    background: $mainbackground;
+    margin-top: 110px;
+    text-align: center;
+    border-radius: 50% 50% 0% 0% / 5% 5% 0% 0%;
+    height: 300px;
+    position:relative;
+}
+
+.tagline {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 1.5em;
+    font-style: italic;
+}
+
+.brand {
+    width: 200px;
+    height:auto;
+    text-align: center;
+    margin-top: -100px;
+}
+
+.contacts {
+    display:flex;
+    justify-content: space-around;
+}
+
+.icons {
+    width:50px;
+    height:auto;
+    color: #0d293e;
+
+}
+
+.phone {
+    margin: 25px;
+}

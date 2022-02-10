@@ -8,6 +8,37 @@ import RoominatorCard from "../RoominatorCard/RoominatorCard";
 import "./roominators.scss"
 
 export default function Roominators ({ userType, locationList, isLoading, setIsLoading, userList, setUserList, token }){
+    const [userCategory, setUserCategory] = useState("")
+    const [userLocation, setUserLocation] = useState("")
+
+
+    function handleSetCategorySearch (e){
+        setUserCategory(e.target.value)
+    }
+
+    function handleSetLocationSearch (e){
+        setUserLocation(e.target.value)
+    }
+
+    const usersToDisplay = userList.filter((user) => {
+        if (userCategory === "" && userLocation === ""){
+            return true
+        }
+
+        // make if statements for all combinations?
+    })
+
+    const filteredUsers = usersToDisplay.map((user) => (
+        <RoominatorCard 
+            isLoading={isLoading} 
+            setIsLoading={setIsLoading} 
+            userList={userList} 
+            setUserList={userList} 
+            singleUser={user}
+            key={user.id}
+            token={token}
+        />
+    ))
 
 
     return (
@@ -15,16 +46,16 @@ export default function Roominators ({ userType, locationList, isLoading, setIsL
             <div className="help-search-container">
                 <Row>
                     <Col>
-                        <h3>Search:</h3>
+                        <h7>search:</h7>
                     </Col>
                     <Col>
                         <Select 
                             className="basic-multi-select"
                             classNamePrefix="select"
                             placeholder="by user type?"
+                            value={userCategory}
                             options={userType} 
-                            // value={userList}
-                            // onChange={handleOnChange}
+                            onChange={handleSetCategorySearch}
                         ></Select>
                     </Col>
                     <Col>
@@ -33,14 +64,14 @@ export default function Roominators ({ userType, locationList, isLoading, setIsL
                             classNamePrefix="select"
                             placeholder="by location?"
                             options={locationList} 
-                            // value={userList}
-                            // onChange={handleOnChange}
+                            onChange={handleSetLocationSearch}
                         ></Select>
                     </Col>
                     <Col className="find-btn-container">
                         <button 
                             className="find-btn"
                             style={{ backgroundColor: "#6C63FF"}}
+                            
                         >find</button>
                     </Col>
                 </Row>
@@ -52,7 +83,8 @@ export default function Roominators ({ userType, locationList, isLoading, setIsL
                     className="g-4"
                     className="d-flex justify-content-center"
                 >
-                {userList.map((u) => 
+                {filteredUsers}
+                {/* {userList.map((u) => 
                     <RoominatorCard 
                         isLoading={isLoading} 
                         setIsLoading={setIsLoading} 
@@ -62,7 +94,7 @@ export default function Roominators ({ userType, locationList, isLoading, setIsL
                         key={u.id}
                         token={token}
                     />
-                )}
+                )} */}
                 </Row>
             </Container>
         </div>
