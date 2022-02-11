@@ -13,6 +13,10 @@ export default function SignUp({ onLogin, setLoadingRequest, loadingRequest, cat
     let username
     let email
     let password
+
+    const [userAccountType, setUserAccountType] = useState("")
+    const [userLocation, setUserLocation] = useState("")
+
     let user_type
     let user_location
     let user_charge
@@ -33,8 +37,8 @@ export default function SignUp({ onLogin, setLoadingRequest, loadingRequest, cat
             username,
             email,
             password,
-            user_type,
-            user_location,
+            user_type: userAccountType,
+            user_location: userLocation,
             user_charge,
             user_desc
           }),
@@ -71,12 +75,15 @@ export default function SignUp({ onLogin, setLoadingRequest, loadingRequest, cat
 
     function handleSetAccountType(e){
         e.preventDefault();
-        user_type = e.target.value
+        setUserAccountType(e.target.value)
+        console.log(userAccountType)
+
     }
 
     function handleSetAccountLocation(e){
         e.preventDefault();
-        user_location = e.target.value
+        setUserLocation(e.target.value)
+        console.log(userLocation)
     }
 
     function handleSetAbout(e){
@@ -87,6 +94,7 @@ export default function SignUp({ onLogin, setLoadingRequest, loadingRequest, cat
     function handleSetCharge(e){
         e.preventDefault();
         user_charge = e.target.value
+        parseInt(user_charge)
     }
 
     function MyVerticallyCenteredModal(props) {
