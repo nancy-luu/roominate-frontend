@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import Select from 'react-select'
 
-export default function SignUp( {onLogin, setLoadingRequest, loadingRequest}) {
+
+export default function SignUp({ onLogin, setLoadingRequest, loadingRequest, categoryList, userType, locationList }) {
     const API = 'http://localhost:3000'
     const [modalShow, setModalShow] = React.useState(false);
     const [errors, setErrors] = useState([]);
@@ -11,7 +13,11 @@ export default function SignUp( {onLogin, setLoadingRequest, loadingRequest}) {
     let username
     let email
     let password
-    
+    let user_type
+    let user_location
+    let user_charge
+    let user_desc
+
   
     function handleSubmit(e) {
         e.preventDefault();
@@ -27,11 +33,16 @@ export default function SignUp( {onLogin, setLoadingRequest, loadingRequest}) {
             username,
             email,
             password,
+            user_type,
+            user_location,
+            user_charge,
+            user_desc
           }),
         }).then((r) => {
           setIsLoading(false);
           if (r.ok) {
             r.json().then((user) => {
+                localStorage.setItem("token", user.token);
                 onLogin(user);
                 setLoadingRequest(loadingRequest+1)
             })
@@ -56,6 +67,26 @@ export default function SignUp( {onLogin, setLoadingRequest, loadingRequest}) {
     function handleSetPassword(e){
         e.preventDefault();
         password = e.target.value
+    }
+
+    function handleSetAccountType(e){
+        e.preventDefault();
+        user_type = e.target.value
+    }
+
+    function handleSetAccountLocation(e){
+        e.preventDefault();
+        user_location = e.target.value
+    }
+
+    function handleSetAbout(e){
+        e.preventDefault();
+        user_desc = e.target.value
+    }
+
+    function handleSetCharge(e){
+        e.preventDefault();
+        user_charge = e.target.value
     }
 
     function MyVerticallyCenteredModal(props) {
@@ -85,14 +116,14 @@ export default function SignUp( {onLogin, setLoadingRequest, loadingRequest}) {
                             ></input>
                         </div>
                         <div className="form-group">
-                        <label>Email*</label>
-                        <input 
-                            type="email" 
-                            className="form-control" 
-                            id="email-input" 
-                            placeholder="Enter Email"
-                            onChange={handleSetEmail}
-                        ></input>
+                            <label>Email*</label>
+                            <input 
+                                type="email" 
+                                className="form-control" 
+                                id="email-input" 
+                                placeholder="Enter Email"
+                                onChange={handleSetEmail}
+                            ></input>
                         </div>
                         <div className="form-group">
                             <label>Password*</label>
@@ -101,8 +132,41 @@ export default function SignUp( {onLogin, setLoadingRequest, loadingRequest}) {
                                 className="form-control" 
                                 id="password-input" 
                                 placeholder="Password"
-                                autoComplete="current-password"
+                                autoComplete="on"
                                 onChange={handleSetPassword}
+                            ></input>
+                        </div>
+                        <Modal.Title id="contained-modal-title-vcenter">
+                        register your info:
+                        </Modal.Title>
+                        <label>Account Type*</label>
+                        <Select 
+                            value={user_type}
+                            options={userType} 
+                            onSelect={handleSetAccountType}
+                        ></Select>
+                        <label>Charge*</label>
+                            <input 
+                                className="form-control" 
+                                placeholder="per hour?"
+                                autoComplete="on"
+                                value={user_charge}
+                                onChange={handleSetCharge}
+                            ></input>
+                         <label>Location*</label>
+                        <Select 
+                            value={user_location}
+                            options={locationList} 
+                            onSelect={handleSetAccountLocation}
+                        ></Select>
+                        <div className="form-group">
+                            <label>About*</label>
+                            <input 
+                                className="form-control" 
+                                id="password-input" 
+                                placeholder="Tell us about yourself.."
+                                autoComplete="on"
+                                onChange={handleSetAbout}
                             ></input>
                         </div>
                         <div>

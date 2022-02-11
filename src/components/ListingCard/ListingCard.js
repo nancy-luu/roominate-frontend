@@ -10,7 +10,7 @@ import ListingPhoto from "../ListingPhoto/ListingPhoto";
 import "./listingcard.scss"
 
 
-export default function ListingCard ({ isLoading, setIsLoading, user, setUser, listing, setListing, singlelisting, token }){
+export default function ListingCard ({ isLoading, setIsLoading, user, setUser, listing, setListing, singlelisting, token, userList }){
     const [messageModalShow, setMessageModalShow] = React.useState(false);
 
 
@@ -58,6 +58,14 @@ export default function ListingCard ({ isLoading, setIsLoading, user, setUser, l
     // console.log(singlelisting.listing_photo)
     // console.log(userList)
 
+    let postedBy = userList.filter((pb) => {
+        if (pb.id == singlelisting.user_id) {
+            return true
+        }
+    })
+
+    // console.log(postedBy)
+
 
     return (
         <div className="listing-card-container">
@@ -70,7 +78,7 @@ export default function ListingCard ({ isLoading, setIsLoading, user, setUser, l
                 <Card.Body>
                     <Card.Title><b>{singlelisting.title}</b></Card.Title>
                     <Row>
-                        {/* <Card.Text><b>Post By:</b> {singlelisting.user.username}</Card.Text> */}
+                        {/* <Card.Text>Posted By: {postedBy}</Card.Text> */}
                     </Row>
                     <Row>
                         <Card.Text><b>Category:</b> {singlelisting.category}</Card.Text>
@@ -97,5 +105,4 @@ export default function ListingCard ({ isLoading, setIsLoading, user, setUser, l
              />
         </div>
     )
-
 }

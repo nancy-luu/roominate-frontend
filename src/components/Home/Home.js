@@ -19,36 +19,9 @@ export default function Home ( {
     listing, setListing,
     loadingRequest, setLoadingRequest,
     isLoading, setIsLoading,
-    token, currUser
+    token, currUser,
+    categoryList, userType,locationList
 }){
-
-    console.log(currUser)    
-    const categoryList = [ 
-        { value: "Furniture", label: "Furniture" }, 
-        { value: "Design", label: "Design" },
-        { value: "Build", label: "Build" }, 
-        { value: "Plumbing", label: "Plumbing" },
-        { value: "Electrical", label: "Electrical" },
-        { value: "Other", label: "Other" }
-    ]
-
-    const userType = [ 
-        { value: "Home Owner", label: "Home Owner" }, 
-        { value: "Designer", label: "Designer" },
-        { value: "Builder", label: "Builder" }, 
-        { value: "Plumber", label: "Plumber" },
-        { value: "Electrician", label: "Electrician" },
-        { value: "Other", label: "Other" }
-    ]
-
-    const locationList = [ 
-        { value: "San Francisco", label: "San Francisco" }, 
-        { value: "Los Angeles", label: "Los Angeles" }, 
-        { value: "Seattle", label: "Seattle" },
-        { value: "New York", label: "New York" }, 
-        { value: "Boston", label: "Boston" }, 
-        { value: "Chicago", label: "Chicago" }
-    ]
 
     return (
         <Router>
@@ -59,6 +32,7 @@ export default function Home ( {
                         <Route exact path="/" element={
                             user ? 
                             <Listings
+                                userList={userList}
                                 token={token}
                                 user={user} 
                                 setUser={setUser}
@@ -107,6 +81,9 @@ export default function Home ( {
                                 setIsLoading={setIsLoading} 
                                 categoryList={categoryList} 
                                 locationList={locationList}
+                                token={token}
+                                loadingRequest={loadingRequest} 
+                                setLoadingRequest={setLoadingRequest} 
                             /> 
                         } />
                         <Route exact path="/inbox" element={

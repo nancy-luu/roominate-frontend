@@ -27,16 +27,17 @@
             .image-btn-container{
                 justify-content: center;
                 text-align: center;
+            }
 
-                .edit-image-btn{
-                    font-family: $mainfont;
-                    font-size: 15px;
-                    font-weight: 700;
-                    color: white;
-                    height: 30px;
-                    width: 50px;
-                    border-radius: 50px;
-                }
+            .edit-profile-btn{
+                font-family: $mainfont;
+                height: 30px;
+                width: 100px;
+                border-radius: 50px;
+                color: white;
+                font-size: 10px;
+                font-weight: 700;
+                margin-bottom: 10px;
             }
         }
 

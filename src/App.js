@@ -5,16 +5,16 @@ import "./app.scss"
 const API = 'http://localhost:3000'
 
 // utils.js
-const useBeforeRender = (callback, deps) => {
-  const [isRun, setIsRun] = useState(false);
+// const useBeforeRender = (callback, deps) => {
+//   const [isRun, setIsRun] = useState(false);
 
-  if (!isRun) {
-      callback();
-      setIsRun(true);
-  }
+//   if (!isRun) {
+//       callback();
+//       setIsRun(true);
+//   }
 
-  useEffect(() => () => setIsRun(false), deps);
-};
+//   useEffect(() => () => setIsRun(false), deps);
+// };
 
 export default function App() {
   const [user, setUser] = useState({username:"", email:"" , Listings:[]});
@@ -24,6 +24,33 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [loadingRequest, setLoadingRequest] = useState(0)
   const token = localStorage.getItem("token");
+
+  const categoryList = [ 
+    { value: "Furniture", label: "Furniture" }, 
+    { value: "Design", label: "Design" },
+    { value: "Build", label: "Build" }, 
+    { value: "Plumbing", label: "Plumbing" },
+    { value: "Electrical", label: "Electrical" },
+    { value: "Other", label: "Other" }
+]
+
+const userType = [ 
+    { value: "Home Owner", label: "Home Owner" }, 
+    { value: "Designer", label: "Designer" },
+    { value: "Builder", label: "Builder" }, 
+    { value: "Plumber", label: "Plumber" },
+    { value: "Electrician", label: "Electrician" },
+    { value: "Other", label: "Other" }
+]
+
+const locationList = [ 
+    { value: "San Francisco", label: "San Francisco" }, 
+    { value: "Los Angeles", label: "Los Angeles" }, 
+    { value: "Seattle", label: "Seattle" },
+    { value: "New York", label: "New York" }, 
+    { value: "Boston", label: "Boston" }, 
+    { value: "Chicago", label: "Chicago" }
+]
 
   useEffect(() => {
     setIsLoading(true)
@@ -69,25 +96,24 @@ export default function App() {
                   }
                   
                 })
-                let blah = {
+                let combine = {
                    ...data.user,
                    ...newCurrentUser[0]
                 } 
-                setCurrUser(blah)
-                console.log(currUser)
+                setCurrUser(combine)
+                // console.log(currUser)
                 //  console.log(newCurrentUser[0])
                 //  console.log(data.user)
                 
               
                 setIsLoading(false);
-
               })      
-            console.log(user)
+            // console.log(user)
           }
         })
         setUser(data.user)
         
-        console.log(data)
+        // console.log(data)
       })
     } else { // user never logged in
       setIsLoading(false);
@@ -127,7 +153,7 @@ export default function App() {
   //     }
   //   })
   // }, [loadingRequest])
-  // console.log(userList)
+  console.log(userList)
 
   
 
@@ -138,6 +164,9 @@ export default function App() {
         setCurrUser={setCurrUser} 
         setLoadingRequest={setLoadingRequest}
         loadingRequest={loadingRequest}
+        categoryList={categoryList}
+        userType={userType}
+        locationList={locationList}
       />
     </div>
   )
@@ -158,6 +187,9 @@ export default function App() {
         setIsLoading={setIsLoading}
         loadingRequest={loadingRequest} 
         setLoadingRequest={setLoadingRequest}
+        categoryList={categoryList}
+        userType={userType}
+        locationList={locationList}
       />
     </div>
   )

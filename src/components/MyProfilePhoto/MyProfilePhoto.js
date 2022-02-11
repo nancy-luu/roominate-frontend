@@ -8,24 +8,18 @@ const API = 'http://localhost:3000'
 export default function MyProfilePhoto ({ isLoading, setIsLoading, token, currUser, profileUser}){
     // const [myPhoto, setMyPhoto] = useState([])   
     
-    console.log(currUser)
-
-    // const image = myPhoto ? myPhoto : "not here"
-    // console.log(myPhoto)
-    
-    if (currUser.username)
-    {
-        return(
-            <img 
-            className="roominator-image"
-            src={currUser.user_photo.image}
-            style={{ width: '10rem', height: '10rem' }}
-            ></img>
-        )
-    }
-    else{
+    // console.log(currUser)
+    // debugger;
+    if (!currUser.username){
         return(
             <></>
         )
     }
+    return(
+        <img 
+        className="roominator-image"
+        src={currUser.user_photo ? currUser.user_photo.image : "https://nanuntio.com/wp-content/uploads/2020/03/service_default_avatar_182956.png"}
+        style={{ width: '15rem', height: '10rem' }}
+        ></img>
+    )
 }

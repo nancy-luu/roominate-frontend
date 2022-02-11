@@ -20,33 +20,34 @@ export default function Roominators ({ userType, locationList, isLoading, setIsL
         setUserLocation(e.target.value)
     }
 
-    const usersToDisplay = userList.filter((user) => {
-        if (userCategory === "" && userLocation === ""){
-            return true
-        }
+    // const usersToDisplay = userList.filter((user) => {
+    //     if (userCategory === "" && userLocation === ""){
+    //         return true
+    //     }
 
-        // make if statements for all combinations?
-    })
+    //     // make if statements for all combinations?
+    // })
 
-    const filteredUsers = usersToDisplay.map((user) => (
-        <RoominatorCard 
-            isLoading={isLoading} 
-            setIsLoading={setIsLoading} 
-            userList={userList} 
-            setUserList={userList} 
-            singleUser={user}
-            key={user.id}
-            token={token}
-        />
-    ))
+    // const filteredUsers = usersToDisplay.map((user) => (
+    //     <RoominatorCard 
+    //         isLoading={isLoading} 
+    //         setIsLoading={setIsLoading} 
+    //         userList={userList} 
+    //         setUserList={userList} 
+    //         singleUser={user}
+    //         key={user.id}
+    //         token={token}
+    //     />
+    // ))
 
+    // console.log(userList)
 
     return (
         <div>
             <div className="help-search-container">
                 <Row>
                     <Col>
-                        <h7>search:</h7>
+                        <h4>search:</h4>
                     </Col>
                     <Col>
                         <Select 
@@ -83,18 +84,19 @@ export default function Roominators ({ userType, locationList, isLoading, setIsL
                     className="g-4"
                     className="d-flex justify-content-center"
                 >
-                {filteredUsers}
-                {/* {userList.map((u) => 
-                    <RoominatorCard 
-                        isLoading={isLoading} 
-                        setIsLoading={setIsLoading} 
-                        userList={userList} 
-                        setUserList={userList} 
-                        singleUser={u}
-                        key={u.id}
-                        token={token}
-                    />
-                )} */}
+                {/* {filteredUsers} */}
+                {userList.length > 0 &&
+                    userList.map((u) => 
+                        <RoominatorCard 
+                            isLoading={isLoading} 
+                            setIsLoading={setIsLoading} 
+                            userList={userList} 
+                            setUserList={userList} 
+                            singleUser={u}
+                            key={u.id}
+                            token={token}
+                        />
+                )}
                 </Row>
             </Container>
         </div>
