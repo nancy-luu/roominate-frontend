@@ -7,14 +7,14 @@ import ListingCard from "../ListingCard/ListingCard";
 
 import "./listings.scss"
 
-export default function Listings ({ token, user, setUser, isLoading, setIsLoading, listing, setListing, categoryList, locationList }){
+export default function Listings ({ token, user, setUser, isLoading, setIsLoading, listing, setListing, categoryList, locationList, userList }){
 
     return (
         <div>
             <div className="help-search-container">
                 <Row>
                     <Col>
-                        <h7>search:</h7>
+                        <h4>search:</h4>
                     </Col>
                     <Col>
                         <Select 
@@ -53,6 +53,7 @@ export default function Listings ({ token, user, setUser, isLoading, setIsLoadin
                 >
                 {listing.map((l) => 
                     <ListingCard 
+                        userList={userList}
                         token={token}
                         isLoading={isLoading} 
                         setIsLoading={setIsLoading} 

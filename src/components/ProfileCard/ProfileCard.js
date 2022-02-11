@@ -9,9 +9,10 @@ import MyProfilePhoto from "../MyProfilePhoto/MyProfilePhoto";
 import "./profilecard.scss"
 
 
-export default function ProfileCard ({ user, setUser, userList, isLoading, setIsLoading, categoryList, locationList, token, currUser }){
+export default function ProfileCard ({ user, setUser, userList, isLoading, setIsLoading, categoryList, locationList, token, currUser, setLoadingRequest, loadingRequest }){
     const [profileEditShow, setProfileEditShow] = React.useState(false);
     const [file, setFile] = useState(null);
+    const myToken = localStorage.getItem("token");
 
     // console.log(user)
     // console.log(user.username)
@@ -29,10 +30,36 @@ export default function ProfileCard ({ user, setUser, userList, isLoading, setIs
     //     ...newCurrentUser[0]
     // }
     // // console.log(profileUser)
-    console.log(currUser)
+    // console.log(currUser)
+
+    function handleUpdateProfile (e){
+        e.preventDefault();
+
+        const formData = new FormData()
+        formData.append('image', file)
+        formData.append('user_id', currUser.id)
+
+        fetch('http://localhost:3000/user_photos', {
+            method: 'POST',
+            headers: {
+                // "Content-Type": "application/json",
+                Authorization: `Bearer ${myToken}`,
+            },
+            body: formData
+        }).then((r) => {
+            if (r.ok){
+            //   r.json().then((file) => setFile(file));
+            //   setIsLoading(false)
+                setLoadingRequest(loadingRequest+1)
+                return r.json()
+            }
+          }).then((data) => console.log(data))
+    }
 
     const handlePic = (e) => {
-        setFile({[e.target.name]: e.target.files[0]});
+        e.persist()
+        console.log("this is the file", e.target.files[0])
+        setFile(e.target.files[0]);
     }
 
     function EditProfileModal(props) {
@@ -50,7 +77,7 @@ export default function ProfileCard ({ user, setUser, userList, isLoading, setIs
             </Modal.Header>
             <Modal.Body>
                     <Form 
-                        // onSubmit={handleSubmitActivity} 
+                        onSubmit={handleUpdateProfile} 
                         // id={listing.id} 
                         >
                         <input 
@@ -60,7 +87,6 @@ export default function ProfileCard ({ user, setUser, userList, isLoading, setIs
                             onChange={handlePic}
                         />
                         {/* <input type="hidden" name="user_id" value={setUserId(currentUser.id)}/> */}
-                        <button type='submit' value='Submit'>Submit</button>
                         <div className="form-group">
                             <label>Name*</label>
                             <input 
@@ -146,7 +172,7 @@ export default function ProfileCard ({ user, setUser, userList, isLoading, setIs
                     <h5><b>Description: </b> {currUser.user_desc}</h5>
                     <div className="image-btn-container">
                         <button 
-                            className="edit-image-btn"
+                            className="edit-profile-btn"
                             variant="primary"
                             style={{ backgroundColor: "#9F99FF", margin: "1%"}}
                             onClick={() => setProfileEditShow(true)} 

@@ -21,11 +21,11 @@ export default function Message ({ singleMessage }){
                 />
                 </Col>
                 <Col>
-                <div className="message-sender">{singleMessage.user_id}</div>
+                <div className="message-sender">{singleMessage? singleMessage.user_id : "0"}</div>
                 </Col>
             </Row>
             <div className="message-blob">
-                {singleMessage.message}
+                {singleMessage? singleMessage.message : "No Messages"}
             </div>
         </div>
     )

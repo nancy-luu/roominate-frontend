@@ -5,11 +5,13 @@ import Card from 'react-bootstrap/Card'
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Select from 'react-select'
+import MyListingPhoto from "../MyListingPhoto/MyListingPhoto"; 
+
 
 
 import "./mylistingcard.scss"
 
-export default function MyListingCard ({ isLoading, setIsLoading, categoryList, locationList, mySingleListing }){
+export default function MyListingCard ({ isLoading, setIsLoading, categoryList, locationList, mySingleListing, token }){
     const [myListModalShow, setMyListModalShow] = React.useState(false);
 
     function handleRemove(){
@@ -103,29 +105,40 @@ export default function MyListingCard ({ isLoading, setIsLoading, categoryList, 
         );
     }    
 
+    // let postedBy = userList.filter((pb) => {
+    //     if (pb.id == mySingleListing[0].user_id) {
+    //         return pb.username
+    //     }
+    // })
+
+    // console.log(postedBy)
+
     return (
         <div className="my-listing-card-wrapper">
             <div className="listing-card-container">
-                <Card style={{ width: '20rem', height: '27rem' }}>
-                    <Card.Img 
-                        className="my-listing-image"
-                        variant="top" 
-                        src="https://media.istockphoto.com/vectors/home-icon-flat-vector-illustration-design-vector-id1162202962?k=20&m=1162202962&s=170667a&w=0&h=q9Y9VlP2pgoJOpSdwLLTIS64_cyREBOULeVXf2OtBuU=" 
-                        style={{ width: '10rem', height: '10rem' }}
+                <Card style={{width: '20rem', height: '28rem'}}>
+                    <MyListingPhoto 
+                        isLoading={isLoading} 
+                        setIsLoading={setIsLoading} 
+                        token={token} 
+                        mySingleListing={mySingleListing}
                     />
                     <Card.Body>
-                        <Card.Title>Title: {mySingleListing.title}</Card.Title>
+                        <Card.Title><b>{mySingleListing.title}</b></Card.Title>                    
+                        {/* <Row>
+                            <Card.Text>Posted By: {mySingleListing.category}</Card.Text>
+                        </Row> */}
                         <Row>
-                            <Card.Text>Category: {mySingleListing.category}</Card.Text>
+                            <Card.Text><b>Category:</b> {mySingleListing.category}</Card.Text>
                         </Row>
                         <Row>
-                            <Card.Text>Charge: {mySingleListing.charge}</Card.Text>
+                            <Card.Text><b>Charge:</b> {mySingleListing.charge}</Card.Text>
                         </Row>
                         <Row>
-                            <Card.Text>Location: {mySingleListing.location}</Card.Text>
+                            <Card.Text><b>Location:</b> {mySingleListing.location}</Card.Text>
                         </Row>
                         <Row>
-                            <Card.Text>Description: {mySingleListing.desc}</Card.Text>
+                            <Card.Text><b>Description:</b> {mySingleListing.desc}</Card.Text>
                         </Row>
                         <button 
                             className="delete-btn"

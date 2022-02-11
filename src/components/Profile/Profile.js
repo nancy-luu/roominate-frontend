@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Row, Col } from "react-bootstrap";
+import Container from "react-bootstrap/Container";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Select from 'react-select'
@@ -11,7 +12,9 @@ import ProfileCard from "../ProfileCard/ProfileCard"
 import "./profile.scss"
 
 
-export default function Profile ({ user, setUser, userList, isLoading, setIsLoading, categoryList, locationList, currUser}){
+export default function Profile ({ user, setUser, userList, isLoading, setIsLoading, categoryList, locationList, currUser, token, loadingRequest,
+setLoadingRequest }){
+
     const [listingModalShow, setListingModalShow] = React.useState(false);
 
     function handleAddListing(){
@@ -109,32 +112,46 @@ export default function Profile ({ user, setUser, userList, isLoading, setIsLoad
     console.log(currUser)
 
     
-    if (currUser.username) {
+    if (!currUser.username) {
+        return(
+            <></>
+        )
+    }
         // console.log(currUser.listings)
-        return (
-            <div className="profile-page">
-                <ProfileCard 
-                    currUser={currUser}
-                    user={user} 
-                    setUser={setUser} 
-                    userList={userList}
-                    isLoading={isLoading} 
-                    setIsLoading={setIsLoading} 
-                    categoryList={categoryList} 
-                    locationList={locationList}/>
-                <div className="middle-bar">
+    return (
+        <div className="profile-page">
+            <ProfileCard 
+                currUser={currUser}
+                user={user} 
+                setUser={setUser} 
+                userList={userList}
+                isLoading={isLoading} 
+                setIsLoading={setIsLoading} 
+                categoryList={categoryList} 
+                locationList={locationList}
+                loadingRequest={loadingRequest} 
+                setLoadingRequest={setLoadingRequest} 
+                />
+            <div className="middle-bar">
+                <Col>
                     <Col>
-                        <Col>
-                            <div className="mylistingtitle">my listings:</div>
-                        </Col>
-                        <Col>
-                            <button 
-                                className="add-listings-btn"
-                                variant="primary"
-                                style={{ backgroundColor: "#6C63FF", margin: "1%"}}
-                                onClick={() => setListingModalShow(true)} 
-                            >add Listing</button>
-                        </Col>
+                        <div className="mylistingtitle">my listings:</div>
+                    </Col>
+                    <Col>
+                        <button 
+                            className="add-listings-btn"
+                            variant="primary"
+                            style={{ backgroundColor: "#6C63FF", margin: "1%"}}
+                            onClick={() => setListingModalShow(true)} 
+                        >add Listing</button>
+                    </Col>
+                    <Container className="roominators-wrapper">
+                        <Row
+                            xs={1}
+                            md={4}
+                            className="g-4"
+                            className="d-flex justify-content-center"
+                        >
                         {currUser.listings.map((mlc) => 
                             <MyListingCard 
                                 isLoading={isLoading}
@@ -143,20 +160,17 @@ export default function Profile ({ user, setUser, userList, isLoading, setIsLoad
                                 locationList={locationList}
                                 mySingleListing={mlc}
                                 key={mlc.id}
+                                token={token}
                             />
                         )}
-                    </Col>
-                    <AddListingModal
-                        show={listingModalShow}
-                        onHide={() => setListingModalShow(false)}
-                    />
-                </div>
+                        </Row>
+                    </Container>
+                </Col>
+                <AddListingModal
+                    show={listingModalShow}
+                    onHide={() => setListingModalShow(false)}
+                />
             </div>
-        )
-    } else{
-        return(
-            <></>
-        )
-    }
-
+        </div>
+    )
 }
