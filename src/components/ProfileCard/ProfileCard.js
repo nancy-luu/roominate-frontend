@@ -13,24 +13,13 @@ export default function ProfileCard ({ user, setUser, userList, isLoading, setIs
     const [profileEditShow, setProfileEditShow] = React.useState(false);
     const [file, setFile] = useState(null);
     const myToken = localStorage.getItem("token");
-
-    // console.log(user)
-    // console.log(user.username)
-    // console.log(user.user_type)
-
-    // let newCurrentUser = userList.filter((n) => {
-    //     if (n.id == user.id) {
-    //         return true
-    //     }
-    // })
-    // // console.log(newCurrentUser)
-    
-    // let profileUser = {
-    //     ...user,
-    //     ...newCurrentUser[0]
-    // }
-    // // console.log(profileUser)
-    // console.log(currUser)
+    let username
+    let email
+    let password
+    let user_type
+    let user_location
+    let user_charge
+    let user_desc
 
     function handleUpdateProfile (e){
         e.preventDefault();
@@ -46,6 +35,30 @@ export default function ProfileCard ({ user, setUser, userList, isLoading, setIs
                 Authorization: `Bearer ${myToken}`,
             },
             body: formData
+        }).then((r) => {
+            if (r.ok){
+            //   r.json().then((file) => setFile(file));
+            //   setIsLoading(false)
+                setLoadingRequest(loadingRequest+1)
+                return r.json()
+            }
+          }).then((data) => console.log(data))
+
+        fetch('http://localhost:3000/user', {
+            method: 'PATCH',
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${myToken}`,
+            },
+            body: JSON.stringify({
+                username,
+                email,
+                password,
+                user_type,
+                user_location,
+                user_charge,
+                user_desc 
+            })
         }).then((r) => {
             if (r.ok){
             //   r.json().then((file) => setFile(file));

@@ -6,7 +6,6 @@ import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import ProfilePhoto from "../ProfilePhoto/ProfilePhoto"; 
 
-
 import "./roominatorcard.scss"
 
 
@@ -91,7 +90,7 @@ export default function RoominatorCard({ isLoading, setIsLoading, userList, setU
 
     return (
         <div className="roominator-card-container">
-            <Card style={{ width: '20rem', height: '25rem' }}>
+            <Card style={{ width: '20rem', height: '30rem' }}>
                 <ProfilePhoto 
                     token={token}
                     singleUser={singleUser}
