@@ -77,7 +77,6 @@ export default function SignUp({ onLogin, setLoadingRequest, loadingRequest, cat
         e.preventDefault();
         setUserAccountType(e.target.value)
         console.log(userAccountType)
-
     }
 
     function handleSetAccountLocation(e){

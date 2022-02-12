@@ -23,8 +23,7 @@
 }
 
 .help-search-container{
-    padding-top: 10px;
-    padding-bottom: 8px;
+    padding: 10px 20px 10px;
     display:relative;
     width: 100%;
     justify-content: space-between;
@@ -32,6 +31,13 @@
     border: 2px solid black;
     box-shadow: -8px 8px 3px -4px rgba(0, 0, 0, 0.247);
 
+    .search-title{
+        font-family: $mainfont;
+        text-align: right;
+        color: black;
+        font-size: 20px;
+        font-weight: 700;
+    }
 }
 
 .basic-multi-select{
@@ -40,6 +46,7 @@
 
 .find-btn-container{
     justify-content: center;
+    text-align: left;
 }
 
 .find-btn{
@@ -52,12 +59,4 @@
     font-size: 15px;
     font-weight: 700;
     margin-right: 190px
-}
-
-h7{
-    font-family: $mainfont;
-    color: $mainText;
-    font-size: 20px;
-    font-weight: 700;
-    margin-left: 190px
 }

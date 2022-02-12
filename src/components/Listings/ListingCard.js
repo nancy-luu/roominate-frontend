@@ -4,7 +4,7 @@ import { RiMailSendLine } from 'react-icons/ri'
 import Card from 'react-bootstrap/Card'
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
-import ListingPhoto from "../ListingPhoto/ListingPhoto"; 
+import ListingPhoto from "./ListingPhoto"; 
 
 
 import "./listingcard.scss"

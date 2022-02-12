@@ -1,15 +1,17 @@
 import React, { useState } from "react";
+import { Row, Col } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Select from 'react-select'
-import { Row, Col } from "react-bootstrap";
+import makeAnimated from 'react-select/animated'
 
-import RoominatorCard from "../RoominatorCard/RoominatorCard"; 
+
+import RoominatorCard from "./RoominatorCard"; 
 
 import "./roominators.scss"
 
 export default function Roominators ({ userType, locationList, isLoading, setIsLoading, userList, setUserList, token }){
-    const [userCategory, setUserCategory] = useState("")
-    const [userLocation, setUserLocation] = useState("")
+    const [userCategory, setUserCategory] = useState([])
+    const [userLocation, setUserLocation] = useState({})
 
 
     function handleSetCategorySearch (e){
@@ -42,19 +44,33 @@ export default function Roominators ({ userType, locationList, isLoading, setIsL
 
     // console.log(userList)
 
+    function customTheme(theme){
+        return {
+            ...theme,
+            colors: {
+                ...theme.colors,
+                primary25: '#9F99FF',
+                primary: '#9F99FF'
+            },
+        };
+    };
+
     return (
-        <div>
+        <div className="room-page-wrapper">
             <div className="help-search-container">
                 <Row>
                     <Col>
-                        <h4>search:</h4>
+                        <div className="search-title">search:</div>
                     </Col>
                     <Col>
                         <Select 
                             className="basic-multi-select"
+                            components={makeAnimated()}
+                            theme={customTheme}
                             classNamePrefix="select"
                             placeholder="by user type?"
-                            value={userCategory}
+                            noOptionsMessage={() => 'Add a category!'}
+                            isMulti
                             options={userType} 
                             onChange={handleSetCategorySearch}
                         ></Select>
@@ -62,6 +78,8 @@ export default function Roominators ({ userType, locationList, isLoading, setIsL
                     <Col>
                         <Select 
                             className="basic-multi-select"
+                            components={makeAnimated()}
+                            theme={customTheme}
                             classNamePrefix="select"
                             placeholder="by location?"
                             options={locationList} 
@@ -72,7 +90,6 @@ export default function Roominators ({ userType, locationList, isLoading, setIsL
                         <button 
                             className="find-btn"
                             style={{ backgroundColor: "#6C63FF"}}
-                            
                         >find</button>
                     </Col>
                 </Row>

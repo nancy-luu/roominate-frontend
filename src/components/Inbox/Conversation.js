@@ -12,7 +12,7 @@ export default function Conversation ({ myConversation, showMessages, setShowMes
                 <div className="conversation-title">Users:</div>
                 <div> {myConversation.user.username} & {myConversation.user2.username}</div>
                 <div className="conversation-title">Date:</div>
-                <h5>{myConversation.created_at}</h5>
+                <div>{myConversation.created_at}</div>
                 <button 
                     className="see-btn"
                     style={{ backgroundColor: "#9F99FF", margin: "1%"}}

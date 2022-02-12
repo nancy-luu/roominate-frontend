@@ -7,7 +7,7 @@ import Select from 'react-select'
 
 
 import MyListingCard from "../MyListingCard/MyListingCard"; 
-import ProfileCard from "../ProfileCard/ProfileCard"
+import ProfileCard from "./ProfileCard"
 
 import "./profile.scss"
 

@@ -1,12 +1,15 @@
 @import "../../global.scss";
 
 
-.container{
-    background-color: white;
+.main-footer{
+    background-color: $secondarycolor;
+    padding-top: 1em;
+    position: relative;
+    bottom: 0;
+    width: 100%;
 }
 
 .footer-container {
-    background: $mainbackground;
     margin-top: 110px;
     text-align: center;
     border-radius: 50% 50% 0% 0% / 5% 5% 0% 0%;
@@ -14,32 +17,58 @@
     position:relative;
 }
 
-.tagline {
+.foot-top{
+    justify-content: center;
     text-align: center;
-    margin-top: 25px;
-    font-size: 1.5em;
-    font-style: italic;
+    background-color: $secondarycolor;
+
+    .footerlogo{
+        background-color: $secondarycolor;
+        width: 400px;
+    }
 }
 
-.brand {
-    width: 200px;
-    height:auto;
+.foot-btm{
+    background-color: $secondarycolor;
+
+
+        .icon-wrapper{
+            justify-content: center;
+            text-align: center;
+        
+            .foot-icons1 {
+                justify-content: space-between;
+                text-align: left;
+                padding: 10px 10px 10px;
+                width: 70px;
+                height:auto;
+                color: white;
+            }
+            .foot-icons2 {
+                justify-content: space-between;
+                text-align: left;
+                padding: 10px 10px 10px;
+                width:55px;
+                height:auto;
+                color: white;
+            }
+            .foot-icons3 {
+                justify-content: space-between;
+                text-align: left;
+                padding: 10px 10px 10px;
+                width:65px;
+                height:auto;
+                color: white;
+            }
+        }
+    }
+    
+.footer-text{
+    justify-content: center;
     text-align: center;
-    margin-top: -100px;
-}
-
-.contacts {
-    display:flex;
-    justify-content: space-around;
-}
-
-.icons {
-    width:50px;
-    height:auto;
-    color: #0d293e;
-
-}
-
-.phone {
-    margin: 25px;
+    font-family: $mainfont;
+    color: $mainText;
+    font-size: 20px;
+    font-weight: 700;
+    padding-top: 10px;
 }

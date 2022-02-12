@@ -32,7 +32,7 @@ export default function App() {
     { value: "Plumbing", label: "Plumbing" },
     { value: "Electrical", label: "Electrical" },
     { value: "Other", label: "Other" }
-]
+  ]
 
 const userType = [ 
     { value: "Home Owner", label: "Home Owner" }, 
@@ -41,7 +41,7 @@ const userType = [
     { value: "Plumber", label: "Plumber" },
     { value: "Electrician", label: "Electrician" },
     { value: "Other", label: "Other" }
-]
+  ]
 
 const locationList = [ 
     { value: "San Francisco", label: "San Francisco" }, 
@@ -50,7 +50,7 @@ const locationList = [
     { value: "New York", label: "New York" }, 
     { value: "Boston", label: "Boston" }, 
     { value: "Chicago", label: "Chicago" }
-]
+  ]
 
   useEffect(() => {
     setIsLoading(true)

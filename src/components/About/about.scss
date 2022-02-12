@@ -1,0 +1,31 @@
+@import "../../global.scss";
+
+.about-container{
+    justify-content: center;
+    text-align: center;
+
+    .about-wrap{
+        justify-content: center;
+        text-align: left;
+        width: 750px;
+        margin-top: 5%;
+        margin-bottom: 5%;
+
+    
+        .about-title{
+            justify-content: center;
+            text-align: left;
+            font-family: $mainfont;
+            color: $maincolor;
+            font-size: 30px;
+            font-weight: 700;
+            padding-top: 10px;
+        }
+    
+        .about-body{
+            justify-content: center;
+            text-align: left;
+            font-family: $mainfont;
+        }
+    }
+}

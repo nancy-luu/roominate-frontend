@@ -1,31 +1,39 @@
 import React from 'react';
+import { Row, Col } from "react-bootstrap";
 import { BsLinkedin } from 'react-icons/bs'
-import { AiFillInstagram } from 'react-icons/ai'
+import { AiFillGithub } from 'react-icons/ai'
 import { MdEmail } from 'react-icons/md'
+
+import "./footer.scss"
 
 export default function Footer (){
 
 
     return (
-        <div className='footer-container'>
-            <div className='brand-container'>
-                <div>
-                    <img className='brand' src="images/RoomLogo.png" alt='brand image'/>
-                </div>
-                <div className='tagline'>Inspiration</div>
-                <h6 className='phone'>loren impsum blah blah</h6> 
-
-                <div className='contacts'>
-
-                <a  href="mailto:nluuarch@gmail.com" target="_blank" ><MdEmail className='icons'/></a>
-
-                <a  href="https://www.linkedin.com/in/nancyluucodes/" target="_blank" ><BsLinkedin className='icons' /></a>
-
-                <a  href="https://www.instagram.com/seeingarchitecture/" target="_blank" ><AiFillInstagram className='icons' /></a>
-                
-                
-                </div>
-            </div>
+        <div className='main-footer'>
+                <Row clasName="container">
+                    <Row className="foot-top">
+                        <img 
+                            className='footerlogo' 
+                            src="images/FooterImg2.png" 
+                            alt='footer-image'
+                        />
+                    </Row>
+                    <Row className="foot-btm">
+                            <div className="footer-text">created by : Nancy Luu</div> 
+                            <ul className="icon-wrapper">
+                                <a href="mailto:nluuarch@gmail.com" target="_blank" >
+                                    <MdEmail className='foot-icons1'/>
+                                </a>
+                                <a href="https://www.linkedin.com/in/nancyluucodes/" target="_blank" >
+                                    <BsLinkedin className='foot-icons2' />
+                                </a>
+                                <a  href="https://github.com/nluuarch" target="_blank">
+                                    <AiFillGithub className='foot-icons3' />
+                                </a>
+                            </ul>
+                    </Row>
+                </Row>
         </div>
-  );
+    );
 }

@@ -3,7 +3,7 @@ import Modal from "react-bootstrap/Modal";
 import Card from 'react-bootstrap/Card'
 import Form from "react-bootstrap/Form";
 import Select from 'react-select'
-import MyProfilePhoto from "../MyProfilePhoto/MyProfilePhoto"; 
+import MyProfilePhoto from "./MyProfilePhoto"; 
 
 
 import "./profilecard.scss"
@@ -67,6 +67,8 @@ export default function ProfileCard ({ user, setUser, userList, isLoading, setIs
                 return r.json()
             }
           }).then((data) => console.log(data))
+
+        setProfileEditShow(false)
     }
 
     const handlePic = (e) => {
@@ -175,7 +177,7 @@ export default function ProfileCard ({ user, setUser, userList, isLoading, setIs
                         setIsLoading={setIsLoading} 
                         token={token} user={user} 
                         currUser={currUser}
-                    />
+                />
                 </div>
                 <div className="profile-right">
                     <h5><b>Name: </b>{currUser.username}</h5>
