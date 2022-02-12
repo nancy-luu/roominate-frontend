@@ -3,7 +3,9 @@
 .inbox-wrapper{
 
     .inbox-img-container{
-        margin-left: 30%;
+        margin-left: 40%;
+        margin-right: 50%;
+
         display:flex;
 
         .inbox-img{
@@ -18,13 +20,25 @@
         justify-content: center;
         text-align: center;
         display: flex;
+        margin-top: 20px;
+
+        .inbox-titles{
+            text-align: center;
+            font-family: $mainfont;
+            color: $maincolor;
+            font-size: 25px;
+            font-weight: 700;
+        }
     
         .inbox-left{
             flex: 0.5;
+            margin: 50px 0px 50px 50px;
         }
     
         .inbox-right{
             flex: 0.5;
+            margin: 50px 50px 50px 0px;
+
 
             .message-container{
                 margin-left: 5%;

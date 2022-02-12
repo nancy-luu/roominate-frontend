@@ -5,7 +5,7 @@ import Card from 'react-bootstrap/Card'
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Select from 'react-select'
-import MyListingPhoto from "../MyListingPhoto/MyListingPhoto"; 
+import MyListingPhoto from "./MyListingPhoto"; 
 
 
 
@@ -13,9 +13,39 @@ import "./mylistingcard.scss"
 
 export default function MyListingCard ({ isLoading, setIsLoading, categoryList, locationList, mySingleListing, token }){
     const [myListModalShow, setMyListModalShow] = React.useState(false);
+    const [file, setFile] = useState(null);
+    const myToken = localStorage.getItem("token");
+
 
     function handleRemove(){
         console.log("DELETE!")
+    }
+
+    function handleUpdateListing (e){
+        e.preventDefault();
+
+        const formData = new FormData()
+        formData.append('image', file)
+        formData.append('listing_id', mySingleListing.id)
+
+        fetch('http://localhost:3000/listing_photos', {
+            method: 'POST',
+            headers: {
+                Authorization: `Bearer ${myToken}`,
+            },
+            body: formData
+        }).then((r) => {
+            if (r.ok){
+                // setLoadingRequest(loadingRequest+1)
+                return r.json()
+            }
+        }).then((data) => console.log(data))
+    }
+
+    const handleListPic = (e) => {
+        e.persist()
+        console.log("this is the file", e.target.files[0])
+        setFile(e.target.files[0]);
     }
 
     function EditListingModal(props) {
@@ -33,14 +63,14 @@ export default function MyListingCard ({ isLoading, setIsLoading, categoryList, 
             </Modal.Header>
             <Modal.Body>
                     <Form 
-                        // onSubmit={handleSubmitActivity} 
+                        onSubmit={handleUpdateListing} 
                         // id={listing.id} 
                         >
                         <input 
                             type="file"
                             name='photo' 
                             accept='image/*'
-                            // onChange={handlePic}
+                            onChange={handleListPic}
                         />
                         {/* <input type="hidden" name="user_id" value={setUserId(currentUser.id)}/> */}
                         <button type='submit' value='Submit'>Submit</button>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Conversation from "../Conversation/Conversation"; 
-import Message from "../Message/Message";
+import Conversation from "./Conversation"; 
+import Message from "./Message";
 
 import "./inbox.scss"
 
@@ -51,6 +51,7 @@ export default function Inbox ({ user, setUser, currUser }){
             </div>
             <div className="inbox-container">
                 <div className="inbox-left">
+                    <div className="inbox-titles">conversations:</div>
                     <div className="conversation-left">
                         {currUser.conversations.map((c) =>
                             <Conversation
@@ -63,6 +64,7 @@ export default function Inbox ({ user, setUser, currUser }){
                     </div>
                 </div>
                 <div className="inbox-right">
+                    <div className="inbox-titles">messages:</div>
                     <div className="message-container">
                         {showMessages ? 
                             currUser.conversations[0].messages.map((m) =>

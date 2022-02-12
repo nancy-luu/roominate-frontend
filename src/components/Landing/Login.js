@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+// import { useNavigate } from 'react-router-dom';
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -9,6 +10,8 @@ import "./login.scss"
 export default function Login( { onLogin, setCurrUser, setLoadingRequest, loadingRequest }) {
     const API = 'http://localhost:3000'
     const [modalShow, setModalShow] = React.useState(false);
+    // const navigate = useNavigate()
+
 
     function MyVerticallyCenteredModal(props) {
         const [errors, setErrors] = useState([]);
@@ -40,6 +43,7 @@ export default function Login( { onLogin, setCurrUser, setLoadingRequest, loadin
                     setCurrUser({username:"", email:"" , Listings:[]})
                     setLoadingRequest(loadingRequest+1)
                     onLogin(user);
+                    // navigate("/community")
                 });
               } else {
                 r.json().then((err) => setErrors(err));
