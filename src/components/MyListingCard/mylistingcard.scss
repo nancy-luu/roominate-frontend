@@ -4,11 +4,16 @@
     margin-top: 5%;
     display: relative;
 
+    .listing-card-container{
+        justify-content: center;
+        text-align: left;
+    }
+
     .my-listing-image{
         justify-content: center;
-        text-align: center;
         margin-left: 25%;
     }
+    
 
     .delete-btn{
         justify-content: center;

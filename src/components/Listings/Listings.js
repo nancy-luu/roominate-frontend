@@ -8,7 +8,11 @@ import ListingCard from "./ListingCard";
 
 import "./listings.scss"
 
-export default function Listings ({ token, user, setUser, isLoading, setIsLoading, listing, setListing, categoryList, locationList, userList }){
+export default function Listings ({ token, user, setUser, isLoading, setIsLoading, listings, setListings, categoryList, locationList, userList }){
+    const [listingCategory, setListingCategory] = useState("")
+    const [listingLocation, setListingLocation] = useState("")
+
+    // console.log(listing)
 
     function customTheme(theme){
         return {
@@ -29,8 +33,67 @@ export default function Listings ({ token, user, setUser, isLoading, setIsLoadin
         };
     };
 
+    function handleCategorySearch(e){
+        setListingCategory(e)
+    }
+
+    function handleLocationSearch(e){
+        setListingLocation(e.value)
+    }
+
+    const listingsToDisplay = listings.filter((l) => {
+        if (listingCategory === "" && listingLocation === ""){
+            return true
+        }
+
+        if (listingCategory ==="" && listingLocation === l.location){
+            return true
+        }
+
+        let return_val = false;
+        if (listingLocation === ""){
+            listingCategory.forEach((category) => {
+                if (category.value === l.category){
+                    return_val = true
+                }
+            })
+        }
+
+        if (listingLocation == l.location && listingCategory !== ""){
+            console.log()
+            listingCategory.forEach((category) => {
+                if (category.value === l.category){
+                    return_val = true
+                }
+            })
+        }
+
+        return return_val
+
+        return false
+    })
+
+    console.log(listingsToDisplay)
+
+    const filteredListings = listingsToDisplay.map((listing) => (
+        <ListingCard 
+            userList={userList}
+            token={token}
+            isLoading={isLoading} 
+            setIsLoading={setIsLoading} 
+            user={user} 
+            setUser={setUser}
+            listing={listing}
+            setListings={setListings}
+            singlelisting={listing} 
+            key={listing.id}
+        />
+    ))
+
+    console.log(filteredListings)
+
     return (
-        <div>
+        <div className="listing-page-wrapper">
             <div className="help-search-container">
                 <Row>
                     <Col>
@@ -45,8 +108,7 @@ export default function Listings ({ token, user, setUser, isLoading, setIsLoadin
                             placeholder="by category?"
                             isMulti
                             options={categoryList} 
-                            // value={userList}
-                            // onChange={handleOnChange}
+                            onChange={handleCategorySearch}
                         ></Select>
                     </Col>
                     <Col>
@@ -57,8 +119,7 @@ export default function Listings ({ token, user, setUser, isLoading, setIsLoadin
                             classNamePrefix="select"
                             placeholder="by location?"
                             options={locationList} 
-                            // value={userList}
-                            // onChange={handleOnChange}
+                            onChange={handleLocationSearch}
                         ></Select>
                     </Col>
                     <Col className="find-btn-container">
@@ -76,7 +137,9 @@ export default function Listings ({ token, user, setUser, isLoading, setIsLoadin
                     className="g-4"
                     className="d-flex justify-content-center"
                 >
-                {listing.map((l) => 
+                {filteredListings}
+
+                {/* {listing.map((l) => 
                     <ListingCard 
                         userList={userList}
                         token={token}
@@ -89,7 +152,7 @@ export default function Listings ({ token, user, setUser, isLoading, setIsLoadin
                         singlelisting={l} 
                         key={l.id}
                     />
-                )}
+                )} */}
                 </Row>
             </Container>
         </div>

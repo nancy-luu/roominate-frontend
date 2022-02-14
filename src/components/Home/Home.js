@@ -17,7 +17,7 @@ export default function Home ( {
     onLogin, 
     user, setUser, 
     userList, setUserList,
-    listing, setListing,
+    listings, setListings,
     loadingRequest, setLoadingRequest,
     isLoading, setIsLoading,
     token, currUser,
@@ -41,8 +41,8 @@ export default function Home ( {
                                     setUser={setUser}
                                     isLoading={isLoading} 
                                     setIsLoading={setIsLoading} 
-                                    listing={listing} 
-                                    setListing={setListing}
+                                    listings={listings} 
+                                    setListings={setListings}
                                     categoryList={categoryList} 
                                     locationList={locationList}
                                 /> 
@@ -87,6 +87,7 @@ export default function Home ( {
                                     token={token}
                                     loadingRequest={loadingRequest} 
                                     setLoadingRequest={setLoadingRequest} 
+                                    listings={listings}
                                 /> 
                             } />
                             <Route exact path="/inbox" element={

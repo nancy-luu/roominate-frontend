@@ -21,7 +21,7 @@ export default function MyProfilePhoto ({ isLoading, setIsLoading, token, currUs
         <img 
         className="myprofile-image"
         src={currUser.user_photo ? currUser.user_photo.image : "https://nanuntio.com/wp-content/uploads/2020/03/service_default_avatar_182956.png"}
-        style={{ width: '17rem', height: '17rem' }}
+        style={{ width: '20rem', height: '17rem' }}
         ></img>
     )
 }
