@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Row, Col } from 'react-bootstrap';
-import { AiOutlineDoubleRight, AiOutlineDoubleLeft } from "react-icons/ai";
+import { BsArrowLeftShort, BsArrowRightShort } from "react-icons/bs";
+import Container from "react-bootstrap/Container";
 import FeaturedUser from "../Community/FeaturedUser"; 
 
 
@@ -32,7 +33,7 @@ export default function FeatUserSlider ({ featUsers, token }) {
         <section className="feat-user-slider">
             <Row>
                 <Col className="left-arrow-container">
-                    <AiOutlineDoubleLeft className="left-arrow" onClick={prevSlide} />
+                    <BsArrowLeftShort className="left-arrow" onClick={prevSlide} />
                 </Col>
                 <Col className="featuser-container">
                     {featUsers.map((singleFeatUser, index) => {
@@ -51,7 +52,7 @@ export default function FeatUserSlider ({ featUsers, token }) {
                     })}
                 </Col>
                 <Col className="right-arrow">
-                    <AiOutlineDoubleRight className="right-arrow" onClick={nextSlide} />
+                    <BsArrowRightShort className="right-arrow" onClick={nextSlide} />
                 </Col>
             </Row>
         </section>

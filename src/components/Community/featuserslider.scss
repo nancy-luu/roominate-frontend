@@ -3,12 +3,29 @@
 .feat-user-slider{
     justify-content: center;
 
+
+
     .left-arrow-container{
         width: 20%;
         justify-content: center;
         text-align: center;
 
         .left-arrow{
+            justify-content: center;
+            text-align: right;
+        }
+    }
+
+    .featuser-container{
+        justify-content: center;
+    }
+
+    .right-arrow{
+        width: 20%;
+        justify-content: center;
+        text-align: center;
+
+        .right-arrow{
             justify-content: center;
             text-align: right;
         }

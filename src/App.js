@@ -47,7 +47,7 @@ const locationList = [
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       }, })
-    .then((r) => {
+    .then((r) => { 
       if (r.ok){
         r.json().then((listings) => setListings(listings));
         setIsLoading(false)
