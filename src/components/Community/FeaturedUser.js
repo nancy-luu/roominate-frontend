@@ -4,64 +4,53 @@ import { RiMailSendLine } from 'react-icons/ri'
 import Card from 'react-bootstrap/Card'
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
+import FeatUserPhoto from "./FeatUserPhoto"; 
 
-import "./community.scss"
+import "./featuser.scss"
 
-export default function FeaturedUser( ) {
+
+export default function FeaturedUser({ singleFeatUser, token }) {
     const [messageModalShow, setMessageModalShow] = React.useState(false);
 
-  return (
-    <div className="feat-list-card-container">
-            <Card style={{width: '20rem', height: '28rem' }}>
-                {/* <ListingPhoto 
-                    // isLoading={isLoading} 
-                    // setIsLoading={setIsLoading} 
-                    // token={token} 
-                    // singlelisting={singlelisting}
-                /> */}
-                <Card.Body>
-                    <Card.Title>
-                        Title
-                        {/* <b>{singlelisting.title}</b> */}
-                    </Card.Title>
+    // console.log(singleFeatUser)
+
+    return (
+        <div className="roominator-card-container">
+            <Row>
+                <Col>
+                    <FeatUserPhoto 
+                        token={token}
+                        singleFeatUser={singleFeatUser}
+                    />
+                </Col>
+                <Col>
                     <Row>
-                        {/* <Card.Text>Posted By: {postedBy}</Card.Text> */}
+                        <Card.Title><b>{singleFeatUser.username}</b></Card.Title>
                     </Row>
                     <Row>
-                        <Card.Text>
-                            <b>Category:</b> 
-                            {/* {singlelisting.category} */}
-                        </Card.Text>
+                        <Card.Text><b>Account Type: </b>{singleFeatUser.user_type}</Card.Text>
                     </Row>
                     <Row>
-                        <Card.Text>
-                            <b>Charge:</b> 
-                            {/* ${singlelisting.price} /hr */}
-                            </Card.Text>
+                        <Card.Text><b>Charge: </b>${singleFeatUser.user_charge} hr</Card.Text>
                     </Row>
                     <Row>
-                        <Card.Text>
-                            <b>Location:</b> 
-                            {/* {singlelisting.location} */}
-                        </Card.Text>
+                        <Card.Text><b>Location: </b>{singleFeatUser.user_location}</Card.Text>
                     </Row>
                     <Row>
-                        <Card.Text>
-                            <b>Description:</b> 
-                            {/* {singlelisting.desc}  */}
-                        </Card.Text>
+                        <Card.Text><b>Description: </b>{singleFeatUser.user_desc}</Card.Text>
                     </Row>
                     <button 
-                    className="contact-btn"
-                    style={{ backgroundColor: "#6C63FF", margin: "1%"}}
-                    onClick={() => setMessageModalShow(true)} 
-                    ><RiMailSendLine style={{ width: '3rem', height: '1rem' }}/></button>
-                </Card.Body>
-            </Card>
+                        className="contact-btn"
+                        style={{ backgroundColor: "#6C63FF", margin: "1%"}}
+                        // onClick={() => setMessageRoominatorShow(true)} 
+                        ><RiMailSendLine style={{ width: '3rem', height: '1rem' }}/>
+                    </button>
+                </Col>
+            </Row>
             {/* <StartConvoModal
                 show={messageModalShow}
                 onHide={() => setMessageModalShow(false)}
-             /> */}
+                /> */}
         </div>
     )
 }

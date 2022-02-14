@@ -4,23 +4,11 @@ import Home from './components/Home/Home';
 import "./app.scss"
 const API = 'http://localhost:3000'
 
-// utils.js
-// const useBeforeRender = (callback, deps) => {
-//   const [isRun, setIsRun] = useState(false);
-
-//   if (!isRun) {
-//       callback();
-//       setIsRun(true);
-//   }
-
-//   useEffect(() => () => setIsRun(false), deps);
-// };
 
 export default function App() {
-  const [user, setUser] = useState({username:"", email:"" , Listings:[]});
   const [currUser, setCurrUser] = useState({username:"", email:"" , Listings:[]});
   const [userList, setUserList] = useState([])
-  const [listing, setListing] = useState([])
+  const [listings, setListings] = useState([])
   const [isLoading, setIsLoading] = useState(false);
   const [loadingRequest, setLoadingRequest] = useState(0)
   const token = localStorage.getItem("token");
@@ -61,7 +49,7 @@ const locationList = [
       }, })
     .then((r) => {
       if (r.ok){
-        r.json().then((listing) => setListing(listing));
+        r.json().then((listings) => setListings(listings));
         setIsLoading(false)
       }
     })
@@ -74,93 +62,37 @@ const locationList = [
         headers: {
           Authorization: `Bearer ${token}`
         }
-      })
-      .then(resp => resp.json())
-      .then(data => {
-        console.log(token)
+      }).then(resp => resp.json())
+      .then(user => {
+        setCurrUser(user);
+        setIsLoading(false)
+      });
+    } else { // user never logged in
+      setIsLoading(false);
+    }
+  }, [loadingRequest]);
+
+  useEffect(() => {
+    setIsLoading(true);
+    if (token) {
         fetch(`${API}/users`, {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
         })
-        .then((r) => {
-          if (r.ok){
-            r.json()
-              .then((userList) => {
-                setUserList(userList);
-                
-                let newCurrentUser = userList.filter((n) => {
-                  if (n.id == data.user.id) {
-                      return true
-                  }
-                  
-                })
-                let combine = {
-                   ...data.user,
-                   ...newCurrentUser[0]
-                } 
-                setCurrUser(combine)
-                // console.log(currUser)
-                //  console.log(newCurrentUser[0])
-                //  console.log(data.user)
-                
-              
+        .then(resp => resp.json())
+        .then((userList) => {
+                setUserList(userList);  
                 setIsLoading(false);
-              })      
-            // console.log(user)
-          }
-        })
-        setUser(data.user)
-        
-        // console.log(data)
-      })
-    } else { // user never logged in
-      setIsLoading(false);
+        });   
     }
-  }, [loadingRequest]);
-  // console.log(JSON.stringify(user))
-  // console.log(user.username)
+  }, [loadingRequest])
 
-
-  // useEffect(() => {
-  //   console.log(token)
-  //   setIsLoading(true)
-  //   fetch(`${API}/users`, {
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       Authorization: `Bearer ${token}`,
-  //     },
-  //   })
-  //   .then((r) => {
-  //     if (r.ok){
-  //       r.json().then((userList) => setUserList(userList));
-
-  //       // let newCurrentUser = userList.filter((n) => {
-  //       //     if (n.id == user.id) {
-  //       //         return true
-  //       //     }
-  //       // })
-  //       // console.log(userList)
-  
-  //       // setCurrUser({
-  //       //     ...user,
-  //       //     ...newCurrentUser[0]
-  //       // })
-  //       // console.log(user)
-  //     // console.log(profileUser)
-  //       setIsLoading(false)
-  //     }
-  //   })
-  // }, [loadingRequest])
-  console.log(userList)
-
-  
-
-  if (user.username === "") return (
+  if (currUser.username === "") return (
     <div className="App">
       <Landing 
-        onLogin={setUser}
+        onLogin={setCurrUser}
         setCurrUser={setCurrUser} 
         setLoadingRequest={setLoadingRequest}
         loadingRequest={loadingRequest}
@@ -175,12 +107,12 @@ const locationList = [
     <div className="app">
       <Home
         token={token} 
-        onLogin={setUser}
-        user={user} 
+        onLogin={setCurrUser}
+        user={currUser} 
         currUser={currUser}
-        setUser={setUser}
-        listing={listing} 
-        setListing={setListing}
+        setUser={setCurrUser}
+        listings={listings} 
+        setListings={setListings}
         userList={userList} 
         setUserList={setUserList}
         isLoading={isLoading} 

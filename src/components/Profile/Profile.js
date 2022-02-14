@@ -12,8 +12,7 @@ import ProfileCard from "./ProfileCard"
 import "./profile.scss"
 
 
-export default function Profile ({ user, setUser, userList, isLoading, setIsLoading, categoryList, locationList, currUser, token, loadingRequest,
-setLoadingRequest }){
+export default function Profile ({ user, setUser, userList, isLoading, setIsLoading, categoryList, locationList, currUser, token, loadingRequest, setLoadingRequest, listings }){
 
     const [listingModalShow, setListingModalShow] = React.useState(false);
 
@@ -109,7 +108,7 @@ setLoadingRequest }){
     }    
 
     // console.log(userList)
-    console.log(currUser)
+    // console.log(currUser.listing_photo)
 
     
     if (!currUser.username) {
@@ -117,7 +116,7 @@ setLoadingRequest }){
             <></>
         )
     }
-        // console.log(currUser.listings)
+
     return (
         <div className="profile-page">
             <ProfileCard 
@@ -152,15 +151,19 @@ setLoadingRequest }){
                             className="g-4"
                             className="d-flex justify-content-center"
                         >
-                        {currUser.listings.map((mlc) => 
+                        {currUser.listings.map((listing) => 
                             <MyListingCard 
                                 isLoading={isLoading}
                                 setIsLoading={setIsLoading} 
                                 categoryList={categoryList} 
                                 locationList={locationList}
-                                mySingleListing={mlc}
-                                key={mlc.id}
+                                listing={listing}
+                                key={listing.id}
                                 token={token}
+                                loadingRequest={loadingRequest} 
+                                setLoadingRequest={setLoadingRequest}
+                                id={listing.id}
+                                currUser={currUser}
                             />
                         )}
                         </Row>

@@ -56,7 +56,7 @@ export default function Inbox ({ user, setUser, currUser }){
                         {currUser.conversations.map((c) =>
                             <Conversation
                                 myConversation={c}
-                                key={c.id}
+                                key={c.header}
                                 setShowMessages={setShowMessages}
                                 showMessages={showMessages}
                             />

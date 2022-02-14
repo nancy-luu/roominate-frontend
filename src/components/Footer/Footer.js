@@ -11,29 +11,27 @@ export default function Footer (){
 
     return (
         <div className='main-footer'>
-                <Row clasName="container">
-                    <Row className="foot-top">
-                        <img 
-                            className='footerlogo' 
-                            src="images/FooterImg2.png" 
-                            alt='footer-image'
-                        />
-                    </Row>
-                    <Row className="foot-btm">
-                            <div className="footer-text">created by : Nancy Luu</div> 
-                            <ul className="icon-wrapper">
-                                <a href="mailto:nluuarch@gmail.com" target="_blank" >
-                                    <MdEmail className='foot-icons1'/>
-                                </a>
-                                <a href="https://www.linkedin.com/in/nancyluucodes/" target="_blank" >
-                                    <BsLinkedin className='foot-icons2' />
-                                </a>
-                                <a  href="https://github.com/nluuarch" target="_blank">
-                                    <AiFillGithub className='foot-icons3' />
-                                </a>
-                            </ul>
-                    </Row>
-                </Row>
+            <Row className="foot-top">
+                <img 
+                    className='footerlogo' 
+                    src="images/FooterImg3.png" 
+                    alt='footer-image'
+                />
+            </Row>
+            <Row className="foot-btm">
+                    <div className="footer-text">created by : Nancy Luu</div> 
+                    <ul className="icon-wrapper">
+                        <a href="mailto:nluuarch@gmail.com" target="_blank" >
+                            <MdEmail className='foot-icons1'/>
+                        </a>
+                        <a href="https://www.linkedin.com/in/nancyluucodes/" target="_blank" >
+                            <BsLinkedin className='foot-icons2' />
+                        </a>
+                        <a  href="https://github.com/nluuarch" target="_blank">
+                            <AiFillGithub className='foot-icons3' />
+                        </a>
+                    </ul>
+            </Row>
         </div>
     );
 }

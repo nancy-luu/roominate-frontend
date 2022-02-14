@@ -11,14 +11,30 @@ import MyListingPhoto from "./MyListingPhoto";
 
 import "./mylistingcard.scss"
 
-export default function MyListingCard ({ isLoading, setIsLoading, categoryList, locationList, mySingleListing, token }){
+export default function MyListingCard ({ isLoading, setIsLoading, categoryList, locationList, token, listing, loadingRequest, setLoadingRequest, id, currUser }){
     const [myListModalShow, setMyListModalShow] = React.useState(false);
     const [file, setFile] = useState(null);
     const myToken = localStorage.getItem("token");
 
 
-    function handleRemove(){
-        console.log("DELETE!")
+    function handleRemove(e){
+        const myListing = e.target.id
+        console.log("listing id: ")
+        console.log(myListing)
+        // fetch(`http://localhost:3000/listings/${myListing}`, {
+        //     method: 'DELETE',
+        //     headers: {
+        //         Authorization: `Bearer ${myToken}`,
+        //     },
+        // })
+        // .then(res =>{
+        //     if(res.ok){
+        //         console.log(res)
+        //         setLoadingRequest(loadingRequest+1)
+        //     } else {
+        //         res.json().then(console.log)
+        //     }
+        // })
     }
 
     function handleUpdateListing (e){
@@ -26,7 +42,7 @@ export default function MyListingCard ({ isLoading, setIsLoading, categoryList, 
 
         const formData = new FormData()
         formData.append('image', file)
-        formData.append('listing_id', mySingleListing.id)
+        formData.append('listing_id', listing.id)
 
         fetch('http://localhost:3000/listing_photos', {
             method: 'POST',
@@ -36,7 +52,7 @@ export default function MyListingCard ({ isLoading, setIsLoading, categoryList, 
             body: formData
         }).then((r) => {
             if (r.ok){
-                // setLoadingRequest(loadingRequest+1)
+                setLoadingRequest(loadingRequest+1)
                 return r.json()
             }
         }).then((data) => console.log(data))
@@ -64,7 +80,7 @@ export default function MyListingCard ({ isLoading, setIsLoading, categoryList, 
             <Modal.Body>
                     <Form 
                         onSubmit={handleUpdateListing} 
-                        // id={listing.id} 
+                        id={id} 
                         >
                         <input 
                             type="file"
@@ -141,41 +157,57 @@ export default function MyListingCard ({ isLoading, setIsLoading, categoryList, 
     //     }
     // })
 
-    // console.log(postedBy)
+    console.log(listing.listing_photos_id)
+    console.log(currUser.listing_photo)
+
+    
+
+
+    // const getListingPhoto = currUser.listing_photo.forEach((lp) => {
+    //     if (lp.id === listing.listing_photos.id) 
+    //     return lp.image
+    // })
+
+    // console.log(getListingPhoto)
+
+
 
     return (
         <div className="my-listing-card-wrapper">
             <div className="listing-card-container">
-                <Card style={{width: '20rem', height: '28rem'}}>
+                <Card style={{width: '20rem', height: '28rem'}} id={listing.id}>
                     <MyListingPhoto 
                         isLoading={isLoading} 
                         setIsLoading={setIsLoading} 
                         token={token} 
-                        mySingleListing={mySingleListing}
+                        listing={listing}
+                        currUser={currUser}
                     />
                     <Card.Body>
-                        <Card.Title><b>{mySingleListing.title}</b></Card.Title>                    
+                        <Card.Title><b>{listing.title}</b></Card.Title>                    
                         {/* <Row>
-                            <Card.Text>Posted By: {mySingleListing.category}</Card.Text>
+                            <Card.Text>Posted By: {listing.category}</Card.Text>
                         </Row> */}
                         <Row>
-                            <Card.Text><b>Category:</b> {mySingleListing.category}</Card.Text>
+                            <Card.Text><b>Category:</b> {listing.category}</Card.Text>
                         </Row>
                         <Row>
-                            <Card.Text><b>Charge:</b> {mySingleListing.charge}</Card.Text>
+                            <Card.Text><b>Charge:</b> ${listing.price} /hr</Card.Text>
                         </Row>
                         <Row>
-                            <Card.Text><b>Location:</b> {mySingleListing.location}</Card.Text>
+                            <Card.Text><b>Location:</b> {listing.location}</Card.Text>
                         </Row>
                         <Row>
-                            <Card.Text><b>Description:</b> {mySingleListing.desc}</Card.Text>
+                            <Card.Text><b>Description:</b> {listing.desc}</Card.Text>
                         </Row>
                         <button 
                             className="delete-btn"
                             style={{ backgroundColor: "#6C63FF", margin: "1%"}}
                             onClick={handleRemove}
+                            id={id} 
                         ><MdOutlineDeleteForever style={{ width: '1.5rem', height: '1.5rem' }}/></button>
-                        <button 
+                        <button
+                            id={id} 
                             className="mylisting-edit-btn"
                             style={{ backgroundColor: "#6C63FF", margin: "1%"}}
                             onClick={() => setMyListModalShow(true)} 

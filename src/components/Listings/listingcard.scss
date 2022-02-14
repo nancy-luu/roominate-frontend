@@ -1,14 +1,20 @@
 @import "../../global.scss";
 
 .listing-card-container{
-    margin-top: 5%;
-    display: relative;
-
-    .listing-image{
+    margin-top: 1%;
+    margin-bottom: 1%;
+    
+    .listing-image-container{
         justify-content: center;
         text-align: center;
-        margin-left: 25%;
+
+        .listing-image{
+            justify-content: center;
+            text-align: center;
+            margin-left: 5%;
+        }
     }
+
 
     .contact-btn{
         display: absolute;

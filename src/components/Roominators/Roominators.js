@@ -10,39 +10,78 @@ import RoominatorCard from "./RoominatorCard";
 import "./roominators.scss"
 
 export default function Roominators ({ userType, locationList, isLoading, setIsLoading, userList, setUserList, token }){
-    const [userCategory, setUserCategory] = useState([])
-    const [userLocation, setUserLocation] = useState({})
+    const [userCategory, setUserCategory] = useState("")
+    const [userLocation, setUserLocation] = useState("")
 
 
     function handleSetCategorySearch (e){
-        setUserCategory(e.target.value)
+        setUserCategory(e)
     }
 
     function handleSetLocationSearch (e){
-        setUserLocation(e.target.value)
+        setUserLocation(e.value)
     }
 
-    // const usersToDisplay = userList.filter((user) => {
-    //     if (userCategory === "" && userLocation === ""){
-    //         return true
-    //     }
+    const usersToDisplay = userList.filter((user) => {
+        if (userCategory === "" && userLocation === ""){
+            return true
+        }
 
-    //     // make if statements for all combinations?
-    // })
+        //if usercategory is blank and userlocation == user.location
+            //return true
+        if (userCategory === "" && userLocation === user.user_location) {
+            return true
+        }
 
-    // const filteredUsers = usersToDisplay.map((user) => (
-    //     <RoominatorCard 
-    //         isLoading={isLoading} 
-    //         setIsLoading={setIsLoading} 
-    //         userList={userList} 
-    //         setUserList={userList} 
-    //         singleUser={user}
-    //         key={user.id}
-    //         token={token}
-    //     />
-    // ))
+        // if userLocation is blank
+            // for each category in UserCategory
+                // if category ===user.category
+                    // return true
 
-    // console.log(userList)
+        let return_val = false
+        if (userLocation === "") {
+            userCategory.forEach((category) => {
+                if (category.value === user.user_type){
+                    return_val = true
+                }
+                
+            })
+        }
+
+        // if userLocation == user.location
+            // for each category in userCategory
+                // if category == user.category
+                    // return tru
+        if (userLocation == user.user_location && userCategory !== ""){
+            userCategory.forEach((category) => {
+                console.log(category.value)
+                console.log(user.user_type)
+                if (category.value === user.user_type){
+                    return_val = true
+                }
+            })
+        }
+        return return_val
+        
+        return false
+    })
+
+    console.log(usersToDisplay)
+
+    const filteredUsers = usersToDisplay.map((user) => (
+        <RoominatorCard 
+            isLoading={isLoading} 
+            setIsLoading={setIsLoading} 
+            userList={userList} 
+            setUserList={userList} 
+            singleUser={user}
+            key={user.id}
+            token={token}
+        />
+    ))
+
+    console.log(userCategory)
+
 
     function customTheme(theme){
         return {
@@ -54,6 +93,7 @@ export default function Roominators ({ userType, locationList, isLoading, setIsL
             },
         };
     };
+
 
     return (
         <div className="room-page-wrapper">
@@ -101,19 +141,7 @@ export default function Roominators ({ userType, locationList, isLoading, setIsL
                     className="g-4"
                     className="d-flex justify-content-center"
                 >
-                {/* {filteredUsers} */}
-                {userList.length > 0 &&
-                    userList.map((u) => 
-                        <RoominatorCard 
-                            isLoading={isLoading} 
-                            setIsLoading={setIsLoading} 
-                            userList={userList} 
-                            setUserList={userList} 
-                            singleUser={u}
-                            key={u.id}
-                            token={token}
-                        />
-                )}
+                {filteredUsers}
                 </Row>
             </Container>
         </div>
