@@ -24,6 +24,7 @@ export default function Home ( {
     categoryList, userType,locationList
 }){
 
+
     return (
         <Router>
             <div className="page-container">

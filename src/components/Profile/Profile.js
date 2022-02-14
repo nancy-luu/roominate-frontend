@@ -109,7 +109,6 @@ export default function Profile ({ user, setUser, userList, isLoading, setIsLoad
 
     // console.log(userList)
     // console.log(currUser.listing_photo)
-
     
     if (!currUser.username) {
         return(
@@ -164,6 +163,7 @@ export default function Profile ({ user, setUser, userList, isLoading, setIsLoad
                                 setLoadingRequest={setLoadingRequest}
                                 id={listing.id}
                                 currUser={currUser}
+                                listings={listings}
                             />
                         )}
                         </Row>

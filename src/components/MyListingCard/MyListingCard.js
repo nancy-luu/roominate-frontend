@@ -11,7 +11,7 @@ import MyListingPhoto from "./MyListingPhoto";
 
 import "./mylistingcard.scss"
 
-export default function MyListingCard ({ isLoading, setIsLoading, categoryList, locationList, token, listing, loadingRequest, setLoadingRequest, id, currUser }){
+export default function MyListingCard ({ isLoading, setIsLoading, categoryList, locationList, token, listing, loadingRequest, setLoadingRequest, id, currUser, listings }){
     const [myListModalShow, setMyListModalShow] = React.useState(false);
     const [file, setFile] = useState(null);
     const myToken = localStorage.getItem("token");
@@ -157,8 +157,8 @@ export default function MyListingCard ({ isLoading, setIsLoading, categoryList, 
     //     }
     // })
 
-    console.log(listing.listing_photos_id)
-    console.log(currUser.listing_photo)
+    // console.log(listing.listing_photos_id)
+    // console.log(currUser.listing_photo)
 
     
 
@@ -182,6 +182,7 @@ export default function MyListingCard ({ isLoading, setIsLoading, categoryList, 
                         token={token} 
                         listing={listing}
                         currUser={currUser}
+                        listings={listings}
                     />
                     <Card.Body>
                         <Card.Title><b>{listing.title}</b></Card.Title>                    
