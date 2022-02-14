@@ -17,13 +17,13 @@ export default function FeaturedUser({ singleFeatUser, token }) {
     return (
         <div className="roominator-card-container">
             <Row>
-                <Col>
+                <Row>
                     <FeatUserPhoto 
                         token={token}
                         singleFeatUser={singleFeatUser}
                     />
-                </Col>
-                <Col>
+                </Row>
+                <Row>
                     <Row>
                         <Card.Title><b>{singleFeatUser.username}</b></Card.Title>
                     </Row>
@@ -45,7 +45,7 @@ export default function FeaturedUser({ singleFeatUser, token }) {
                         // onClick={() => setMessageRoominatorShow(true)} 
                         ><RiMailSendLine style={{ width: '3rem', height: '1rem' }}/>
                     </button>
-                </Col>
+                </Row>
             </Row>
             {/* <StartConvoModal
                 show={messageModalShow}

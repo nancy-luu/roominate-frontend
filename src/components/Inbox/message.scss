@@ -8,15 +8,30 @@
     font-weight: 700;
 }
 
+.sender-image{
+    justify-content: center;
+    text-align: center;
+    clip-path: circle(25% at 50% 50%);
+}
+
+.sender-name{
+    font-family: $mainfont;
+    font-weight: 700;
+    padding-top: 20px;
+    text-align: left;
+}
+
 .chat-input{
     border: 2px solid black;
     box-shadow: -8px 8px 3px -4px rgba(0, 0, 0, 0.247);
 }
 
 .message-blob{
+    text-align: left;
+    padding-left: 20px;
     font-family: $mainfont;
     border-radius: 10px;
-    background-color: $secondarycolor;
+    background-color: $maincolor;
     color: white;
     font-size: 20px;
     font-weight: 500;

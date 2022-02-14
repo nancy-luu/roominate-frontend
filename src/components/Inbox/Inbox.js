@@ -5,7 +5,7 @@ import Message from "./Message";
 import "./inbox.scss"
 
 
-export default function Inbox ({ user, setUser, currUser }){
+export default function Inbox ({ user, currUser, userList }){
     const [showMessages, setShowMessages] = useState(false)
 
     // function handleSendMessage(e) {
@@ -33,6 +33,8 @@ export default function Inbox ({ user, setUser, currUser }){
     //         }
     //     })
     // }
+
+    console.log(currUser.conversations)
 
     // prevent error page when currUser is not yet valid
     if (!currUser.username) {
@@ -71,6 +73,8 @@ export default function Inbox ({ user, setUser, currUser }){
                                 <Message
                                     singleMessage={m}
                                     key={m.id}
+                                    user={user}
+                                    userList={userList}
                                 />
                             ) : <></>}
                         <input className="chat-input"></input>

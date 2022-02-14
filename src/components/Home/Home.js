@@ -93,7 +93,7 @@ export default function Home ( {
                             <Route exact path="/inbox" element={
                                 <Inbox 
                                     user={user} 
-                                    setUser={setUser} 
+                                    userList={userList}
                                     currUser={currUser}
                                 /> 
                             } />
