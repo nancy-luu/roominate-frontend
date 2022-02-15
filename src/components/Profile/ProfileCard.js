@@ -9,7 +9,7 @@ import MyProfilePhoto from "./MyProfilePhoto";
 import "./profilecard.scss"
 
 
-export default function ProfileCard ({ user, setUser, userList, isLoading, setIsLoading, categoryList, locationList, token, currUser, setLoadingRequest, loadingRequest }){
+export default function ProfileCard ({ user, setUser, userList, isLoading, setIsLoading, categoryList, locationList, token, currUser, setLoadingRequest, loadingRequest, userType }){
     const [profileEditShow, setProfileEditShow] = React.useState(false);
     const [file, setFile] = useState(null);
     const myToken = localStorage.getItem("token");
@@ -20,6 +20,8 @@ export default function ProfileCard ({ user, setUser, userList, isLoading, setIs
     let user_location
     let user_charge
     let user_desc
+
+    console.log(currUser.id)
 
     function handleUpdateProfile (e){
         e.preventDefault();
@@ -44,7 +46,7 @@ export default function ProfileCard ({ user, setUser, userList, isLoading, setIs
             }
           }).then((data) => console.log(data))
 
-        fetch('http://localhost:3000/user', {
+        fetch(`http://localhost:3000/users/${currUser.id}`, {
             method: 'PATCH',
             headers: {
                 "Content-Type": "application/json",
@@ -52,8 +54,6 @@ export default function ProfileCard ({ user, setUser, userList, isLoading, setIs
             },
             body: JSON.stringify({
                 username,
-                email,
-                password,
                 user_type,
                 user_location,
                 user_charge,
@@ -76,6 +76,31 @@ export default function ProfileCard ({ user, setUser, userList, isLoading, setIs
         console.log("this is the file", e.target.files[0])
         setFile(e.target.files[0]);
     }
+
+    function handleUpdateName(e){
+        e.preventDefault();
+        username = e.target.value
+    }
+
+    function handleUpdateType (e) {
+        user_type = e.value
+    }
+
+    function handleUpdateLocation (e){
+        user_location = e.value
+    }
+
+    function handleUpdateCharge(e){
+        e.preventDefault();
+        user_charge = e.target.value
+        parseInt(user_charge)
+    }
+
+    function handleUpdateDesc(e){
+        e.preventDefault();
+        user_desc = e.target.value
+    }
+
 
     function EditProfileModal(props) {
         return (
@@ -105,54 +130,54 @@ export default function ProfileCard ({ user, setUser, userList, isLoading, setIs
                         <div className="form-group">
                             <label>Name*</label>
                             <input 
+                                type="username" 
                                 type="listing-title" 
                                 className="form-control" 
                                 id="listing-title-input" 
-                                placeholder="Enter Name..." 
-                                // onChange={handleSetActivityName}
+                                placeholder="Update Name..." 
+                                onChange={handleUpdateName}
                             ></input>
                         </div>
                         <div className="form-group">
                             <label className="listing-category">User Type*</label>
                             <Select  
+                                type="user_type"
                                 className="basic-multi-select"
                                 classNamePrefix="select"
-                                options={categoryList} 
-                                // value={participants}
-                                // onChange={handleOnChange}
+                                options={userType} 
+                                onChange={handleUpdateType}
                             />
                         </div>
                         <div className="form-group">
                             <label className="listing-location">Location*</label>
                             <Select 
+                                type="user_location"
                                 className="basic-multi-select"
                                 classNamePrefix="select"
                                 options={locationList} 
-                                // value={participants}
-                                // onChange={handleOnChange}
+                                onChange={handleUpdateLocation}
                             />
                         </div>
                         <div className="form-group">
                             <label>Charge*</label>
-                            <h5>$</h5>
                             <input 
-                                type="cost" 
+                                type="user_charge" 
                                 className="form-control" 
                                 id="cost-input" 
-                                placeholder="0"
+                                placeholder="$/hr"
                                 autoComplete="on"
-                                // onChange={handleSetActivityCost}
+                                onChange={handleUpdateCharge}
                             ></input>
                         </div>
                         <div className="form-group">
                             <label>About*</label>
                             <input 
-                                type="activityDesc" 
+                                type="user_desc" 
                                 className="form-control" 
                                 id="activityDesc-input" 
-                                placeholder="Enter Bio..."
+                                placeholder="Update Bio..."
                                 autoComplete="on"
-                                // onChange={handleSetActivityDesc}
+                                onChange={handleUpdateDesc}
                             ></input>
                         </div>
                         <div>

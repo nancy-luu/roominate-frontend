@@ -8,13 +8,19 @@
         justify-content: center;
         text-align: center;
 
-        .listing-image{
-            justify-content: center;
-            text-align: center;
-            margin-left: 5%;
+        .listing-image-wrapper{
+            margin-left: 50px;
+
+            .listing-image{
+                justify-content: center;
+                text-align: center;
+            }
         }
     }
 
+    .listing-title{
+        margin-top: -10px;
+    }
 
     .contact-btn{
         display: absolute;

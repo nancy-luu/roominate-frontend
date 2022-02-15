@@ -7,12 +7,17 @@
     .listing-card-container{
         justify-content: center;
         text-align: left;
+
+        .listing-image-wrapper{
+            margin-left: 50px;
+
+            .listing-image{
+                justify-content: center;
+                text-align: center;
+            }
+        }
     }
 
-    .my-listing-image{
-        justify-content: center;
-        margin-left: 25%;
-    }
     
 
     .delete-btn{

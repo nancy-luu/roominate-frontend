@@ -34,7 +34,7 @@ export default function Inbox ({ user, currUser, userList }){
     //     })
     // }
 
-    console.log(currUser.conversations)
+    console.log(currUser)
 
     // prevent error page when currUser is not yet valid
     if (!currUser.username) {
@@ -55,14 +55,14 @@ export default function Inbox ({ user, currUser, userList }){
                 <div className="inbox-left">
                     <div className="inbox-titles">conversations:</div>
                     <div className="conversation-left">
-                        {currUser.conversations.map((c) =>
+                        {currUser.conversations? currUser.conversations.map((c) =>
                             <Conversation
                                 myConversation={c}
                                 key={c.header}
                                 setShowMessages={setShowMessages}
                                 showMessages={showMessages}
                             />
-                        )}
+                        ) : <>you have no conversations</>}
                     </div>
                 </div>
                 <div className="inbox-right">

@@ -14,27 +14,35 @@ import "./mylistingcard.scss"
 export default function MyListingCard ({ isLoading, setIsLoading, categoryList, locationList, token, listing, loadingRequest, setLoadingRequest, id, currUser, listings }){
     const [myListModalShow, setMyListModalShow] = React.useState(false);
     const [file, setFile] = useState(null);
+    const [deleteLoading, setDeleteLoading] = useState(false)
     const myToken = localStorage.getItem("token");
+    let title
+    let category
+    let location
+    let price
+    let desc
 
 
     function handleRemove(e){
         const myListing = e.target.id
         console.log("listing id: ")
         console.log(myListing)
-        // fetch(`http://localhost:3000/listings/${myListing}`, {
-        //     method: 'DELETE',
-        //     headers: {
-        //         Authorization: `Bearer ${myToken}`,
-        //     },
-        // })
-        // .then(res =>{
-        //     if(res.ok){
-        //         console.log(res)
-        //         setLoadingRequest(loadingRequest+1)
-        //     } else {
-        //         res.json().then(console.log)
-        //     }
-        // })
+        setDeleteLoading(true)
+        fetch(`http://localhost:3000/listings/${listing.id}`, {
+            method: 'DELETE',
+            headers: {
+                Authorization: `Bearer ${myToken}`,
+            },
+        })
+        .then(res =>{
+            setDeleteLoading(false)
+            if(res.ok){
+                console.log(res)
+                setLoadingRequest(loadingRequest+1)
+            } else {
+                res.json().then(console.log)
+            }
+        })
     }
 
     function handleUpdateListing (e){
@@ -56,6 +64,29 @@ export default function MyListingCard ({ isLoading, setIsLoading, categoryList, 
                 return r.json()
             }
         }).then((data) => console.log(data))
+
+        fetch(`http://localhost:3000/listings/${listing.id}`, {
+            method: 'PATCH',
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${myToken}`,
+            },
+            body: JSON.stringify({
+                title,
+                category,
+                location,
+                price,
+                desc,
+                user_id: currUser.id
+            })
+        }).then((r) => {
+            if(r.ok){
+                setLoadingRequest(loadingRequest+1)
+                return r.json()
+            }
+        }).then((data) => console.log(data))
+
+        setMyListModalShow(false)
     }
 
     const handleListPic = (e) => {
@@ -63,6 +94,31 @@ export default function MyListingCard ({ isLoading, setIsLoading, categoryList, 
         console.log("this is the file", e.target.files[0])
         setFile(e.target.files[0]);
     }
+
+    function handleUpdateTitle(e){
+        e.preventDefault()
+        title = e.target.value
+    }
+
+    function handleUpdateCategory(e){
+        category = e.value
+    }
+
+    function handleUpdateLocation(e){
+        location = e.value
+    }
+
+    function handleUpdatePrice(e){
+        e.preventDefault()
+        price = e.target.value
+        parseInt(price)
+    }
+
+    function handleUpdateDesc(e){
+        e.preventDefault()
+        desc = e.target.value
+    }
+
 
     function EditListingModal(props) {
         return (
@@ -73,7 +129,8 @@ export default function MyListingCard ({ isLoading, setIsLoading, categoryList, 
                 centered
             >
             <Modal.Header closeButton>
-                <Modal.Title id="contained-modal-title-vcenter">
+                <Modal.Title 
+                id="contained-modal-title-vcenter">
                     Update Listing Info:
                 </Modal.Title>
             </Modal.Header>
@@ -88,14 +145,12 @@ export default function MyListingCard ({ isLoading, setIsLoading, categoryList, 
                             accept='image/*'
                             onChange={handleListPic}
                         />
-                        {/* <input type="hidden" name="user_id" value={setUserId(currentUser.id)}/> */}
-                        <button type='submit' value='Submit'>Submit</button>
                         <div className="form-group">
                             <label>Title*</label>
                             <input 
                                 className="form-control" 
                                 placeholder="Enter Title..." 
-                                // onChange={handleSetActivityName}
+                                onChange={handleUpdateTitle}
                             ></input>
                         </div>
                         <div className="form-group">
@@ -103,8 +158,7 @@ export default function MyListingCard ({ isLoading, setIsLoading, categoryList, 
                             <Select  
                                 className="basic-multi-select"
                                 options={categoryList} 
-                                // value={participants}
-                                // onChange={handleOnChange}
+                                onChange={handleUpdateCategory}
                             />
                         </div>
                         <div className="form-group">
@@ -112,20 +166,18 @@ export default function MyListingCard ({ isLoading, setIsLoading, categoryList, 
                             <Select 
                                 className="basic-multi-select"
                                 options={locationList} 
-                                // value={participants}
-                                // onChange={handleOnChange}
+                                onChange={handleUpdateLocation}
                             />
                         </div>
                         <div className="form-group">
                             <label>Estimated Cost*</label>
-                            <h5>$</h5>
                             <input 
                                 type="cost" 
                                 className="form-control" 
                                 id="cost-input" 
-                                placeholder="0"
+                                placeholder="$ /hr"
                                 autoComplete="on"
-                                // onChange={handleSetActivityCost}
+                                onChange={handleUpdatePrice}
                             ></input>
                         </div>
                         <div className="form-group">
@@ -134,7 +186,7 @@ export default function MyListingCard ({ isLoading, setIsLoading, categoryList, 
                                 className="form-control" 
                                 placeholder="Enter Description..."
                                 autoComplete="on"
-                                // onChange={handleSetActivityDesc}
+                                onChange={handleUpdateDesc}
                             ></input>
                         </div>
                         <div>
@@ -177,6 +229,7 @@ export default function MyListingCard ({ isLoading, setIsLoading, categoryList, 
             <div className="listing-card-container">
                 <Card style={{width: '20rem', height: '28rem'}} id={listing.id}>
                     <MyListingPhoto 
+                        className="listing-image-wrapper"
                         isLoading={isLoading} 
                         setIsLoading={setIsLoading} 
                         token={token} 
@@ -185,10 +238,7 @@ export default function MyListingCard ({ isLoading, setIsLoading, categoryList, 
                         listings={listings}
                     />
                     <Card.Body>
-                        <Card.Title><b>{listing.title}</b></Card.Title>                    
-                        {/* <Row>
-                            <Card.Text>Posted By: {listing.category}</Card.Text>
-                        </Row> */}
+                        <Card.Title className="listing-title"><b>{listing.title}</b></Card.Title>                    
                         <Row>
                             <Card.Text><b>Category:</b> {listing.category}</Card.Text>
                         </Row>
@@ -206,7 +256,7 @@ export default function MyListingCard ({ isLoading, setIsLoading, categoryList, 
                             style={{ backgroundColor: "#6C63FF", margin: "1%"}}
                             onClick={handleRemove}
                             id={id} 
-                        ><MdOutlineDeleteForever style={{ width: '1.5rem', height: '1.5rem' }}/></button>
+                        >{deleteLoading ? "Deleting" : <MdOutlineDeleteForever style={{ width: '1.5rem', height: '1.5rem' }}/>}</button>
                         <button
                             id={id} 
                             className="mylisting-edit-btn"

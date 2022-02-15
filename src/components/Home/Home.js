@@ -89,6 +89,7 @@ export default function Home ( {
                                     loadingRequest={loadingRequest} 
                                     setLoadingRequest={setLoadingRequest} 
                                     listings={listings}
+                                    userType={userType}
                                 /> 
                             } />
                             <Route exact path="/inbox" element={

@@ -13,15 +13,10 @@ export default function SignUp({ onLogin, setLoadingRequest, loadingRequest, cat
     let username
     let email
     let password
-
-    const [userAccountType, setUserAccountType] = useState("")
-    const [userLocation, setUserLocation] = useState("")
-
     let user_type
     let user_location
     let user_charge
     let user_desc
-
   
     function handleSubmit(e) {
         e.preventDefault();
@@ -37,8 +32,8 @@ export default function SignUp({ onLogin, setLoadingRequest, loadingRequest, cat
             username,
             email,
             password,
-            user_type: userAccountType,
-            user_location: userLocation,
+            user_type,
+            user_location,
             user_charge,
             user_desc
           }),
@@ -58,6 +53,14 @@ export default function SignUp({ onLogin, setLoadingRequest, loadingRequest, cat
         }});
     }
 
+    function handleUserType (e) {
+        user_type = e.value
+    }
+
+    function handleUserLocation (e){
+        user_location = e.value
+    }
+
     function handleSetName(e){
         e.preventDefault();
         username = e.target.value
@@ -71,18 +74,6 @@ export default function SignUp({ onLogin, setLoadingRequest, loadingRequest, cat
     function handleSetPassword(e){
         e.preventDefault();
         password = e.target.value
-    }
-
-    function handleSetAccountType(e){
-        e.preventDefault();
-        setUserAccountType(e.target.value)
-        console.log(userAccountType)
-    }
-
-    function handleSetAccountLocation(e){
-        e.preventDefault();
-        setUserLocation(e.target.value)
-        console.log(userLocation)
     }
 
     function handleSetAbout(e){
@@ -148,9 +139,9 @@ export default function SignUp({ onLogin, setLoadingRequest, loadingRequest, cat
                         </Modal.Title>
                         <label>Account Type*</label>
                         <Select 
-                            value={user_type}
+                            type="user_type"
                             options={userType} 
-                            onSelect={handleSetAccountType}
+                            onChange={handleUserType}
                         ></Select>
                         <label>Charge*</label>
                             <input 
@@ -162,9 +153,9 @@ export default function SignUp({ onLogin, setLoadingRequest, loadingRequest, cat
                             ></input>
                          <label>Location*</label>
                         <Select 
-                            value={user_location}
+                            type="user_location"
                             options={locationList} 
-                            onSelect={handleSetAccountLocation}
+                            onChange={handleUserLocation}
                         ></Select>
                         <div className="form-group">
                             <label>About*</label>

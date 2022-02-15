@@ -12,12 +12,102 @@ import ProfileCard from "./ProfileCard"
 import "./profile.scss"
 
 
-export default function Profile ({ user, setUser, userList, isLoading, setIsLoading, categoryList, locationList, currUser, token, loadingRequest, setLoadingRequest, listings }){
-
+export default function Profile ({ user, setUser, userList, isLoading, setIsLoading, categoryList, locationList, currUser, token, loadingRequest, setLoadingRequest, listings, userType }){
+    const API = 'http://localhost:3000'
     const [listingModalShow, setListingModalShow] = React.useState(false);
+    const [listing, setListing] = useState(null)
+    const [errors, setErrors] = useState([]);
+    const [file, setFile] = useState(null);
+    const myToken = localStorage.getItem("token");
+    let title
+    let category
+    let location
+    let price 
+    let desc 
 
-    function handleAddListing(){
-        console.log("ADD!")
+    console.log(currUser.id)
+
+    function handleAddListing(e){
+        e.preventDefault();
+        console.log("added!")
+
+        // console.log("Add Listing")
+        e.preventDefault();
+        setErrors([]);
+        setIsLoading(true);
+        fetch(`${API}/listings`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({
+                title,
+                category,
+                location,
+                price,
+                desc,
+                user_id: currUser.id
+            }),
+        }).then((r) => {
+            r.json().then((listing) => {
+                setListing(listing)
+                console.log(listing)
+                setListingModalShow(false)
+                setIsLoading(false);
+                const formData = new FormData()
+                formData.append('image', file)
+                formData.append('listing_id', listing.id)
+                fetch(`http://localhost:3000/listing_photos/${listing.id}`, {
+                    method: 'POST',
+                headers: {
+                    Authorization: `Bearer ${myToken}`,
+                 },
+                body: formData
+                }).then((r) => {
+            if (r.ok){
+                setLoadingRequest(loadingRequest+1)
+                return r.json()
+            }
+            })
+        //     if (r.ok) {
+        // })
+        //     } else {
+        //       r.json().then((err) => setErrors(err.errors));
+        //     }
+        // );
+
+        setListingModalShow(false)
+        })
+    })}
+
+    const handleListPic = (e) => {
+        e.persist()
+        console.log("this is the file", e.target.files[0])
+        setFile(e.target.files[0]);
+    }
+
+    function handleCreateTitle(e){
+        e.preventDefault();
+        title = e.target.value
+    }
+
+    function handleCreateCategory(e){
+        category = e.value
+    }
+
+    function handleCreateLocation(e){
+        location = e.value
+    }
+
+    function handleCreatePrice(e){
+        e.preventDefault();
+        price = e.target.value
+    }
+
+    function handleCreateDesc(e){
+        e.preventDefault();
+        desc = e.target.value
     }
 
     function AddListingModal(props) {
@@ -35,23 +125,20 @@ export default function Profile ({ user, setUser, userList, isLoading, setIsLoad
             </Modal.Header>
             <Modal.Body>
                     <Form 
-                        // onSubmit={handleSubmitActivity} 
-                        // id={listing.id} 
-                        >
+                    onSubmit={handleAddListing} 
+                    >
                         <input 
                             type="file"
                             name='photo' 
                             accept='image/*'
-                            // onChange={handlePic}
+                            onChange={handleListPic}
                         />
-                        {/* <input type="hidden" name="user_id" value={setUserId(currentUser.id)}/> */}
-                        <button type='submit' value='Submit'>Submit</button>
                         <div className="form-group">
                             <label>Title*</label>
                             <input 
                                 className="form-control" 
                                 placeholder="Enter Title..." 
-                                // onChange={handleSetActivityName}
+                                onChange={handleCreateTitle}
                             ></input>
                         </div>
                         <div className="form-group">
@@ -59,8 +146,7 @@ export default function Profile ({ user, setUser, userList, isLoading, setIsLoad
                             <Select  
                                 className="basic-multi-select"
                                 options={categoryList} 
-                                // value={participants}
-                                // onChange={handleOnChange}
+                                onChange={handleCreateCategory}
                             />
                         </div>
                         <div className="form-group">
@@ -68,8 +154,7 @@ export default function Profile ({ user, setUser, userList, isLoading, setIsLoad
                             <Select 
                                 className="basic-multi-select"
                                 options={locationList} 
-                                // value={participants}
-                                // onChange={handleOnChange}
+                                onChange={handleCreateLocation}
                             />
                         </div>
                         <div className="form-group">
@@ -81,7 +166,7 @@ export default function Profile ({ user, setUser, userList, isLoading, setIsLoad
                                 id="cost-input" 
                                 placeholder="0"
                                 autoComplete="on"
-                                // onChange={handleSetActivityCost}
+                                onChange={handleCreatePrice}
                             ></input>
                         </div>
                         <div className="form-group">
@@ -90,7 +175,7 @@ export default function Profile ({ user, setUser, userList, isLoading, setIsLoad
                                 className="form-control" 
                                 placeholder="Enter Description..."
                                 autoComplete="on"
-                                // onChange={handleSetActivityDesc}
+                                onChange={handleCreateDesc}
                             ></input>
                         </div>
                         <div>
@@ -129,6 +214,7 @@ export default function Profile ({ user, setUser, userList, isLoading, setIsLoad
                 locationList={locationList}
                 loadingRequest={loadingRequest} 
                 setLoadingRequest={setLoadingRequest} 
+                userType={userType}
                 />
             <div className="middle-bar">
                 <Col>
