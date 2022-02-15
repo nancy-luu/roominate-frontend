@@ -12,7 +12,20 @@ import "./listingcard.scss"
 
 export default function ListingCard ({ isLoading, setIsLoading, user, setUser, listing, setListing, singlelisting, token, userList }){
     const [messageModalShow, setMessageModalShow] = React.useState(false);
+    const [showMore, setShowMore] = useState(`${singlelisting.desc.slice(0,50)}...`)
+    const [showMoreToggle, setShowMoreToggle] = useState("more")
 
+
+    function handleShowMore () {
+        if (showMoreToggle === "more") {
+          setShowMore(`${singlelisting.desc}`)
+          setShowMoreToggle("(less)")
+        } else {
+          setShowMore(`${singlelisting.desc.slice(0,50)}...`)
+          setShowMoreToggle("more")
+        }
+    
+    }
 
     function StartConvoModal(props) {
         return (
@@ -54,31 +67,34 @@ export default function ListingCard ({ isLoading, setIsLoading, user, setUser, l
         );
     }    
 
-    // console.log(singlelisting.user)
-    // console.log(singlelisting.listing_photo)
-    // console.log(userList)
 
-    let postedBy = userList.filter((pb) => {
+    const findPoster = userList.filter((pb) => {
         if (pb.id == singlelisting.user_id) {
             return true
         }
     })
 
-    // console.log(postedBy)
+    console.log(findPoster)
 
+    const foundPoster = findPoster.map((p) => (
+        <Card.Text><b>Posted By: </b> {p.username}</Card.Text>
+    ))
+
+    console.log(singlelisting)
 
     return (
         <div className="listing-card-container">
             <Card style={{width: '20rem', height: '28rem' }}>
-                <ListingPhoto 
+                <ListingPhoto
+                    className="listing-image-wrapper"
                     isLoading={isLoading} 
                     setIsLoading={setIsLoading} 
                     token={token} 
                     singlelisting={singlelisting}/>
                 <Card.Body>
-                    <Card.Title><b>{singlelisting.title}</b></Card.Title>
+                    <Card.Title className="listing-title"><b>{singlelisting.title}</b></Card.Title>
                     <Row>
-                        {/* <Card.Text>Posted By: {postedBy}</Card.Text> */}
+                        {foundPoster}
                     </Row>
                     <Row>
                         <Card.Text><b>Category:</b> {singlelisting.category}</Card.Text>
@@ -90,7 +106,10 @@ export default function ListingCard ({ isLoading, setIsLoading, user, setUser, l
                         <Card.Text><b>Location:</b> {singlelisting.location}</Card.Text>
                     </Row>
                     <Row>
-                        <Card.Text><b>Description:</b> {singlelisting.desc} </Card.Text>
+                        <Card.Text><b>Description: </b>
+                            {showMore}
+                            <b onClick={handleShowMore}>{showMoreToggle}</b>
+                        </Card.Text>
                     </Row>
                     <button 
                     className="contact-btn"

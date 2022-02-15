@@ -13,6 +13,7 @@ export default function Message ({ singleMessage, user, userList }){
 
     const foundUserPhoto = findMessageUser.map((p) => (
         <img 
+            key={p.id}
             className="sender-image"
             src={p.user_photo.image}
             style={{ width: '7rem' }}
@@ -20,7 +21,7 @@ export default function Message ({ singleMessage, user, userList }){
     ))
 
     const foundUseName = findMessageUser.map((p) => (
-        <div className="sender-name" style={{ width: '5rem' }} >
+        <div key={p.id} className="sender-name" style={{ width: '5rem' }} >
             {p.username}
         </div>
     ))

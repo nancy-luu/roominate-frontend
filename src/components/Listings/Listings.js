@@ -73,7 +73,7 @@ export default function Listings ({ token, user, setUser, isLoading, setIsLoadin
         return false
     })
 
-    console.log(listingsToDisplay)
+    // console.log(listingsToDisplay)
 
     const filteredListings = listingsToDisplay.map((listing) => (
         <ListingCard 
