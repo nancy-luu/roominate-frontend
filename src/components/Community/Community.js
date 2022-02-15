@@ -3,7 +3,7 @@ import { Row, Col } from 'react-bootstrap';
 import { FaCheck } from 'react-icons/fa'
 import Container from "react-bootstrap/Container";
 import FeatUserSlider from "../Community/FeatUserSlider"; 
-import FeaturedLister from "../Community/FeaturedLister"; 
+import FeaturedListing from "../Community/FeaturedListing"; 
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import "./community.scss"
@@ -12,6 +12,7 @@ const API = 'http://localhost:3000'
 
 export default function Community( ) {
   const [featUsers, setFeatUsers] = useState([])
+  const [featListings, setFeatListings] = useState([])
   const token = localStorage.getItem("token");
 
 
@@ -28,8 +29,18 @@ export default function Community( ) {
       });
   }, []);
 
-  // console.log(featUsers)
-
+  useEffect(() => {
+    fetch(`${API}/featured_listings`, {
+      headers:{
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    }).then((r) => {
+      if (r.ok){
+        r.json().then((featListings) => setFeatListings(featListings));
+      }
+    })
+  }, []);
 
   return (
     <div className="community-wrapper">
@@ -70,7 +81,6 @@ export default function Community( ) {
           <Row 
             xs={1}
             md={3}
-            // className="d-flex justify-content-center"
           >
             <Col className="article-card">
               <Card style={{ width: '25rem', height: '25rem' }}>
@@ -125,17 +135,24 @@ export default function Community( ) {
         <Container>
           <div className="community-header">featured romminators:</div>
           <FeatUserSlider featUsers={featUsers} token={token} />
-          {/* {featUsers.map((fuser) =>
-            <FeaturedUser
-              key={fuser.id}
-              singleFeatUser={fuser}
-              token={token}
-            /> 
-          )} */}
         </Container>
         <Container>
           <div className="community-header">featured listings:</div>
-          <FeaturedLister/>
+          <Row
+            xs={1}
+            md={4}
+            className="g-4"
+            className="d-flex justify-content-center"
+          >
+          {featListings.map((ft) => (
+            <FeaturedListing 
+              featListings={featListings} 
+              token={token}
+              singleFeatListing={ft}
+              key={ft.id}
+            />
+          ))}
+          </Row>
         </Container>
     </div>
     )
