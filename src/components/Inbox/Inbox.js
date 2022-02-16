@@ -1,99 +1,84 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Conversation from "./Conversation"; 
-
 import "./inbox.scss"
+const API = 'http://localhost:3000'
+
+
 
 
 export default function Inbox ({ user, currUser, userList, setIsLoading, loadingRequest}){
-    const [showMessages, setShowMessages] = useState(false)
+    const [myConvos, setMyConvos] = useState([])
+    const token = localStorage.getItem("token");
 
-    // function handleSendMessage(e) {
-    //     e.preventDefault();
-    //     fetch("http://localhost:3000/conversations", {
-    //         method: "POST",
-    //         headers: {
-    //           "Content-Type": "application/json",
-    //         },
-    //         body: JSON.stringify({
-    //             message:
-    //             user:
-    //             user2:
-    //         }),
-    //     })
-    //     .then((r)=>{
-    //         if (r.ok) {
-    //           r.json().then((vacation) => {
-    //             handleOtherSubmit(vacation);
-    //             setVacationRequest(vacationRequest+1)
-    //             navigate("/vacations")
-    //           })
-    //         } else {
-    //           r.json().then((err) => setErrors(err.errors));
-    //         }
-    //     })
-    // }
 
-    // console.log(currUser)
+    useEffect(() => {
+        setIsLoading(true);
+        if (token) {
+            fetch(`${API}/my_conversations`, {
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+              },
+            })
+            .then(resp => resp.json())
+            .then((myConvos) => {
+                setMyConvos(myConvos);  
+                setIsLoading(false);
+            });   
+        }
+    }, [loadingRequest]) 
 
-    // prevent error page when currUser is not yet valid
-    if (!currUser.username) {
-        return(
-            <></>
-        )
-    }
+    console.log(myConvos)
+
     // console.log(currUser.conversations[0].header)
     return (
-        <div className="inbox-wrapper">
-            <div className="inbox-img-container">
-                <img 
-                    className="inbox-img"
-                    src="images/inbox-icon.png"
-                ></img>
-            </div>
-            <div className="inbox-container">
-                <div className="inbox-left">
-                    <div className="inbox-titles">your inquiries:</div>
-                    <div className="conversation-left">
-                        {currUser.conversations? currUser.conversations.map((c) =>
-                            <Conversation
-                                singleConversation={c}
-                                key={c.header}
-                                setShowMessages={setShowMessages}
-                                showMessages={showMessages}
-                                user={user}
-                                userList={userList}
-                                setIsLoading={setIsLoading}
-                                loadingRequest={loadingRequest}
-                            />
-                        ) : <>you have no conversations</>}
+        <>  
+            {myConvos.length > 0 ? 
+                <div className="inbox-wrapper">
+                    <div className="inbox-img-container">
+                        <img 
+                            className="inbox-img"
+                            src="images/inbox-icon.png"
+                        ></img>
+                    </div>
+                    <div className="inbox-container">
+                        <div className="inbox-left">
+                            <div className="inbox-titles">your inquiries:</div>
+                                <div className="conversation-left">
+                                    {myConvos? myConvos.map((c) =>
+                                        <Conversation
+                                            singleConversation={c}
+                                            key={c.id}
+                                            user={user}
+                                            userList={userList}
+                                            setIsLoading={setIsLoading}
+                                            loadingRequest={loadingRequest}
+                                            myConvos={myConvos}
+                                        />
+                                    ) : <>you have no conversations</>}
+                                </div>
+                        </div>
                     </div>
                 </div>
-                {/* <div className="inbox-right">
-                    <div className="inbox-titles">messages:</div> */}
-                    {/* {showMessages ? 
-                        <MessageContainer currUser={currUser} user={user} userList={userList} showMessages={showMessages} setShowMessages={setShowMessages}/>
-                        :
-                        <></>
-                    } */}
-                    {/* <div className="message-container">
-                        {showMessages ? 
-                            currUser.conversations[0].messages.map((m) =>
-                                <Message
-                                    singleMessage={m}
-                                    key={m.id}
-                                    user={user}
-                                    userList={userList}
-                                />
-                            ) : <></>}
-                        <input className="chat-input"></input>
-                        <button 
-                            className="send-btn"
-                            style={{ backgroundColor: "#9F99FF", margin: "1%", }}
-                            // onSubmit={}
-                        >send</button>
-                    </div> */}
-                {/* </div> */}
-        </div>
-        </div>
+                :
+                <div className="inbox-wrapper">
+                    <div className="inbox-img-container">
+                        <img 
+                            className="inbox-img"
+                            src="images/emptyinbox.png"
+                        ></img>
+                    </div>
+                    <div className="inbox-container">
+                        <div className="inbox-left">
+                            <div className="inbox-titles">Sorry, {user.username}</div>
+                                <div className="conversation-left">
+                                    Your inbox is empty!
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            
+            }
+        </>
     )
 }

@@ -2,16 +2,16 @@ import React, { useState, useEffect } from "react";
 import { Row, Col } from "react-bootstrap";
 import Message from "./Message";
 import "./conversation.scss"
+
 const API = 'http://localhost:3000'
 
 
 
-export default function Conversation ({ singleConversation, showMessages, setShowMessages, toggleMessages, user, userList, setIsLoading, loadingRequest }){
+export default function Conversation ({ singleConversation, user, userList, setIsLoading, loadingRequest, myConvos }){
     const [messageCount, setMessageCount] = useState(0)
+    const [showMessage, setShowMessage] = useState(false);
     const token = localStorage.getItem("token");
 
-    // console.log(singleConversation.messages)
-    // console.log(user.id)
 
     const myMessages = singleConversation.messages.filter((myMessage) => {
         if (myMessage.user_id === user.id){
@@ -19,12 +19,9 @@ export default function Conversation ({ singleConversation, showMessages, setSho
         }
     })
 
-    console.log(myMessages)
-
-    function toggleMessages(){
-        // console.log(showMessages)
-        setShowMessages(true)
-    }
+    // const toggle = () => {
+    //     setShowMessage(!showMessage);
+    // }
 
     useEffect(() => {
         setIsLoading(true);
@@ -49,7 +46,7 @@ export default function Conversation ({ singleConversation, showMessages, setSho
                 <div className="conversation-title">" {singleConversation.header} "</div>
                 <Row>
                     <Col className="info-left">
-                        <div className="conversation-text">from:</div>
+                        <div className="conversation-text">created by:</div>
                         <div className="conversation-info"> {singleConversation.user2.username}</div>
                     </Col>
                     <Col className="info-center">
@@ -65,27 +62,30 @@ export default function Conversation ({ singleConversation, showMessages, setSho
                     <button 
                         className="see-btn"
                         style={{ backgroundColor: "#9F99FF", margin: "1%"}}
-                        // onClick={() => setShowMessages(true)} 
-                        onClick={toggleMessages}
-                    >See Thread</button>
+                        onClick={() => setShowMessage(!showMessage)}
+                    >{showMessage? "x" : "more"}</button>
                 </Row>
             </div>
-            <div className="message-container">
-                {singleConversation.messages.map((m) => (
-                    <Message
-                    singleMessage={m}
-                    key={m.id}
-                    user={user}
-                    userList={userList}
-                    />
-                ))}
-                <input className="chat-input"></input>
-                <button
-                    className="send-btn"
-                    style={{ backgroundColor: "#9F99FF", margin: "1%" }}
-                    // onSubmit={}
-                >send</button>
-            </div>
+                {showMessage ? 
+                    <div className="message-container">
+                        {singleConversation.messages.map((m) => (
+                            <Message
+                            singleMessage={m}
+                            key={m.id}
+                            user={user}
+                            userList={userList}
+                            />
+                        ))}
+                        <input className="chat-input"></input>
+                        <button
+                            className="send-btn"
+                            style={{ backgroundColor: "#9F99FF", margin: "1%" }}
+                            // onSubmit={}
+                        >send</button>
+                    </div>
+                    :
+                    <></>
+                }
         </Row>
 
     )

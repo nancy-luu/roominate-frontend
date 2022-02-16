@@ -28,7 +28,7 @@ export default function About({ currUser }) {
             </div>
             <br></br>
             <div className="about-body">
-            This project utilizes React.js for the frontend along with other frameworks such as Bootstrap and SCSS. The backend was developed with Ruby on Rails in conjunction with the Cloudinary API to enable users to <b style={{color: '#6C63FF'}}>fully customize</b> their profiles and task listing images.
+            This project utilizes React.js for the frontend along with other frameworks such as Bootstrap and SCSS. The backend was developed with Ruby on Rails in conjunction with the Cloudinary API to enable users to <b style={{color: '#6C63FF'}}>fully customize</b> their profiles and listing images.
             </div>
         </div>
       </Row>
