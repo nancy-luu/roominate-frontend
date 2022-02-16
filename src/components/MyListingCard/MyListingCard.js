@@ -15,12 +15,25 @@ export default function MyListingCard ({ isLoading, setIsLoading, categoryList, 
     const [myListModalShow, setMyListModalShow] = React.useState(false);
     const [file, setFile] = useState(null);
     const [deleteLoading, setDeleteLoading] = useState(false)
+    const [showMore, setShowMore] = useState(`${listing.desc.slice(0,50)}...`)
+    const [showMoreToggle, setShowMoreToggle] = useState("more")
     const myToken = localStorage.getItem("token");
     let title
     let category
     let location
     let price
     let desc
+
+
+    function handleShowMore () {
+        if (showMoreToggle === "more") {
+          setShowMore(`${listing.desc}`)
+          setShowMoreToggle("(less)")
+        } else {
+          setShowMore(`${listing.desc.slice(0,50)}...`)
+          setShowMoreToggle("more")
+        }
+    }
 
 
     function handleRemove(e){
@@ -203,26 +216,6 @@ export default function MyListingCard ({ isLoading, setIsLoading, categoryList, 
         );
     }    
 
-    // let postedBy = userList.filter((pb) => {
-    //     if (pb.id == mySingleListing[0].user_id) {
-    //         return pb.username
-    //     }
-    // })
-
-    // console.log(listing.listing_photos_id)
-    // console.log(currUser.listing_photo)
-
-    
-
-
-    // const getListingPhoto = currUser.listing_photo.forEach((lp) => {
-    //     if (lp.id === listing.listing_photos.id) 
-    //     return lp.image
-    // })
-
-    // console.log(getListingPhoto)
-
-
 
     return (
         <div className="my-listing-card-wrapper">
@@ -256,21 +249,28 @@ export default function MyListingCard ({ isLoading, setIsLoading, categoryList, 
                             <Card.Text><b>Location:</b> {listing.location}</Card.Text>
                         </Row>
                         <Row>
-                            <Card.Text><b>Description:</b> {listing.desc}</Card.Text>
+                            <Card.Text><b>Description:</b> 
+                                {showMore}
+                                <b onClick={handleShowMore}>{showMoreToggle}</b>
+                            </Card.Text>
                         </Row>
-                        <button 
-                            className="delete-btn"
-                            style={{ backgroundColor: "#6C63FF", margin: "1%"}}
-                            onClick={handleRemove}
-                            id={id} 
-                        ><MdOutlineDeleteForever style={{ width: '1.5rem', height: '1.5rem' }}/>
-                        </button>
-                        <button
-                            id={id} 
-                            className="mylisting-edit-btn"
-                            style={{ backgroundColor: "#6C63FF", margin: "1%"}}
-                            onClick={() => setMyListModalShow(true)} 
-                        >edit</button>
+                        <Row className="button-wrapper">
+                            <button 
+                                className="delete-btn"
+                                style={{ backgroundColor: "#6C63FF", margin: "1%"}}
+                                onClick={handleRemove}
+                                id={id} 
+                            >
+                                {/* <MdOutlineDeleteForever style={{ width: '1.5rem', height: '1.5rem' }}/> */}
+                                done
+                            </button>
+                            <button
+                                id={id} 
+                                className="mylisting-edit-btn"
+                                style={{ backgroundColor: "#6C63FF", margin: "1%"}}
+                                onClick={() => setMyListModalShow(true)} 
+                            >edit</button>
+                        </Row>
                     </Card.Body>
                 </Card>
             </div>}

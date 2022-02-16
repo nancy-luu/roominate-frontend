@@ -9,7 +9,7 @@ import RoominatorCard from "./RoominatorCard";
 
 import "./roominators.scss"
 
-export default function Roominators ({ userType, locationList, isLoading, setIsLoading, userList, setUserList, token }){
+export default function Roominators ({ user, currUser, userType, locationList, isLoading, setIsLoading, userList, setUserList, token, loadingRequest, setLoadingRequest }){
     const [userCategory, setUserCategory] = useState("")
     const [userLocation, setUserLocation] = useState("")
 
@@ -27,16 +27,9 @@ export default function Roominators ({ userType, locationList, isLoading, setIsL
             return true
         }
 
-        //if usercategory is blank and userlocation == user.location
-            //return true
         if (userCategory === "" && userLocation === user.user_location) {
             return true
         }
-
-        // if userLocation is blank
-            // for each category in UserCategory
-                // if category ===user.category
-                    // return true
 
         let return_val = false
         if (userLocation === "") {
@@ -48,10 +41,6 @@ export default function Roominators ({ userType, locationList, isLoading, setIsL
             })
         }
 
-        // if userLocation == user.location
-            // for each category in userCategory
-                // if category == user.category
-                    // return tru
         if (userLocation == user.user_location && userCategory !== ""){
             userCategory.forEach((category) => {
                 console.log(category.value)
@@ -70,6 +59,8 @@ export default function Roominators ({ userType, locationList, isLoading, setIsL
 
     const filteredUsers = usersToDisplay.map((user) => (
         <RoominatorCard 
+            user={user}
+            currUser={currUser}
             isLoading={isLoading} 
             setIsLoading={setIsLoading} 
             userList={userList} 
@@ -77,6 +68,8 @@ export default function Roominators ({ userType, locationList, isLoading, setIsL
             singleUser={user}
             key={user.id}
             token={token}
+            loadingRequest={loadingRequest}
+            setLoadingRequest={setLoadingRequest}
         />
     ))
 

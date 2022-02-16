@@ -6,6 +6,16 @@
     text-align: center;
     padding: 20px 20px 20px;
 
+    .no-listing-wrapper{
+        padding-top: 30px;
+        padding-bottom: 10%;
+
+    }
+
+    .my-listings-wrapper{
+        padding-bottom: 5%;
+    }
+
     .mylistingtitle{
         text-align: center;
         font-family: $mainfont;
@@ -13,11 +23,20 @@
         font-size: 25px;
         font-weight: 700;
     }
+
+    .no-listing-text{
+        text-align: center;
+        font-family: $mainfont;
+        font-style: italic;
+        color: $maincolor;
+        font-size: 25px;
+        font-weight: 500;
+    }
     
     .add-listings-btn{
         font-family: $mainfont;
         height: 40px;
-        width: 150px;
+        width: 100px;
         border-radius: 50px;
         color: white;
         font-size: 15px;
@@ -25,3 +44,4 @@
         margin-bottom: 30px;
     }
 }
+

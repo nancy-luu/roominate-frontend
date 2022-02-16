@@ -209,7 +209,7 @@ export default function ProfileCard ({ user, setUser, userList, isLoading, setIs
                     <h5><b>Account: </b> {currUser.user_type}</h5>
                     <h5><b>Charge: </b> ${currUser.user_charge}/hr</h5>
                     <h5><b>Location: </b> {currUser.user_location}</h5>
-                    <h5><b>Description: </b> {currUser.user_desc}</h5>
+                    <h5><b>About: </b> {currUser.user_desc}</h5>
                     <div className="image-btn-container">
                         <button 
                             className="edit-profile-btn"

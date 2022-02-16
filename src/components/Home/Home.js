@@ -39,6 +39,7 @@ export default function Home ( {
                                 user ? 
                                 <Listings
                                     userList={userList}
+                                    currUser={currUser}
                                     token={token}
                                     user={user} 
                                     setUser={setUser}
@@ -48,6 +49,8 @@ export default function Home ( {
                                     setListings={setListings}
                                     categoryList={categoryList} 
                                     locationList={locationList}
+                                    loadingRequest={loadingRequest}
+                                    setLoadingRequest={setLoadingRequest}
                                 /> 
                                 : 
                                 <Landing 
@@ -66,6 +69,7 @@ export default function Home ( {
                                 <Roominators 
                                     token={token}
                                     user={user} 
+                                    currUser={currUser}
                                     setUser={setUser}
                                     userList={userList} 
                                     setUserList={setUserList}
@@ -75,6 +79,8 @@ export default function Home ( {
                                     locationList={locationList}
                                     isLoading={isLoading} 
                                     setIsLoading={setIsLoading}
+                                    loadingRequest={loadingRequest}
+                                    setLoadingRequest={setLoadingRequest}
                                 />
                             } />
                             <Route exact path="/profile" element={
@@ -101,6 +107,7 @@ export default function Home ( {
                                     currUser={currUser}
                                     setIsLoading={setIsLoading}
                                     loadingRequest={loadingRequest}
+                                    setLoadingRequest={setLoadingRequest}
                                 /> 
                             } />
                         </Routes>

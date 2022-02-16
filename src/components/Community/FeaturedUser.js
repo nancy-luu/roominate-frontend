@@ -14,9 +14,9 @@ export default function FeaturedUser({ singleFeatUser, token }) {
     // console.log(singleFeatUser)
 
     return (
-      <div className="roominator-card-container">
-        <Row>
-          <Row>
+      <div className="feat-user-card-container">
+        <Row className="feat-user-wrapper">
+          <Col className="feat-user-image">
             <img
               className="feat-user-image"
               src={
@@ -26,15 +26,15 @@ export default function FeaturedUser({ singleFeatUser, token }) {
               }
               style={{ width: "20rem", height: "15rem" }}
             ></img>
-          </Row>
-          <Row>
+          </Col>
+          <Col className="feat-user-into">
             <Row>
-              <Card.Title>
+              <Card.Title className="feat-username">
                 <b>{singleFeatUser.username}</b>
               </Card.Title>
             </Row>
             <Row>
-              <Card.Text>
+              <Card.Text className="feat-user-text">
                 <b>Account Type: </b>
                 {singleFeatUser.user_type}
               </Card.Text>
@@ -61,9 +61,9 @@ export default function FeaturedUser({ singleFeatUser, token }) {
               style={{ backgroundColor: "#6C63FF", margin: "1%" }}
               // onClick={() => setMessageRoominatorShow(true)}
             >
-              <RiMailSendLine style={{ width: "3rem", height: "1rem" }} />
+              connect
             </button>
-          </Row>
+          </Col>
         </Row>
         {/* <StartConvoModal
                 show={messageModalShow}

@@ -2,11 +2,11 @@
 
 .my-listing-card-wrapper{
     margin-top: 5%;
-    display: relative;
-
+    
     .listing-card-container{
         justify-content: center;
         text-align: left;
+        display: relative;
 
         .listing-image-wrapper{
             margin-left: 50px;
@@ -24,28 +24,37 @@
         text-align: center;
     }
 
-    .delete-btn{
+    .button-wrapper{
+        display: absolute;
+        width: 100%;
         justify-content: center;
         text-align: center;
-        font-family: $mainfont;
-        height: 30px;
-        width: 60px;
-        border-radius: 50px;
-        color: white;
-        font-size: 15px;
-        font-weight: 700;
+        padding-top: 10px;
+
+        .delete-btn{
+            justify-content: center;
+            text-align: center;
+            font-family: $mainfont;
+            height: 30px;
+            width: 70px;
+            border-radius: 50px;
+            color: white;
+            font-size: 15px;
+            font-weight: 700;
+        }
+    
+        .mylisting-edit-btn{
+            justify-content: center;
+            text-align: center;
+            font-family: $mainfont;
+            height: 30px;
+            width: 60px;
+            border-radius: 50px;
+            color: white;
+            font-size: 15px;
+            font-weight: 700;
+        }
     }
 
-    .mylisting-edit-btn{
-        justify-content: center;
-        text-align: center;
-        font-family: $mainfont;
-        height: 30px;
-        width: 60px;
-        border-radius: 50px;
-        color: white;
-        font-size: 15px;
-        font-weight: 700;
-    }
 }
 

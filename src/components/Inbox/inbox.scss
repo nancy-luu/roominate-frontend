@@ -1,38 +1,49 @@
 @import "../../global.scss";
 
 .inbox-wrapper{
+    text-align: center;
+    padding-top: 50px;
 
     .inbox-img-container{
-        margin-left: 40%;
+        margin-left: 32%;
         margin-right: 50%;
-
-        display:flex;
+        display: flex;
 
         .inbox-img{
             text-align: center;
-            width: 450px;
-            height: 300px;
         }
     }
 
+    .no-inbox-img{
+        margin-left: 19%;
+        margin-right: 19%;
+    }
+
     .inbox-container{
+        width: 100%;
         padding-top: 10px;
         justify-content: center;
         text-align: center;
         display: flex;
         margin-top: 20px;
 
-        .inbox-titles{
-            text-align: center;
-            font-family: $mainfont;
-            color: $maincolor;
-            font-size: 25px;
-            font-weight: 700;
-            padding-left: 50px;
-        }
-    
         .inbox-left{
             flex: 0.5;
+
+            .inbox-titles{
+                font-family: $mainfont;
+                color: $maincolor;
+                font-size: 25px;
+                font-weight: 700;
+            }
+
+            .conversation-left{
+                font-family: $mainfont;
+                color: rgb(102, 102, 102);
+                font-size: 25px;
+                font-weight: 500;
+                font-style: italic;
+            }
         }
     
     }
