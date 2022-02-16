@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import Card from 'react-bootstrap/Card'
 import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 import Select from 'react-select'
 import MyProfilePhoto from "./MyProfilePhoto"; 
 
@@ -126,7 +127,6 @@ export default function ProfileCard ({ user, setUser, userList, isLoading, setIs
                             accept='image/*'
                             onChange={handlePic}
                         />
-                        {/* <input type="hidden" name="user_id" value={setUserId(currentUser.id)}/> */}
                         <div className="form-group">
                             <label>Name*</label>
                             <input 
@@ -181,12 +181,12 @@ export default function ProfileCard ({ user, setUser, userList, isLoading, setIs
                             ></input>
                         </div>
                         <div>
-                            <button 
-                                className="listing-modal-submit"
-                                style={{ backgroundColor: "#9F99FF", margin: "1%"}}
+                            <Button 
+                                className="edit-profile-btn"
+                                style={{ backgroundColor: "#6C63FF", margin: "1%", border: "0"}}
                                 type="submit"
                             >{isLoading ? "Loading..." : "Submit"}
-                            </button>
+                            </Button>
                         </div>
                     </Form>
             </Modal.Body>
@@ -214,7 +214,7 @@ export default function ProfileCard ({ user, setUser, userList, isLoading, setIs
                         <button 
                             className="edit-profile-btn"
                             variant="primary"
-                            style={{ backgroundColor: "#9F99FF", margin: "1%"}}
+                            style={{ backgroundColor: "#6C63FF", margin: "1%"}}
                             onClick={() => setProfileEditShow(true)} 
                         >edit</button>
                     </div>

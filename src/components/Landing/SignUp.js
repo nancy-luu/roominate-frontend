@@ -187,12 +187,13 @@ export default function SignUp({ onLogin, setLoadingRequest, loadingRequest, cat
     
     return (
         <>
-            <Button 
+            <button 
+                className="login-button" 
                 variant="primary" 
                 onClick={() => setModalShow(true)}
-                style={{ backgroundColor: "#3E5C76", margin: "1%" }}
-            >Sign Up
-            </Button>
+                style={{ backgroundColor: "#6C63FF", margin: "1%" }}
+            >sign Up
+            </button>
 
             <MyVerticallyCenteredModal
                 show={modalShow}

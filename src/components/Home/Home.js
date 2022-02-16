@@ -57,8 +57,8 @@ export default function Home ( {
                                     setIsLoading={setIsLoading}
                                 />
                             } />
-                            <Route exact path="/about" element={
-                                <About />
+                            <Route exact path="/" element={
+                                <About currUser={currUser}/>
                             } />
                             <Route exact path="/roominators" element={
                                 <Roominators 
@@ -97,6 +97,8 @@ export default function Home ( {
                                     user={user} 
                                     userList={userList}
                                     currUser={currUser}
+                                    setIsLoading={setIsLoading}
+                                    loadingRequest={loadingRequest}
                                 /> 
                             } />
                         </Routes>

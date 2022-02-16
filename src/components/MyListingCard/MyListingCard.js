@@ -226,6 +226,13 @@ export default function MyListingCard ({ isLoading, setIsLoading, categoryList, 
 
     return (
         <div className="my-listing-card-wrapper">
+            {deleteLoading ? 
+            <div className="listing-card-deleter">
+                <Card style={{width: '20rem', height: '28rem', backgroundColor: "#ebe9ff" }} >
+                    <Card.Title className="listing-card-deleter"><b>DELETING</b></Card.Title>                    
+                </Card>
+            </div>
+            : 
             <div className="listing-card-container">
                 <Card style={{width: '20rem', height: '28rem'}} id={listing.id}>
                     <MyListingPhoto 
@@ -256,7 +263,8 @@ export default function MyListingCard ({ isLoading, setIsLoading, categoryList, 
                             style={{ backgroundColor: "#6C63FF", margin: "1%"}}
                             onClick={handleRemove}
                             id={id} 
-                        >{deleteLoading ? "Deleting" : <MdOutlineDeleteForever style={{ width: '1.5rem', height: '1.5rem' }}/>}</button>
+                        ><MdOutlineDeleteForever style={{ width: '1.5rem', height: '1.5rem' }}/>
+                        </button>
                         <button
                             id={id} 
                             className="mylisting-edit-btn"
@@ -265,7 +273,7 @@ export default function MyListingCard ({ isLoading, setIsLoading, categoryList, 
                         >edit</button>
                     </Card.Body>
                 </Card>
-            </div>
+            </div>}
             <EditListingModal
                 show={myListModalShow}
                 onHide={() => setMyListModalShow(false)}

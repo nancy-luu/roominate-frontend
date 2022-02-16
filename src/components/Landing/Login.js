@@ -43,7 +43,7 @@ export default function Login( { onLogin, setCurrUser, setLoadingRequest, loadin
                     setCurrUser({username:"", email:"" , Listings:[]})
                     setLoadingRequest(loadingRequest+1)
                     onLogin(user);
-                    // navigate("/community")
+                    // navigate("/about")
                 });
               } else {
                 r.json().then((err) => setErrors(err));
@@ -91,7 +91,7 @@ export default function Login( { onLogin, setCurrUser, setLoadingRequest, loadin
                         </div>
                         <div>
                             <Button 
-                                style={{ backgroundColor: "#3E5C76", margin: "1%"}}
+                                style={{ backgroundColor: "#6C63FF", margin: "1%"}}
                                 type="submit"
                             >{isLoading ? "Loading..." : "Log In"}
                             </Button>
@@ -109,14 +109,14 @@ export default function Login( { onLogin, setCurrUser, setLoadingRequest, loadin
 
     return (
         <>
-            <Button 
+            <button 
                 className="login-button" 
                 variant="primary" 
-                style={{ backgroundColor: "#3E5C76"}}
+                style={{ backgroundColor: "#6C63FF"}}
                 onClick={() => setModalShow(true)
             }>
-                Login
-            </Button>
+                login
+            </button>
 
             <MyVerticallyCenteredModal
                 show={modalShow}
