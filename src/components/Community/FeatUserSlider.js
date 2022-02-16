@@ -9,6 +9,8 @@ export default function FeatUserSlider ({ featUsers, token }) {
     const [img, setImg] = useState(0);
     const [toggle, setToggle] = useState(false);
     const length = featUsers.length;
+
+    console.log(featUsers)
   
     useEffect(() => {
       setTimeout(() => setToggle((prevToggle) => !prevToggle), 5000);
@@ -32,10 +34,7 @@ export default function FeatUserSlider ({ featUsers, token }) {
     return(
         <section className="feat-user-slider">
             <Row>
-                <Col className="left-arrow-container">
-                    <BsArrowLeftShort className="left-arrow" onClick={prevSlide} />
-                </Col>
-                <Col className="featuser-container">
+                    {/* <BsArrowLeftShort className="left-arrow" onClick={prevSlide} /> */}
                     {featUsers.map((singleFeatUser, index) => {
                         console.log(singleFeatUser)
                         return (
@@ -50,10 +49,7 @@ export default function FeatUserSlider ({ featUsers, token }) {
                             </div>
                         )
                     })}
-                </Col>
-                <Col className="right-arrow">
-                    <BsArrowRightShort className="right-arrow" onClick={nextSlide} />
-                </Col>
+                    {/* <BsArrowRightShort className="right-arrow" onClick={nextSlide} /> */}
             </Row>
         </section>
 

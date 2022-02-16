@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import Conversation from "./Conversation"; 
-import Message from "./Message";
 
 import "./inbox.scss"
 
 
-export default function Inbox ({ user, currUser, userList }){
+export default function Inbox ({ user, currUser, userList, setIsLoading, loadingRequest}){
     const [showMessages, setShowMessages] = useState(false)
 
     // function handleSendMessage(e) {
@@ -34,7 +33,7 @@ export default function Inbox ({ user, currUser, userList }){
     //     })
     // }
 
-    console.log(currUser)
+    // console.log(currUser)
 
     // prevent error page when currUser is not yet valid
     if (!currUser.username) {
@@ -53,21 +52,30 @@ export default function Inbox ({ user, currUser, userList }){
             </div>
             <div className="inbox-container">
                 <div className="inbox-left">
-                    <div className="inbox-titles">conversations:</div>
+                    <div className="inbox-titles">your inquiries:</div>
                     <div className="conversation-left">
                         {currUser.conversations? currUser.conversations.map((c) =>
                             <Conversation
-                                myConversation={c}
+                                singleConversation={c}
                                 key={c.header}
                                 setShowMessages={setShowMessages}
                                 showMessages={showMessages}
+                                user={user}
+                                userList={userList}
+                                setIsLoading={setIsLoading}
+                                loadingRequest={loadingRequest}
                             />
                         ) : <>you have no conversations</>}
                     </div>
                 </div>
-                <div className="inbox-right">
-                    <div className="inbox-titles">messages:</div>
-                    <div className="message-container">
+                {/* <div className="inbox-right">
+                    <div className="inbox-titles">messages:</div> */}
+                    {/* {showMessages ? 
+                        <MessageContainer currUser={currUser} user={user} userList={userList} showMessages={showMessages} setShowMessages={setShowMessages}/>
+                        :
+                        <></>
+                    } */}
+                    {/* <div className="message-container">
                         {showMessages ? 
                             currUser.conversations[0].messages.map((m) =>
                                 <Message
@@ -83,8 +91,8 @@ export default function Inbox ({ user, currUser, userList }){
                             style={{ backgroundColor: "#9F99FF", margin: "1%", }}
                             // onSubmit={}
                         >send</button>
-                    </div>
-                </div>
+                    </div> */}
+                {/* </div> */}
         </div>
         </div>
     )

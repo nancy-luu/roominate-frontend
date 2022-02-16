@@ -3,7 +3,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 
 import "./about.scss"
 
-export default function About( ) {
+export default function About({ currUser }) {
 
   return (
     <div className="about-page">
@@ -15,7 +15,7 @@ export default function About( ) {
             <div className="about-title">about this project:</div>
             <br></br>
             <div className="about-body">
-            Thanks for visiting <i><b style={{color: '#6C63FF'}}>Roominators</b></i> ! 
+            Welcome, <b style={{color: '#6C63FF'}}>{currUser.username}</b> - thanks for visiting <i><b style={{color: '#6C63FF'}}>Roominators</b></i> ! 
             </div>
             <div className="about-body">
             This website was created in an attempt to solve a need to find the right people for big and small tasks around the house. As someone with a background in architecture and construction - I was often asked by friends and family if I knew an electrician / a plumber / or handy-person who was open to extra work. And reversely, subcontractors would often ask to be referred to other home owners that I was working with.

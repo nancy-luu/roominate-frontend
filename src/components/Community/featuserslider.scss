@@ -3,7 +3,9 @@
 .feat-user-slider{
     justify-content: center;
 
-
+    .feat-user-image{
+        object-fit: cover;
+    }
 
     .left-arrow-container{
         width: 20%;

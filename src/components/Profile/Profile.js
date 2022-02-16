@@ -3,6 +3,7 @@ import { Row, Col } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 import Select from 'react-select'
 
 
@@ -159,12 +160,11 @@ export default function Profile ({ user, setUser, userList, isLoading, setIsLoad
                         </div>
                         <div className="form-group">
                             <label>Estimated Cost*</label>
-                            <h5>$</h5>
                             <input 
                                 type="cost" 
                                 className="form-control" 
                                 id="cost-input" 
-                                placeholder="0"
+                                placeholder="$ /hr"
                                 autoComplete="on"
                                 onChange={handleCreatePrice}
                             ></input>
@@ -179,12 +179,12 @@ export default function Profile ({ user, setUser, userList, isLoading, setIsLoad
                             ></input>
                         </div>
                         <div>
-                            <button 
+                            <Button 
                                 className="listing-modal-submit"
-                                style={{ backgroundColor: "#9F99FF", margin: "1%"}}
+                                style={{ backgroundColor: "#6C63FF", margin: "1%"}}
                                 type="submit"
                             >{isLoading ? "Loading..." : "Submit"}
-                            </button>
+                            </Button>
                         </div>
                     </Form>
             </Modal.Body>

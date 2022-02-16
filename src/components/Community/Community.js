@@ -76,7 +76,7 @@ export default function Community( ) {
             </Row>
           </Container>
         </div>
-        <Container Container className="articles-wrapper">
+        <Container className="articles-wrapper">
           <div className="community-header">articles & info:</div>
           <Row 
             xs={1}
@@ -94,7 +94,10 @@ export default function Community( ) {
                   <Card.Text>
                     Ways to save when designing, renovating, and furnishing your new home.
                   </Card.Text>
-                  <Button variant="primary">Learn More</Button>
+                  <Button 
+                    variant="primary"
+                    style={{backgroundColor: "#6C63FF", borderColor: "6C63FF"}}
+                  >Learn More</Button>
                 </Card.Body>
               </Card>
             </Col>
@@ -110,7 +113,10 @@ export default function Community( ) {
                   <Card.Text>
                     Seeking for ideas and inspiration? Look no further! 
                   </Card.Text>
-                  <Button variant="primary">Learn More</Button>
+                  <Button 
+                    variant="primary"
+                    style={{backgroundColor: "#6C63FF", borderColor: "6C63FF"}}
+                  >Learn More</Button>
                 </Card.Body>
               </Card>
             </Col>
@@ -126,7 +132,10 @@ export default function Community( ) {
                   <Card.Text>
                     Join our initiative to contribute to our local communities.
                   </Card.Text>
-                  <Button variant="primary">Learn More</Button>
+                  <Button 
+                    variant="primary"
+                    style={{backgroundColor: "#6C63FF", borderColor: "6C63FF"}}
+                  >Learn More</Button>
                 </Card.Body>
               </Card>
             </Col>

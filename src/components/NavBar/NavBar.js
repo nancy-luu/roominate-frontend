@@ -13,7 +13,7 @@ export default function NavBar( {setUser} ) {
     <nav className="navBar">
         <div className="wrapper">
               <div className="left">
-                <Link className="logo" to="/about" ><img src="images/RoomLogo.png" style={{ width: '3.5rem', height: '3rem' }}
+                <Link className="logo" to="/" ><img src="images/RoomLogo.png" style={{ width: '3.5rem', height: '3rem' }}
                 /></Link> 
               </div>
               <div className="right">

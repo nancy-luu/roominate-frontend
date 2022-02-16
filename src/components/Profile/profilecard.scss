@@ -36,20 +36,23 @@
                 text-align: center;
             }
 
-            .edit-profile-btn{
-                font-family: $mainfont;
-                height: 30px;
-                width: 100px;
-                border-radius: 50px;
-                color: white;
-                font-size: 10px;
-                font-weight: 700;
-            }
         }
 
         .profile-right{
             display: 0.5;
             padding-top: 10px;
+
+            .edit-profile-btn{
+                justify-content: center;
+                text-align: center;
+                font-family: $mainfont;
+                height: 30px;
+                width: 60px;
+                border-radius: 50px;
+                color: white;
+                font-size: 15px;
+                font-weight: 700;
+            }
         }
     }
 }
