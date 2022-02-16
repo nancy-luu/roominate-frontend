@@ -8,7 +8,7 @@ import ListingCard from "./ListingCard";
 
 import "./listings.scss"
 
-export default function Listings ({ token, user, setUser, isLoading, setIsLoading, listings, setListings, categoryList, locationList, userList }){
+export default function Listings ({ token, user, currUser, setUser, isLoading, setIsLoading, listings, setListings, categoryList, locationList, userList, setErrors, loadingRequest, setLoadingRequest }){
     const [listingCategory, setListingCategory] = useState("")
     const [listingLocation, setListingLocation] = useState("")
 
@@ -73,11 +73,11 @@ export default function Listings ({ token, user, setUser, isLoading, setIsLoadin
         return false
     })
 
-    // console.log(listingsToDisplay)
 
     const filteredListings = listingsToDisplay.map((listing) => (
         <ListingCard 
             userList={userList}
+            currUser={currUser}
             token={token}
             isLoading={isLoading} 
             setIsLoading={setIsLoading} 
@@ -87,10 +87,13 @@ export default function Listings ({ token, user, setUser, isLoading, setIsLoadin
             setListings={setListings}
             singlelisting={listing} 
             key={listing.id}
+            setErrors={setErrors}
+            loadingRequest={loadingRequest}
+            setLoadingRequest={setLoadingRequest}
         />
     ))
 
-    console.log(filteredListings)
+    console.log(listingsToDisplay)
 
     return (
         <div className="listing-page-wrapper">
@@ -138,21 +141,6 @@ export default function Listings ({ token, user, setUser, isLoading, setIsLoadin
                     className="d-flex justify-content-center"
                 >
                 {filteredListings}
-
-                {/* {listing.map((l) => 
-                    <ListingCard 
-                        userList={userList}
-                        token={token}
-                        isLoading={isLoading} 
-                        setIsLoading={setIsLoading} 
-                        user={user} 
-                        setUser={setUser}
-                        listing={listing}
-                        setListing={setListing}
-                        singlelisting={l} 
-                        key={l.id}
-                    />
-                )} */}
                 </Row>
             </Container>
         </div>

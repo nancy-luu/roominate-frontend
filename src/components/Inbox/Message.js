@@ -21,8 +21,6 @@ export default function Message ({ singleMessage, user, userList }){
     // console.log(singleMessage)
     // console.log(singleMessage.created_at)
 
-    
-
 
     function ProfileModal(props) {
         return (

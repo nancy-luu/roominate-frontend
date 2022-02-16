@@ -13,7 +13,7 @@ export default function FeatUserSlider ({ featUsers, token }) {
     console.log(featUsers)
   
     useEffect(() => {
-      setTimeout(() => setToggle((prevToggle) => !prevToggle), 5000);
+      setTimeout(() => setToggle((prevToggle) => !prevToggle), 3000);
       return () => nextSlide();
     }, [toggle]);
   

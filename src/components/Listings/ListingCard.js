@@ -5,15 +5,18 @@ import Card from 'react-bootstrap/Card'
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import ListingPhoto from "./ListingPhoto"; 
-
-
 import "./listingcard.scss"
+const API = 'http://localhost:3000'
 
 
-export default function ListingCard ({ isLoading, setIsLoading, user, setUser, listing, setListing, singlelisting, token, userList }){
+
+
+export default function ListingCard ({ isLoading, setIsLoading, user, currUser, setUser, listing, setListing, singlelisting, token, userList, loadingRequest, setLoadingRequest, setErrors }){
     const [messageModalShow, setMessageModalShow] = React.useState(false);
     const [showMore, setShowMore] = useState(`${singlelisting.desc.slice(0,50)}...`)
     const [showMoreToggle, setShowMoreToggle] = useState("more")
+    const [inquiry, setInquiry] = useState("")
+    let newHeader
 
 
     function handleShowMore () {
@@ -24,7 +27,42 @@ export default function ListingCard ({ isLoading, setIsLoading, user, setUser, l
           setShowMore(`${singlelisting.desc.slice(0,50)}...`)
           setShowMoreToggle("more")
         }
-    
+    }
+
+    // console.log(listing.user_id)
+    // console.log(currUser)
+
+    function handleListInquire(){
+        setIsLoading(true)
+        fetch(`${API}/conversations`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({
+                header: newHeader,
+                user_id: listing.user_id,
+                user2_id: currUser.id
+            })
+        })
+        .then((r) => {
+            if (r.ok){
+                r.json().then((inquiry) => {
+                    setInquiry(inquiry)
+                    setLoadingRequest(loadingRequest+1)
+                })
+            } else {
+                r.json((err) => setErrors(err));
+            }
+        })
+        setMessageModalShow(false)
+    }
+
+    function handleInquiryInput(e){
+        e.preventDefault();
+        console.log(e.target.value)
+        newHeader = e.target.value
     }
 
     function StartConvoModal(props) {
@@ -42,15 +80,15 @@ export default function ListingCard ({ isLoading, setIsLoading, user, setUser, l
             </Modal.Header>
             <Modal.Body>
                     <Form 
-                        // onSubmit={handleSubmitMessage} 
-                        // id={conversation.id} 
+                        onSubmit={handleListInquire} 
+                        id={listing.id} 
                         >
                         <div className="form-group">
                             <label>Header*</label>
                             <input 
                                 className="form-control" 
                                 placeholder="What listing is this for...?" 
-                                // onChange={handleSetConversationHeader}
+                                onChange={handleInquiryInput}
                             ></input>
                         </div>
                         <div>
@@ -74,13 +112,13 @@ export default function ListingCard ({ isLoading, setIsLoading, user, setUser, l
         }
     })
 
-    console.log(findPoster)
+    // console.log(findPoster)
 
     const foundPoster = findPoster.map((p) => (
-        <Card.Text><b>Posted By: </b> {p.username}</Card.Text>
+        <Card.Text key={p.id}><b>Posted By: </b> {p.username}</Card.Text>
     ))
 
-    console.log(singlelisting)
+    // console.log(singlelisting)
 
     return (
         <div className="listing-card-container">

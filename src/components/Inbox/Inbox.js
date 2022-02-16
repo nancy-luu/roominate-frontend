@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Container from "react-bootstrap/Container";
 import Conversation from "./Conversation"; 
 import "./inbox.scss"
 const API = 'http://localhost:3000'
@@ -6,7 +7,7 @@ const API = 'http://localhost:3000'
 
 
 
-export default function Inbox ({ user, currUser, userList, setIsLoading, loadingRequest}){
+export default function Inbox ({ user, currUser, userList, setIsLoading, loadingRequest, setLoadingRequest}){
     const [myConvos, setMyConvos] = useState([])
     const token = localStorage.getItem("token");
 
@@ -30,11 +31,12 @@ export default function Inbox ({ user, currUser, userList, setIsLoading, loading
 
     console.log(myConvos)
 
-    // console.log(currUser.conversations[0].header)
+    console.log(currUser.conversations)
+
     return (
         <>  
             {myConvos.length > 0 ? 
-                <div className="inbox-wrapper">
+                <Container className="inbox-wrapper">
                     <div className="inbox-img-container">
                         <img 
                             className="inbox-img"
@@ -43,40 +45,40 @@ export default function Inbox ({ user, currUser, userList, setIsLoading, loading
                     </div>
                     <div className="inbox-container">
                         <div className="inbox-left">
-                            <div className="inbox-titles">your inquiries:</div>
-                                <div className="conversation-left">
-                                    {myConvos? myConvos.map((c) =>
-                                        <Conversation
-                                            singleConversation={c}
-                                            key={c.id}
-                                            user={user}
-                                            userList={userList}
-                                            setIsLoading={setIsLoading}
-                                            loadingRequest={loadingRequest}
-                                            myConvos={myConvos}
-                                        />
-                                    ) : <>you have no conversations</>}
-                                </div>
+                            <div className="conversation-left">
+                                {myConvos? myConvos.map((c) =>
+                                    <Conversation
+                                        singleConversation={c}
+                                        key={c.id}
+                                        user={user}
+                                        userList={userList}
+                                        setIsLoading={setIsLoading}
+                                        loadingRequest={loadingRequest}
+                                        setLoadingRequest={setLoadingRequest}
+                                        myConvos={myConvos}
+                                    />
+                                ) : <>you have no conversations</>}
+                            </div>
                         </div>
                     </div>
-                </div>
+                </Container>
                 :
-                <div className="inbox-wrapper">
+                <Container className="inbox-wrapper">
                     <div className="inbox-img-container">
                         <img 
-                            className="inbox-img"
+                            className="no-inbox-img"
                             src="images/emptyinbox.png"
                         ></img>
                     </div>
                     <div className="inbox-container">
                         <div className="inbox-left">
                             <div className="inbox-titles">Sorry, {user.username}</div>
-                                <div className="conversation-left">
-                                    Your inbox is empty!
-                                </div>
+                            <div className="conversation-left">
+                                Your inbox is empty!
+                            </div>
                         </div>
                     </div>
-                </div>
+                </Container>
             
             }
         </>

@@ -71,19 +71,12 @@ export default function Profile ({ user, setUser, userList, isLoading, setIsLoad
                 return r.json()
             }
             })
-        //     if (r.ok) {
-        // })
-        //     } else {
-        //       r.json().then((err) => setErrors(err.errors));
-        //     }
-        // );
-
-        setListingModalShow(false)
+            setListingModalShow(false)
         })
     })}
 
     const handleListPic = (e) => {
-        e.persist()
+        // e.persist()
         console.log("this is the file", e.target.files[0])
         setFile(e.target.files[0]);
     }
@@ -111,7 +104,11 @@ export default function Profile ({ user, setUser, userList, isLoading, setIsLoad
         desc = e.target.value
     }
 
+    
+
     function AddListingModal(props) {
+        
+
         return (
             <Modal
                 {...props}
@@ -131,7 +128,6 @@ export default function Profile ({ user, setUser, userList, isLoading, setIsLoad
                         <input 
                             type="file"
                             name='photo' 
-                            accept='image/*'
                             onChange={handleListPic}
                         />
                         <div className="form-group">
@@ -227,33 +223,43 @@ export default function Profile ({ user, setUser, userList, isLoading, setIsLoad
                             variant="primary"
                             style={{ backgroundColor: "#6C63FF", margin: "1%"}}
                             onClick={() => setListingModalShow(true)} 
-                        >add listing</button>
+                        >add</button>
                     </Col>
-                    <Container className="roominators-wrapper">
-                        <Row
-                            xs={1}
-                            md={4}
-                            className="g-4"
-                            className="d-flex justify-content-center"
-                        >
-                        {currUser.listings.map((listing) => 
-                            <MyListingCard 
-                                isLoading={isLoading}
-                                setIsLoading={setIsLoading} 
-                                categoryList={categoryList} 
-                                locationList={locationList}
-                                listing={listing}
-                                key={listing.id}
-                                token={token}
-                                loadingRequest={loadingRequest} 
-                                setLoadingRequest={setLoadingRequest}
-                                id={listing.id}
-                                currUser={currUser}
-                                listings={listings}
-                            />
-                        )}
-                        </Row>
-                    </Container>
+                    {currUser.listings.length === 0 ?
+                        <Container className="no-listing-wrapper">
+                            <img 
+                            className="no-inbox-img"
+                            src="images/nolistings.png"
+                            ></img>
+                            <div className="no-listing-text">( you currently have no listings )</div>
+                        </Container>
+                        :
+                        <Container className="my-listings-wrapper">
+                            <Row
+                                xs={1}
+                                md={4}
+                                className="g-4"
+                                className="d-flex justify-content-center"
+                            >
+                            {currUser.listings.map((listing) => 
+                                <MyListingCard 
+                                    isLoading={isLoading}
+                                    setIsLoading={setIsLoading} 
+                                    categoryList={categoryList} 
+                                    locationList={locationList}
+                                    listing={listing}
+                                    key={listing.id}
+                                    token={token}
+                                    loadingRequest={loadingRequest} 
+                                    setLoadingRequest={setLoadingRequest}
+                                    id={listing.id}
+                                    currUser={currUser}
+                                    listings={listings}
+                                />
+                            )}
+                            </Row>
+                        </Container>
+                    }
                 </Col>
                 <AddListingModal
                     show={listingModalShow}

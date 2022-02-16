@@ -5,49 +5,49 @@ import Card from 'react-bootstrap/Card'
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import ProfilePhoto from "./ProfilePhoto"; 
-
 import "./roominatorcard.scss"
+const API = 'http://localhost:3000'
 
 
-export default function RoominatorCard({ isLoading, setIsLoading, userList, setUserList, singleUser, token, setErrors }){
+export default function RoominatorCard({ user, currUser, isLoading, setIsLoading, userList, setUserList, singleUser, token, setErrors, loadingRequest, setLoadingRequest }){
     const [messageRoominatorShow, setMessageRoominatorShow] = React.useState(false);
+    const [conversation, setConversation] = useState("")
+    let newHeader
 
+    function handleStartConversation(){
+        setIsLoading(true);
+        fetch(`${API}/conversations`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({ 
+                  header: newHeader,
+                  user_id: user.id,
+                  user2_id: currUser.id,
+              }),
+          })
+          .then((r) => {
+            if (r.ok){
+                r.json().then((conversation) => {
+                    setConversation(conversation)
+                    setLoadingRequest(loadingRequest+1)
+                })
+            } else {
+              r.json().then((err) => setErrors(err));
+            }
+        });
+        setMessageRoominatorShow(false)
+    }
+
+    function handleHeaderInput(e){
+        e.preventDefault();
+        console.log(e.target.value)
+        newHeader = e.target.value
+    }
 
     function StartConvoModal(props) {
-        const API = 'http://localhost:3000'
-        const [header, setHeader] = useState("")
-        const [userId, setUserId] = useState("")
-        const [userId2, setUserId2] = useState("")
-
-        function handleStartConversation(e){
-            e.preventDefault();
-            setIsLoading(true);
-            fetch(`${API}/conversation`, {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                  "Accept": "application/json",
-                },
-                body: JSON.stringify({ 
-                      header: header,
-                      user_id: userId,
-                      user2_id: userId2
-                  }),
-              })
-              .then((r) => {
-                setIsLoading(false);
-                if (r.ok) {
-                  r.json().then((user) => {
-                      setHeader("");
-                      setUserId("");
-                      setUserId2("");
-                  });
-                } else {
-                  r.json().then((err) => setErrors(err));
-                }
-              });
-        }
-        
         return (
             <Modal
                 {...props}
@@ -70,7 +70,7 @@ export default function RoominatorCard({ isLoading, setIsLoading, userList, setU
                             <input 
                                 className="form-control" 
                                 placeholder="What task do you need help with?" 
-                                onChange={(e) => setHeader(e.target.value)}
+                                onChange={handleHeaderInput}
                             ></input>
                         </div>
                         <div>
@@ -123,7 +123,5 @@ export default function RoominatorCard({ isLoading, setIsLoading, userList, setU
                 onHide={() => setMessageRoominatorShow(false)}
             />
         </div>
-
     )
-
 }

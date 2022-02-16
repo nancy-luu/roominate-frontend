@@ -1,22 +1,49 @@
 @import "../../global.scss";
 
-.roominator-card-container{
-    margin-top: 20px;
+.feat-user-card-container{
+    background-color: $secondarycolor;
 
-    .roominator-image{
-        justify-content: center;
-        text-align: center;
-        margin-left: 5%;
+    .feat-user-wrapper{
+        width:100%;
+        padding: 10px 300px 10px 300px;
+
+
+        .feat-user-image{
+            justify-content: center;
+            text-align: right;
+
+            .feat-user-image{
+                justify-content: center;
+                text-align: center;
+                margin-left: 5%;
+                clip-path: circle(40% at 50% 50%);
+            }
+        }
+    
+        .feat-user-into{
+            justify-content: center;
+            text-align: left;
+            width: 500px;
+            padding-top: 10px;
+
+            .feat-username{
+                font-family: $mainfont;
+                color: $maincolor;
+                font-size: 25px;
+            }
+
+            .contact-btn{
+                justify-content: center;
+                text-align: center;
+                font-family: $mainfont;
+                height: 30px;
+                width: 100px;
+                border-radius: 50px;
+                color: white;
+                font-weight: 700;
+            }
+        }
+
     }
 
-    .contact-btn{
-        justify-content: center;
-        text-align: center;
-        font-family: $mainfont;
-        height: 30px;
-        width: 60px;
-        border-radius: 50px;
-        color: white;
-        font-weight: 700;
-    }
 }
