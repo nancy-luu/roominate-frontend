@@ -8,6 +8,7 @@ import Roominators from "../Roominators/Roominators";
 import Profile from "../Profile/Profile"; 
 import Inbox from "../Inbox/Inbox"; 
 import Footer from "../Footer/Footer"; 
+import ScrollToTop from '../ScrollToTop';
 
 
 import "./home.scss"
@@ -27,6 +28,7 @@ export default function Home ( {
 
     return (
         <Router>
+            <ScrollToTop />
             <div className="page-container">
                 <div className="content-wrap">
                     <NavBar setUser={setUser}/>

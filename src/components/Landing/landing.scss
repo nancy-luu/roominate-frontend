@@ -30,11 +30,11 @@
     font-size: 3vh;
     color: rgb(44, 44, 44);
     margin: 0 auto;
-    transform: translate(-150%, 150%);
+    transform: translate(-115%, 150%);
 }
 
 .landingtext {
-    animation: animated-text 2s steps(40,end) 1s 1 normal both;
+    animation: animated-text 2s steps(60,end) 1s 1 normal both;
 }
 
 
@@ -43,7 +43,7 @@
 
 @keyframes animated-text{
     from{width: 0;}
-    to{width: 472px;}
+    to{width: 600px;}
 }
 
 .landingtitle {

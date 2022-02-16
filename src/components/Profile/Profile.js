@@ -227,7 +227,7 @@ export default function Profile ({ user, setUser, userList, isLoading, setIsLoad
                             variant="primary"
                             style={{ backgroundColor: "#6C63FF", margin: "1%"}}
                             onClick={() => setListingModalShow(true)} 
-                        >add Listing</button>
+                        >add listing</button>
                     </Col>
                     <Container className="roominators-wrapper">
                         <Row
