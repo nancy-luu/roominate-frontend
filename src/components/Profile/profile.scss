@@ -1,5 +1,16 @@
 @import "../../global.scss";
 
+.titlebanner{
+    background-color: $secondarycolor;
+    justify-content: center;
+    border-radius: 50px;
+}
+
+.profile-wrapper{
+    border: 2px solid black;
+    justify-content: center;
+    box-shadow: -8px 8px 3px -4px rgba(0, 0, 0, 0.247);
+}
 
 .middle-bar{
     justify-content: center;
@@ -9,21 +20,13 @@
     .no-listing-wrapper{
         padding-top: 30px;
         padding-bottom: 10%;
-
     }
 
     .my-listings-wrapper{
         padding-bottom: 5%;
     }
 
-    .mylistingtitle{
-        text-align: center;
-        font-family: $mainfont;
-        color: $mainText;
-        font-size: 25px;
-        font-weight: 700;
-    }
-
+    
     .no-listing-text{
         text-align: center;
         font-family: $mainfont;
@@ -43,5 +46,128 @@
         font-weight: 700;
         margin-bottom: 30px;
     }
+    
+    .mylistingtitle{
+        text-align: center;
+        font-family: $mainfont;
+        color: $mainText;
+        font-size: 25px;
+        font-weight: 700;
+    }
 }
 
+.myinvoicetitle{
+    text-align: center;
+    font-family: $mainfont;
+    color: $mainText;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.myinvoice-owed{
+    text-align: right;
+    font-family: $mainfont;
+    color: $mainText;
+    font-size: 20px;
+    font-weight: 700;
+    padding-right: 40px;
+}
+
+.myinvoice-owed-number{
+    text-align: right;
+    font-family: $mainfont;
+    color: $maincolor;
+    font-size: 25px;
+    font-weight: 700;
+    padding-right: 40px;
+}
+
+.invoice-section{
+    justify-content: center;
+    margin-bottom: 50px;
+    
+    
+    .invoice-container{
+        background-color: rgb(247, 247, 247);
+    }
+
+    .invoice-labels{
+        justify-content: center;
+        padding-top: 10px;
+    
+
+    
+        .mylisting-date{
+            font-family: $mainfont;
+            color: $maincolor;
+            font-size: 20px;
+            font-weight: 700;
+            padding-left: 50px;
+        }
+    
+        .mylisting-from{
+            font-family: $mainfont;
+            color: $maincolor;
+            font-size: 20px;
+            font-weight: 700;
+        }
+    
+        .mylisting-to{
+            font-family: $mainfont;
+            color: $maincolor;
+            font-size: 20px;
+            font-weight: 700;
+        }
+    
+        .mylisting-to{
+            font-family: $mainfont;
+            color: $maincolor;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        
+        .mylisting-task{
+            font-family: $mainfont;
+            color: $maincolor;
+            font-size: 20px;
+            font-weight: 700;
+            padding-right: 50px;
+        }
+    
+        .mylisting-desc{
+            font-family: $mainfont;
+            text-align: left;
+            color: $maincolor;
+            font-size: 20px;
+            font-weight: 700;
+        }
+    
+        .mylisting-amount{
+            width: 50px;
+            text-align: right;
+            font-family: $mainfont;
+            color: $maincolor;
+            font-size: 20px;
+            font-weight: 700;
+        }
+    }
+    
+    .no-invoice-wrapper{
+        padding-top: 30px;
+        padding-bottom: 10%;
+    }
+
+    .my-invoice-wrapper{
+        padding-bottom: 5%;
+    }
+
+    .no-invoice-text{
+        text-align: center;
+        font-family: $mainfont;
+        font-style: italic;
+        color: $maincolor;
+        font-size: 25px;
+        font-weight: 500;
+    }
+
+}

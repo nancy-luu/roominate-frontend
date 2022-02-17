@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Row, Col } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
+import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import "./message.scss"
@@ -30,27 +31,27 @@ export default function Message ({ singleMessage, user, userList }){
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
             >
-            <Modal.Body className="modalbody">
-                <Modal.Title className="profile-name">
-                    {findMessageUser[0].username}
-                </Modal.Title>
-                <img
-                    className="profile-image"
-                    src={findMessageUser[0].user_photo.image}
-                    style={{ width: '25rem' }}
-                    onClick={() => setShowUserProfile(true)}
-                /> 
-                <div className="profile-info">
-                    <div className="prof-modal-title">Account Type:</div> 
-                    <div>{findMessageUser[0].user_type}</div>
-                    <div className="prof-modal-title">Charge:</div> 
-                    <div>${findMessageUser[0].user_charge}/hr</div>
-                    <div className="prof-modal-title">Location:</div> 
-                    <div>{findMessageUser[0].user_location}</div>
-                    <div className="prof-modal-title">About:</div> 
-                    <div>{findMessageUser[0].user_desc}</div>
-                </div>  
-            </Modal.Body>
+                <Modal.Body className="modalbody">
+                    <Modal.Title className="profile-name">
+                        {findMessageUser[0].username}
+                    </Modal.Title>
+                    <img
+                        className="profile-image"
+                        src={findMessageUser[0].user_photo.image}
+                        style={{ width: '25rem' }}
+                        onClick={() => setShowUserProfile(true)}
+                    /> 
+                    <div className="profile-info">
+                        <div className="prof-modal-title">Account Type:</div> 
+                        <div>{findMessageUser[0].user_type}</div>
+                        <div className="prof-modal-title">Charge:</div> 
+                        <div>${findMessageUser[0].user_charge}/hr</div>
+                        <div className="prof-modal-title">Location:</div> 
+                        <div>{findMessageUser[0].user_location}</div>
+                        <div className="prof-modal-title">About:</div> 
+                        <div>{findMessageUser[0].user_desc}</div>
+                    </div> 
+                </Modal.Body>
             </Modal>
         );
     }    

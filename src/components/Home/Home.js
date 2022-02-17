@@ -105,6 +105,7 @@ export default function Home ( {
                                     user={user} 
                                     userList={userList}
                                     currUser={currUser}
+                                    sLoading={isLoading}
                                     setIsLoading={setIsLoading}
                                     loadingRequest={loadingRequest}
                                     setLoadingRequest={setLoadingRequest}

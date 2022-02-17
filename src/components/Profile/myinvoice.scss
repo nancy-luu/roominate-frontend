@@ -1,0 +1,47 @@
+@import "../../global.scss";
+
+.invoice-container{
+    justify-content: cetner;
+    margin-top: 20px;
+
+    .paid-invoice-card{
+        background-color: rgb(180, 180, 180);
+        border: 2px solid black;
+        margin: 10px;
+        padding: 10px 20px 10px 20px;
+        box-shadow: -8px 8px 3px -4px rgba(0, 0, 0, 0.247);
+    }
+    
+    .invoice-card{
+        background-color: white;
+        border: 2px solid black;
+        margin: 10px;
+        padding: 10px 20px 10px 20px;
+        box-shadow: -8px 8px 3px -4px rgba(0, 0, 0, 0.247);
+    }
+
+    .conversation-task{
+        font-family: $mainfont;
+    }
+
+
+    .conversation-text{
+        font-family: $mainfont;
+    }
+
+    .conversation-desc{
+        width: 150px;
+        text-align: left;
+        font-family: $mainfont;
+        margin-left: 70px;
+    }
+
+    .conversation-amount{
+        text-align: right;
+    }
+
+    .button-section{
+       text-align: right;
+    }
+
+}
