@@ -10,8 +10,9 @@ I can view listings for specific tasks that fall under cateogories such as desig
 I can post my own listing that will include a title, description, image, cost, and whether or not it is negotiable. (CREATE)
 I can view and edit all my listings then delete one when it has been completed. (READ, UPDATE, DESTROY)
 I can message another user if I want to take on their listing and vice versa.(READ, CREATE)
-Stretch Goal - As a user,
 
+Stretch Goal - As a user,
+I can create / pay invoices, for / from users I've corresponded with in my chat.
 I can view and create a review on another user's profile. (READ, CREATE)
 I can delete only my review on another user's profile. (DESTROY)
 
