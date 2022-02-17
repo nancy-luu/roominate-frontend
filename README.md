@@ -16,4 +16,4 @@ I can view and create a review on another user's profile. (READ, CREATE)
 I can delete only my review on another user's profile. (DESTROY)
 
 # Frontend - Wireframe:
-<img width="764" alt="Roominate-wireframe2" src="https://user-images.githubusercontent.com/60496537/152082211-8fe026eb-fb4c-414f-8296-a3c7f063cf52.png">
+![Screen Shot 2022-02-17 at 4 07 37 AM](https://user-images.githubusercontent.com/60496537/154478699-7c50840b-0d9f-4b44-b657-b15cd4f10ee4.png)
