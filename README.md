@@ -12,6 +12,7 @@ I can view and edit all my listings then delete one when it has been completed. 
 I can message another user if I want to take on their listing and vice versa.(READ, CREATE)
 
 Stretch Goal - As a user,
+
 I can create / pay invoices, for / from users I've corresponded with in my chat.
 I can view and create a review on another user's profile. (READ, CREATE)
 I can delete only my review on another user's profile. (DESTROY)
