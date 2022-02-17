@@ -7,7 +7,7 @@ const API = 'http://localhost:3000'
 
 
 
-export default function Inbox ({ user, currUser, userList, setIsLoading, loadingRequest, setLoadingRequest}){
+export default function Inbox ({ user, currUser, userList, isLoading, setIsLoading, loadingRequest, setLoadingRequest}){
     const [myConvos, setMyConvos] = useState([])
     const token = localStorage.getItem("token");
 
@@ -36,7 +36,7 @@ export default function Inbox ({ user, currUser, userList, setIsLoading, loading
     return (
         <>  
             {myConvos.length > 0 ? 
-                <Container className="inbox-wrapper">
+                <div className="inbox-wrapper">
                     <div className="inbox-img-container">
                         <img 
                             className="inbox-img"
@@ -52,6 +52,7 @@ export default function Inbox ({ user, currUser, userList, setIsLoading, loading
                                         key={c.id}
                                         user={user}
                                         userList={userList}
+                                        isLoading={isLoading}
                                         setIsLoading={setIsLoading}
                                         loadingRequest={loadingRequest}
                                         setLoadingRequest={setLoadingRequest}
@@ -61,9 +62,9 @@ export default function Inbox ({ user, currUser, userList, setIsLoading, loading
                             </div>
                         </div>
                     </div>
-                </Container>
+                </div>
                 :
-                <Container className="inbox-wrapper">
+                <div className="inbox-wrapper">
                     <div className="inbox-img-container">
                         <img 
                             className="no-inbox-img"
@@ -78,7 +79,7 @@ export default function Inbox ({ user, currUser, userList, setIsLoading, loading
                             </div>
                         </div>
                     </div>
-                </Container>
+                </div>
             
             }
         </>

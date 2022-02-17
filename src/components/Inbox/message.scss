@@ -98,8 +98,6 @@
     color: $mainText
 }
 
-
-
 .modalbody{
     justify-content: center;
     padding-left: 50px;
@@ -110,6 +108,7 @@
         color: $maincolor;
         font-weight: 700;
         text-align: center;
+        text-decoration: underline;
     }
     
     .profile-image{
@@ -128,6 +127,16 @@
             font-weight: 700;
         }
     }
+
+    .send-invoice-btn-wrapper{
+        text-align: center;
+        justify-content: center;
+
+        .send-invoice-btn{
+            text-align: center
+        }
+    }
+
 
 
 }
