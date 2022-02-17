@@ -14,6 +14,10 @@
     
 }
 
+.big-wrapper{
+    transform: translate(15%, 500%);
+}
+
 .landing-wrapper {
     position: relative;
     top: 32%;
@@ -21,16 +25,17 @@
 }
 
 .landingtext {
-    padding-top: 12rem;
-    padding-left: 9rem;
     white-space: nowrap;
     overflow: hidden; 
     font-family: $mainfont;
+    text-align: left;
+    position: fixed;
+    display: block;
+    color: rgb(59, 59, 59);
+    font-size: 2vw;
     font-weight: 700;  
-    font-size: 3vh;
-    color: rgb(44, 44, 44);
-    margin: 0 auto;
-    transform: translate(-115%, 150%);
+    cursor: pointer;
+    transform: translate(1.25%, 160%);
 }
 
 .landingtext {
@@ -46,14 +51,16 @@
     to{width: 600px;}
 }
 
+
 .landingtitle {
     font-family: $mainfont;
+    text-align: left;
     position: fixed;
-    left: 50%;
-    transform: translate(-130%, 270%);
+    // left: 50%;
+    // transform: translate(-130%, 270%);
     display: block;
     color: white;
-    font-size: 5vw;
+    font-size: 4vw;
     font-weight: 700;  
     cursor: pointer;
   }
@@ -93,7 +100,8 @@
 }
 
 .login-wrapper{
-    transform: translate(-30%, 450%);
+    transform: translate(0.25%, 200%);
+    text-align: left;
 
 }
 

@@ -17,12 +17,10 @@ export default function Landing({ onLogin, setLoadingRequest, loadingRequest, se
                     style={{ width: '135rem', height: '62rem' }}
                 />
             </div> 
-            <div className="wrapper">
+            <div className="big-wrapper">
                 <div className="landing-wrapper">
                     <div className="landingtitle">Roominate</div>
-                    <div className="landingtext">
-                        <p>Find The Right Help!</p>
-                    </div>
+                    <div className="landingtext">Find The Right Help!</div>
                 </div>
                 <div className="login-wrapper">
                     <Login

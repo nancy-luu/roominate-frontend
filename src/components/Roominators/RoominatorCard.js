@@ -4,7 +4,8 @@ import { RiMailSendLine } from 'react-icons/ri';
 import Card from 'react-bootstrap/Card'
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
-import ProfilePhoto from "./ProfilePhoto"; 
+import ProfilePhoto from "./ProfilePhoto";
+import Button from 'react-bootstrap/Button';
 import "./roominatorcard.scss"
 const API = 'http://localhost:3000'
 
@@ -74,12 +75,12 @@ export default function RoominatorCard({ user, currUser, isLoading, setIsLoading
                             ></input>
                         </div>
                         <div>
-                            <button 
+                            <Button 
                                 className="listing-modal-submit"
-                                style={{ backgroundColor: "#9F99FF", margin: "1%"}}
+                                style={{ backgroundColor: "#6C63FF", margin: "1%"}}
                                 type="submit"
                             >{isLoading ? "Loading..." : "Submit"}
-                            </button>
+                            </Button>
                         </div>
                     </Form>
             </Modal.Body>

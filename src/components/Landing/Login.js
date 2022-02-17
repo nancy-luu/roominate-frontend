@@ -112,7 +112,6 @@ export default function Login( { onLogin, setCurrUser, setLoadingRequest, loadin
             <button 
                 className="login-button" 
                 variant="primary" 
-                style={{ backgroundColor: "#6C63FF"}}
                 onClick={() => setModalShow(true)
             }>
                 login

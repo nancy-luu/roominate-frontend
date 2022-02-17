@@ -4,6 +4,7 @@ import {MdOutlineDeleteForever} from 'react-icons/md';
 import Card from 'react-bootstrap/Card'
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 import Select from 'react-select'
 import MyListingPhoto from "./MyListingPhoto"; 
 
@@ -203,12 +204,12 @@ export default function MyListingCard ({ isLoading, setIsLoading, categoryList, 
                             ></input>
                         </div>
                         <div>
-                            <button 
+                            <Button 
                                 className="listing-modal-submit"
                                 style={{ backgroundColor: "#9F99FF", margin: "1%"}}
                                 type="submit"
                             >{isLoading ? "Loading..." : "Submit"}
-                            </button>
+                            </Button>
                         </div>
                     </Form>
             </Modal.Body>
