@@ -169,7 +169,7 @@ export default function SignUp({ onLogin, setLoadingRequest, loadingRequest, cat
                         </div>
                         <div>
                             <Button 
-                                style={{ backgroundColor: "#3E5C76", margin: "1%"}}
+                                style={{ backgroundColor: "#6C63FF", margin: "1%"}}
                                 type="submit"
                             >{isLoading ? "Loading..." : "Sign Up"}
                             </Button>
@@ -191,7 +191,7 @@ export default function SignUp({ onLogin, setLoadingRequest, loadingRequest, cat
                 className="login-button" 
                 variant="primary" 
                 onClick={() => setModalShow(true)}
-                style={{ backgroundColor: "#6C63FF", margin: "1%" }}
+                style={{margin: "1%" }}
             >sign Up
             </button>
 

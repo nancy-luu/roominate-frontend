@@ -346,7 +346,7 @@ export default function Profile({
                             <></>
                         }
                     <div className="myinvoice-owed">unpaid invoice totals:</div>
-                    <div className="myinvoice-owed-number">${invoiceTotal}</div>
+                    <div className="myinvoice-owed-number">$ {invoiceTotal}</div>
                 </Container>
                 {/* <Container className="no-invoice-wrapper">
                     <img className="no-invoice-img" src="images/invoice.png"></img>

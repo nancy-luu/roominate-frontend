@@ -217,6 +217,9 @@ export default function Conversation ({ singleConversation, user, userList, isLo
         );
       }
 
+    console.log(user)
+
+
     return (
         <Row className="conversation-container">
             <Container className="conversation-card">

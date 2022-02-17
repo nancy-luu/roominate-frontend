@@ -3,6 +3,7 @@ import { Row, Col } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 import "./myinvoice.scss"
 const API = 'http://localhost:3000'
 
@@ -41,8 +42,8 @@ export default function MyInvoice({ singleInvoice, currUser, isLoading, setIsLoa
                 centered
             >
             <Modal.Header closeButton>
-                <Modal.Title id="contained-modal-title-vcenter">
-                    Invoice Details:
+                <Modal.Title id="contained-modal-title-vcenter" className="paid-color">
+                    <b>Invoice Details:</b>
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
@@ -75,18 +76,21 @@ export default function MyInvoice({ singleInvoice, currUser, isLoading, setIsLoa
                     </Form>
             </Modal.Body>
             <Modal.Footer>
-                <Modal.Title>
-                    <div><b>Total: </b>${singleInvoice.amount}</div>
+                <Modal.Title className="footer-wrapper">
+                    <div className="paid-text">Total: <b className="paid-color">${singleInvoice.amount}</b></div>
                     { singleInvoice.paid ? 
-                        <div><b>Status: </b> paid</div>
+                        <div className="paid-text">Status: <b className="paid-color">paid</b></div>
                         :
-                        <div><b>Status:</b> unpaid</div>
+                        <div className="paid-text">Status: <b className="paid-color">unpaid</b></div>
                     }
                     { currUser.id === singleInvoice.user.id ?
-                        <button
-                            style={{ backgroundColor: "#6C63FF", margin: "1%"}}
-                            onClick={handlePayInvoice}
-                        >Pay</button>
+                        <div className="button-container">
+                            <Button
+                                className="listing-modal-submit"
+                                style={{ backgroundColor: "#6C63FF", margin: "1%"}}
+                                onClick={handlePayInvoice}
+                            >Pay</Button>
+                        </div>
                         :
                         <></>
                     }
@@ -111,10 +115,10 @@ export default function MyInvoice({ singleInvoice, currUser, isLoading, setIsLoa
                     <Col className="conversation-amount">$ {singleInvoice.amount}</Col>
                     <Col className="button-section">
                         <button
+                            className="see-details-button"
                             style={{ backgroundColor: "#6C63FF", margin: "1%"}}
                             onClick={() => setInvoiceShow(true)} 
-                        >details
-                        </button>
+                        >details</button>
                     </Col>
                     </Row>
                     <ShowInvoiceModal
@@ -133,6 +137,7 @@ export default function MyInvoice({ singleInvoice, currUser, isLoading, setIsLoa
                         <Col className="conversation-amount">$ {singleInvoice.amount}</Col>
                         <Col className="button-section">
                             <button
+                                className="see-details-button"
                                 style={{ backgroundColor: "#6C63FF", margin: "1%"}}
                                 onClick={() => setInvoiceShow(true)} 
                             >details

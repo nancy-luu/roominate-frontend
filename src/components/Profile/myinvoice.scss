@@ -42,6 +42,35 @@
 
     .button-section{
        text-align: right;
+
+       .see-details-button{
+            border-radius: 50px;
+            color: white;
+            font-family: $mainfont;
+            font-weight: 700;
+       }
     }
 
+}
+
+.footer-wrapper{
+    text-align: right;
+}
+
+.paid-color{
+    color: black;
+    text-align: right;
+}
+
+.paid-color{
+    color: $maincolor;
+    text-align: right;
+}
+
+.button-container{
+    text-align: right;
+
+    .listing-modal-submit{
+        text-align: right;
+    }
 }
