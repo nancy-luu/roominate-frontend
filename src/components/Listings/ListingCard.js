@@ -30,9 +30,6 @@ export default function ListingCard ({ isLoading, setIsLoading, user, currUser, 
         }
     }
 
-    // console.log(listing.user_id)
-    // console.log(currUser)
-
     function handleListInquire(){
         setIsLoading(true)
         fetch(`${API}/conversations`, {
@@ -113,13 +110,9 @@ export default function ListingCard ({ isLoading, setIsLoading, user, currUser, 
         }
     })
 
-    // console.log(findPoster)
-
     const foundPoster = findPoster.map((p) => (
         <Card.Text key={p.id}><b>Posted By: </b> {p.username}</Card.Text>
     ))
-
-    // console.log(singlelisting)
 
     return (
         <div className="listing-card-container">

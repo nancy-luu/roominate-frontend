@@ -10,7 +10,7 @@ import MyProfilePhoto from "./MyProfilePhoto";
 import "./profilecard.scss"
 
 
-export default function ProfileCard ({ user, setUser, userList, isLoading, setIsLoading, categoryList, locationList, token, currUser, setLoadingRequest, loadingRequest, userType }){
+export default function ProfileCard ({ user, setUser, userList, isLoading, setIsLoading, categoryList, locationList, token, currUser, setLoadingRequest, loadingRequest, userType, showFileName, setShowFileName }){
     const [profileEditShow, setProfileEditShow] = React.useState(false);
     const [file, setFile] = useState(null);
     const myToken = localStorage.getItem("token");
@@ -34,15 +34,11 @@ export default function ProfileCard ({ user, setUser, userList, isLoading, setIs
         fetch('http://localhost:3000/user_photos', {
             method: 'POST',
             headers: {
-                // "Content-Type": "application/json",
                 Authorization: `Bearer ${myToken}`,
             },
             body: formData
         }).then((r) => {
             if (r.ok){
-            //   r.json().then((file) => setFile(file));
-            //   setIsLoading(false)
-                setLoadingRequest(loadingRequest+1)
                 return r.json()
             }
           }).then((data) => console.log(data))
@@ -62,19 +58,16 @@ export default function ProfileCard ({ user, setUser, userList, isLoading, setIs
             })
         }).then((r) => {
             if (r.ok){
-            //   r.json().then((file) => setFile(file));
-            //   setIsLoading(false)
-                setLoadingRequest(loadingRequest+1)
                 return r.json()
             }
           }).then((data) => console.log(data))
 
         setProfileEditShow(false)
+        setLoadingRequest(loadingRequest+1)
     }
 
     const handlePic = (e) => {
-        e.persist()
-        console.log("this is the file", e.target.files[0])
+        setShowFileName(e.target.files[0].name)
         setFile(e.target.files[0]);
     }
 
@@ -119,14 +112,17 @@ export default function ProfileCard ({ user, setUser, userList, isLoading, setIs
             <Modal.Body>
                     <Form 
                         onSubmit={handleUpdateProfile} 
-                        // id={listing.id} 
                         >
                         <input 
+                            id="img"
                             type="file"
                             name='photo' 
                             accept='image/*'
                             onChange={handlePic}
+                            style={{display:"none"}}
                         />
+                        <label for="img" className="upload-image-btn">Upload Image</label>
+                        <div id="filesname" className="file-name">Chosen file: <b>{showFileName}</b></div>
                         <div className="form-group">
                             <label>Name*</label>
                             <input 

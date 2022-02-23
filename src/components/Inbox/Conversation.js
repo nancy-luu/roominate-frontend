@@ -70,7 +70,6 @@ export default function Conversation ({ singleConversation, user, userList, isLo
                 })
             }
         })
-        // console.log(e.target.previousElementSibling)
         setMessage("")
         e.target.previousElementSibling.value = ""
     }

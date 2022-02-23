@@ -12,7 +12,6 @@ export default function Listings ({ token, user, currUser, setUser, isLoading, s
     const [listingCategory, setListingCategory] = useState("")
     const [listingLocation, setListingLocation] = useState("")
 
-    // console.log(listing)
 
     function customTheme(theme){
         return {

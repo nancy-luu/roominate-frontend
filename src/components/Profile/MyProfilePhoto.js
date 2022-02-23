@@ -8,10 +8,7 @@ const API = 'http://localhost:3000'
 
 
 export default function MyProfilePhoto ({ isLoading, setIsLoading, token, currUser, profileUser}){
-    // const [myPhoto, setMyPhoto] = useState([])   
-    
-    // console.log(currUser)
-    // debugger;
+
     if (!currUser.username){
         return(
             <></>

@@ -12,7 +12,7 @@ import MyListingPhoto from "./MyListingPhoto";
 
 import "./mylistingcard.scss"
 
-export default function MyListingCard ({ isLoading, setIsLoading, categoryList, locationList, token, listing, loadingRequest, setLoadingRequest, id, currUser, listings }){
+export default function MyListingCard ({ isLoading, setIsLoading, categoryList, locationList, token, listing, loadingRequest, setLoadingRequest, id, currUser, listings, showFileName, setShowFileName }){
     const [myListModalShow, setMyListModalShow] = React.useState(false);
     const [file, setFile] = useState(null);
     const [deleteLoading, setDeleteLoading] = useState(false)
@@ -104,8 +104,7 @@ export default function MyListingCard ({ isLoading, setIsLoading, categoryList, 
     }
 
     const handleListPic = (e) => {
-        e.persist()
-        console.log("this is the file", e.target.files[0])
+        setShowFileName(e.target.files[0].name)
         setFile(e.target.files[0]);
     }
 
@@ -158,7 +157,10 @@ export default function MyListingCard ({ isLoading, setIsLoading, categoryList, 
                             name='photo' 
                             accept='image/*'
                             onChange={handleListPic}
+                            style={{display:"none"}}
                         />
+                        <label for="img" className="upload-image-btn">Upload Image</label>
+                        <div id="filesname" className="file-name">Chosen file: <b>{showFileName}</b></div>
                         <div className="form-group">
                             <label>Title*</label>
                             <input 
@@ -262,7 +264,6 @@ export default function MyListingCard ({ isLoading, setIsLoading, categoryList, 
                                 onClick={handleRemove}
                                 id={id} 
                             >
-                                {/* <MdOutlineDeleteForever style={{ width: '1.5rem', height: '1.5rem' }}/> */}
                                 done
                             </button>
                             <button

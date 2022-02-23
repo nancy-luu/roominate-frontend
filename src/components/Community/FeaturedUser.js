@@ -11,8 +11,6 @@ import "./featuser.scss"
 export default function FeaturedUser({ singleFeatUser, token }) {
     const [messageModalShow, setMessageModalShow] = React.useState(false);
 
-    // console.log(singleFeatUser)
-
     return (
       <div className="feat-user-card-container">
         <Row className="feat-user-wrapper">
@@ -59,16 +57,11 @@ export default function FeaturedUser({ singleFeatUser, token }) {
             <button
               className="contact-btn"
               style={{ backgroundColor: "#6C63FF", margin: "1%" }}
-              // onClick={() => setMessageRoominatorShow(true)}
             >
               connect
             </button>
           </Col>
         </Row>
-        {/* <StartConvoModal
-                show={messageModalShow}
-                onHide={() => setMessageModalShow(false)}
-                /> */}
       </div>
     );
 }

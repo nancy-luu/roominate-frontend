@@ -29,12 +29,10 @@ export default function FeatUserSlider ({ featUsers, token }) {
       return null;
     }
 
-    // console.log(featUsers)
 
     return(
         <section className="feat-user-slider">
             <Row>
-                    {/* <BsArrowLeftShort className="left-arrow" onClick={prevSlide} /> */}
                     {featUsers.map((singleFeatUser, index) => {
                         console.log(singleFeatUser)
                         return (
@@ -43,13 +41,11 @@ export default function FeatUserSlider ({ featUsers, token }) {
                                 key={index}
                             >
                                 {index === img && (
-                                    // <img src={singleFeatUser.user_photo.image} alt="sfu-img" className="single-img"/>
                                     <FeaturedUser key={singleFeatUser.id} singleFeatUser={singleFeatUser} token={token}/> 
                                 )}
                             </div>
                         )
                     })}
-                    {/* <BsArrowRightShort className="right-arrow" onClick={nextSlide} /> */}
             </Row>
         </section>
 

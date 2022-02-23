@@ -34,6 +34,7 @@ export default function Profile({
   const [myInvoices, setMyInvoices] = useState(null);
   const [invoiceTotal, setInvoiceTotal] = useState(null);
   const [paidStyle, setPaidStyle] = useState("")
+  const [showFileName, setShowFileName] = useState("")
   const myToken = localStorage.getItem("token");
   let title;
   let category;
@@ -73,13 +74,11 @@ export default function Profile({
     });
   }, [loadingRequest]);
 
-//   console.log(invoiceTotal)
 
   function handleAddListing(e) {
     e.preventDefault();
     console.log("added!");
 
-    // console.log("Add Listing")
     e.preventDefault();
     setErrors([]);
     setIsLoading(true);
@@ -124,8 +123,7 @@ export default function Profile({
   }
 
   const handleListPic = (e) => {
-    // e.persist()
-    console.log("this is the file", e.target.files[0]);
+    setShowFileName(e.target.files[0].name)
     setFile(e.target.files[0]);
   };
 
@@ -167,7 +165,16 @@ export default function Profile({
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleAddListing}>
-            <input type="file" name="photo" onChange={handleListPic} />
+            <input 
+              id="img"
+              type="file"
+              name='photo' 
+              accept='image/*'
+              onChange={handleListPic}
+              style={{display:"none"}}
+            />
+            <label for="img" className="upload-image-btn">Upload Image</label>
+            <div id="filesname" className="file-name">Chosen file: <b>{showFileName}</b></div>
             <div className="form-group">
               <label>Title*</label>
               <input
@@ -227,13 +234,6 @@ export default function Profile({
     );
   }
 
-  // console.log(userList)
-  // console.log(currUser.listing_photo)
-  console.log("TESTING:");
-  console.log(currUser);
-  console.log(user)
-  console.log(myInvoices);
-
   return (
     <div className="profile-page">
         <Container className="profile-wrapper">
@@ -249,6 +249,8 @@ export default function Profile({
                 loadingRequest={loadingRequest}
                 setLoadingRequest={setLoadingRequest}
                 userType={userType}
+                showFileName={showFileName}
+                setShowFileName={setShowFileName}
             />
         </Container>
       <div className="middle-bar">
@@ -297,6 +299,8 @@ export default function Profile({
                         id={listing.id}
                         currUser={currUser}
                         listings={listings}
+                        showFileName={showFileName}
+                        setShowFileName={setShowFileName}
                     />
                     ))}
                 </Row>
@@ -348,12 +352,6 @@ export default function Profile({
                     <div className="myinvoice-owed">unpaid invoice totals:</div>
                     <div className="myinvoice-owed-number">$ {invoiceTotal}</div>
                 </Container>
-                {/* <Container className="no-invoice-wrapper">
-                    <img className="no-invoice-img" src="images/invoice.png"></img>
-                    <div className="no-invoice-text">
-                        ( you currently have no invoices )
-                    </div>
-                </Container> */}
             </Container>
           </Container>
       </div>

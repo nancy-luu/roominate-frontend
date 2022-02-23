@@ -37,9 +37,6 @@ export default function FeaturedListing({ featListings, token, singleFeatListing
                             <b>{singleFeatListing.title}</b>
                         </Card.Title>
                     <Row>
-                        {/* <Card.Text>Posted By: {postedBy}</Card.Text> */}
-                    </Row>
-                    <Row>
                         <Card.Text><b>Category:</b> {singleFeatListing.category}</Card.Text>
                     </Row>
                     <Row>
@@ -61,10 +58,6 @@ export default function FeaturedListing({ featListings, token, singleFeatListing
                     ><RiMailSendLine style={{ width: '3rem', height: '1rem' }}/></button>
                 </Card.Body>
             </Card>
-            {/* <StartConvoModal
-                show={messageModalShow}
-                onHide={() => setMessageModalShow(false)}
-             /> */}
         </div>
     )
 }

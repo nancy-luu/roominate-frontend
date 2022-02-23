@@ -26,30 +26,11 @@ export default function Message ({ singleMessage, user, userList, isLoading, set
         })
     }, []) 
 
-    // console.log(userPhotos)
-
-    // const findMessagePhoto = userPhotos.filter((u) => {
-    //     if (u.user_id === singleMessage.user_id){
-    //         return true
-    //     }
-    // })
-
-    // console.log(findMessagePhoto[0].image)
-
     const findMessageUser = userList.filter((u) => {
         if (u.user_photo.id === singleMessage.user_id){
             return true
         }
     })
-    // console.log(findMessageUser)
-    // console.log(findMessageUser[0].username)
-    // console.log(findMessageUser[0].user_desc)
-    // console.log(findMessageUser[0].user_photo.image)
-    // console.log(singleMessage)
-    // console.log(singleMessage.created_at)
-
-
-
 
     function ProfileModal(props) {
         return (
@@ -65,7 +46,6 @@ export default function Message ({ singleMessage, user, userList, isLoading, set
                     </Modal.Title>
                     <img
                         className="profile-image"
-                        // src={findMessagePhoto[0].image}
                         src={findMessageUser[0].user_photo.image}
                         style={{ width: '25rem' }}
                         onClick={() => setShowUserProfile(true)}
@@ -99,7 +79,6 @@ export default function Message ({ singleMessage, user, userList, isLoading, set
                         <Col className="my-photo">
                             <img
                                 className="sender-image"
-                                // src={findMessagePhoto[0].image}
                                 src={findMessageUser[0].user_photo.image}
                                 style={{ width: '7rem' }}
                                 onClick={() => setShowUserProfile(true)}
@@ -120,7 +99,6 @@ export default function Message ({ singleMessage, user, userList, isLoading, set
                             <Col className="their-photo">
                             <img
                                 className="sender-image"
-                                // src={findMessagePhoto[0].image}
                                 src={findMessageUser[0].user_photo.image}
                                 style={{ width: '7rem' }}
                                 onClick={() => setShowUserProfile(true)}
