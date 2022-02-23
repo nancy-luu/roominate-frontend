@@ -6,10 +6,6 @@ const API = 'http://localhost:3000'
 
 
 export default function ProfilePhoto ({ isLoading, setIsLoading, token, singleUser }){
-  
-    // debugger;
-    // console.log(singleUser.user_photo.image)
-    // debugger;
 
     if (!singleUser.username) {
         return(

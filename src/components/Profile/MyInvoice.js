@@ -48,7 +48,6 @@ export default function MyInvoice({ singleInvoice, currUser, isLoading, setIsLoa
             </Modal.Header>
             <Modal.Body>
                     <Form 
-                        // onSubmit={handleListInquire} 
                         id={singleInvoice.id} 
                         >
                         <div className="form-group">
@@ -64,14 +63,6 @@ export default function MyInvoice({ singleInvoice, currUser, isLoading, setIsLoa
                             <div> {singleInvoice.user.username}</div>
                             <div><b>Additional Costs:</b></div>
                             <div>${singleInvoice.additional_fees}</div>
-                        </div>
-                        <div>
-                            {/* <button 
-                                className="listing-modal-submit"
-                                style={{ backgroundColor: "#9F99FF", margin: "1%"}}
-                                type="submit"
-                            >{isLoading ? "Loading..." : "Submit"}
-                            </button> */}
                         </div>
                     </Form>
             </Modal.Body>
