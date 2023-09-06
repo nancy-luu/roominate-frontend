@@ -3,22 +3,45 @@
 .roominator-card-container{
     margin-top: 1%;
     margin-bottom: 1%;
+    margin-right: 20px;
+
+    .roominator-card {
+        margin-right: 20px;
+    }
 
     .roominator-image{
         justify-content: center;
         text-align: center;
-        margin-left: 5%;
     }
 
-    .contact-btn{
-        justify-content: center;
-        text-align: center;
+    .name-contact-stack {
+        display: flex;
+        align-items: center;
+    }
+
+    .card-divider {
+        border-top: 1px solid #d2d2d2; 
+        margin-right: 30px;
+        margin-bottom: 10px;
+    }
+
+    .top-card-container {
+        max-height: 10px; 
+        overflow: hidden; 
+        align-items: center; 
+      }
+
+    .contact-btn {
         font-family: $mainfont;
         height: 30px;
         width: 60px;
-        border-radius: 50px;
+        border-radius: 5px;
+        border: none;
         color: white;
+        font-size: 10px;
         font-weight: 700;
+        background-color: #b0abff;
     }
+    
 }
 

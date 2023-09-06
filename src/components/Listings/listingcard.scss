@@ -1,42 +1,45 @@
 @import "../../global.scss";
 
-.listing-card-container{
+.listing-card-container {
     margin-top: 1%;
     margin-bottom: 1%;
-    
-    .listing-image-container{
+
+    .listing-image-container {
         justify-content: center;
         text-align: center;
 
-        .listing-image-wrapper{
+        .listing-image-wrapper {
             margin-left: 50px;
 
-            .listing-image{
+            .listing-image {
                 justify-content: center;
                 text-align: center;
             }
         }
     }
 
-    .listing-title{
+    .listing-title {
         margin-top: -10px;
     }
 
-    .listing-modal-submit{
+    .listing-modal-submit {
         border-radius: 50%;
     }
 
-    .contact-btn{
-        display: absolute;
-        justify-content: center;
-        text-align: center;
+    .contact-btn {
+        position: absolute; /* Make the button positioned absolutely */
+        bottom: 1%; /* Position it at the bottom */
+        left: 12%; /* Center horizontally */
+        transform: translateX(-50%); /* Center horizontally */
         font-family: $mainfont;
         height: 30px;
         width: 60px;
-        border-radius: 50px;
+        border-radius: 5px;
+        border: none;
         color: white;
         font-size: 10px;
         font-weight: 700;
+        background-color: #b0abff; /* Apply background color */
     }
 }
 

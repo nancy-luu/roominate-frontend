@@ -4,11 +4,19 @@
     margin-right: 20px;
 }
 
+.conversation-container-wrapper {
+    display: flex;
+    flex-direction: column; /* Align children vertically */
+    // align-items: flex-start; /* Align children to the start of the flex container */
+    margin-right: 20px;
+    width: 100%; /* Ensure the container takes up the full available width */
+  }
+
 .conversation-card{
     margin-left: 30px;
     margin-bottom: 10px;
     // margin-top: 30px;
-    border: 2px solid black;
+    border: 1px solid black;
     text-align: left;
     box-shadow: -8px 8px 3px -4px rgba(0, 0, 0, 0.247);
     padding: 20px 20px 20px;
@@ -92,7 +100,7 @@
 
 }
 
-.fade-in{
+.message-container{
     border-radius: 10px;
     background-color: rgb(241, 241, 241);
     margin-bottom: 20px;
@@ -114,13 +122,12 @@
           opacity: 1;
         }
       }
-      
 }
 
 .chat-input{
     font-size: 15px;
     width: 500px;
-    border: 2px solid black;
+    border: 1px solid rgb(65, 65, 65);
     box-shadow: -8px 8px 3px -4px rgba(0, 0, 0, 0.247);
     margin-bottom: 20px;
 }

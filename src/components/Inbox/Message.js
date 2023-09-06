@@ -24,9 +24,12 @@ export default function Message ({ singleMessage, user, userList, isLoading, set
             r.json().then((userPhotos) => setUserPhotos(userPhotos));
           }
         })
-    }, []) 
+    }, []) ~
+
+    console.log(userList);
 
     const findMessageUser = userList.filter((u) => {
+        console.log('FINDING USER NAME IN FIND MESSENGER USER' + u.name)
         if (u.user_photo.id === singleMessage.user_id){
             return true
         }
@@ -53,6 +56,8 @@ export default function Message ({ singleMessage, user, userList, isLoading, set
                     <div className="profile-info">
                         <div className="prof-modal-title">Account Type:</div> 
                         <div>{findMessageUser[0].user_type}</div>
+                        <div className="prof-modal-title">Email:</div> 
+                        <div>{findMessageUser[0].email}</div>
                         <div className="prof-modal-title">Charge:</div> 
                         <div>${findMessageUser[0].user_charge}/hr</div>
                         <div className="prof-modal-title">Location:</div> 

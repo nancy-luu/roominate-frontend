@@ -3,3 +3,18 @@ $maincolor: #6C63FF;
 $secondarycolor: #ebe9ff;
 $thirdcolor: #CACACA;
 $mainfont: 'Montserrat', sans-serif;
+
+body {
+    min-width: 320px;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-image: url(landingpurple.jpg);
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+}
+
+.page-with-white-background {
+    background-color: white;
+}

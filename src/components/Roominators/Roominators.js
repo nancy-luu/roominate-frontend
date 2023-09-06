@@ -131,7 +131,6 @@ export default function Roominators ({ user, currUser, userType, locationList, i
                 <Row
                     xs={1}
                     md={4}
-                    className="g-4"
                     className="d-flex justify-content-center"
                 >
                 {filteredUsers}

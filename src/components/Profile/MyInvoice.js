@@ -58,9 +58,9 @@ export default function MyInvoice({ singleInvoice, currUser, isLoading, setIsLoa
                             <div><b>Hours Worked:</b></div>
                             <div>{singleInvoice.hours_worked}</div>
                             <div><b>From:</b></div>
-                            <div> {singleInvoice.user2.username}</div>
-                            <div><b>To:</b></div>
                             <div> {singleInvoice.user.username}</div>
+                            <div><b>To:</b></div>
+                            <div> {singleInvoice.user2.username}</div>
                             <div><b>Additional Costs:</b></div>
                             <div>${singleInvoice.additional_fees}</div>
                         </div>
@@ -74,7 +74,7 @@ export default function MyInvoice({ singleInvoice, currUser, isLoading, setIsLoa
                         :
                         <div className="paid-text">Status: <b className="paid-color">unpaid</b></div>
                     }
-                    { currUser.id === singleInvoice.user.id ?
+                    { currUser.id !== singleInvoice.user.id ?
                         <div className="button-container">
                             <Button
                                 className="listing-modal-submit"
@@ -121,8 +121,8 @@ export default function MyInvoice({ singleInvoice, currUser, isLoading, setIsLoa
                 <>
                     <Row className="invoice-card">
                         <Col className="conversation-date">{singleInvoice.created_at}</Col>
-                        <Col className="conversation-text">{singleInvoice.user2.username}</Col>
                         <Col className="conversation-text">{singleInvoice.user.username}</Col>
+                        <Col className="conversation-text">{singleInvoice.user2.username}</Col>
                         <Col className="conversation-task">{singleInvoice.title}</Col>
                         <Col className="conversation-desc">{singleInvoice.invoice_desc}</Col>
                         <Col className="conversation-amount">$ {singleInvoice.amount}</Col>

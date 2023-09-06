@@ -11,7 +11,6 @@ export default function Inbox ({ user, currUser, userList, isLoading, setIsLoadi
     const [myConvos, setMyConvos] = useState([])
     const token = localStorage.getItem("token");
 
-
     useEffect(() => {
         setIsLoading(true);
         if (token) {

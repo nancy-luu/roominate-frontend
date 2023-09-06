@@ -10,12 +10,6 @@ export default function Landing({ onLogin, setLoadingRequest, loadingRequest, se
     return (
         <div className="landing-container" id="landing">
             <div className="imgContainer">
-                <img 
-                    className="background" 
-                    src="images/landingpurple.jpg" 
-                    alt="landing" 
-                    style={{ width: '135rem', height: '62rem' }}
-                />
             </div> 
             <div className="big-wrapper">
                 <div className="landing-wrapper">

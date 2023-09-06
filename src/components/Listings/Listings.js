@@ -136,7 +136,6 @@ export default function Listings ({ token, user, currUser, setUser, isLoading, s
                 <Row
                     xs={1}
                     md={4}
-                    className="g-4"
                     className="d-flex justify-content-center"
                 >
                 {filteredListings}

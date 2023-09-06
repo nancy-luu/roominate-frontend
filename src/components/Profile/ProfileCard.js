@@ -127,7 +127,6 @@ export default function ProfileCard ({ user, setUser, userList, isLoading, setIs
                             <label>Name*</label>
                             <input 
                                 type="username" 
-                                type="listing-title" 
                                 className="form-control" 
                                 id="listing-title-input" 
                                 placeholder="Update Name..." 
@@ -203,7 +202,9 @@ export default function ProfileCard ({ user, setUser, userList, isLoading, setIs
                 <div className="profile-right">
                     <h5><b>Name: </b>{currUser.username}</h5>
                     <h5><b>Account: </b> {currUser.user_type}</h5>
-                    <h5><b>Charge: </b> ${currUser.user_charge}/hr</h5>
+                    { currUser.user_type !== 'Home Owner' && 
+                        <h5><b>Charge: </b> ${currUser.user_charge}/hr</h5>
+                    }
                     <h5><b>Location: </b> {currUser.user_location}</h5>
                     <h5><b>About: </b> {currUser.user_desc}</h5>
                     <div className="image-btn-container">

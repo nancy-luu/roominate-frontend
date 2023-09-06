@@ -341,7 +341,6 @@ export default function Profile({
                             currUser={currUser}
                             setIsLoading={setIsLoading} 
                             isLoading={isLoading}
-                            setIsLoading={setIsLoading}
                             loadingRequest={loadingRequest}
                             setLoadingRequest={setLoadingRequest}
                             />

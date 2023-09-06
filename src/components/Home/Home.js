@@ -29,6 +29,7 @@ export default function Home ( {
     return (
         <Router>
             <ScrollToTop />
+            <div className="content white-background">
             <div className="page-container">
                 <div className="content-wrap">
                     <NavBar setUser={setUser}/>
@@ -77,8 +78,6 @@ export default function Home ( {
                                     setIsLoading={setIsLoading}
                                     userType={userType}
                                     locationList={locationList}
-                                    isLoading={isLoading} 
-                                    setIsLoading={setIsLoading}
                                     loadingRequest={loadingRequest}
                                     setLoadingRequest={setLoadingRequest}
                                 />
@@ -115,6 +114,7 @@ export default function Home ( {
                     </div>
                 </div>
                 <Footer />
+            </div>
             </div>
         </Router>
 

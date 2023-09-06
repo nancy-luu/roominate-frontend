@@ -4,7 +4,7 @@
     background-color: $secondarycolor;
     padding-top: 1em;
     position: relative;
-    bottom: 0;
+    padding-bottom: 50px;
     width: 100%;
 }
 
@@ -23,7 +23,7 @@
 
     .footerlogo{
         background-color: $secondarycolor;
-        width: 400px;
+        width: 200px;
     }
 }
 
@@ -39,7 +39,7 @@
                 justify-content: space-between;
                 text-align: left;
                 padding: 10px 10px 10px;
-                width: 70px;
+                width: 50px;
                 height:auto;
                 color: $maincolor;
             }
@@ -47,7 +47,7 @@
                 justify-content: space-between;
                 text-align: left;
                 padding: 10px 10px 10px;
-                width:55px;
+                width:40px;
                 height:auto;
                 color: $maincolor;
             }
@@ -55,7 +55,7 @@
                 justify-content: space-between;
                 text-align: left;
                 padding: 10px 10px 10px;
-                width:65px;
+                width:50px;
                 height:auto;
                 color: $maincolor;
             }

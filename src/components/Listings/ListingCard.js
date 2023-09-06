@@ -39,7 +39,7 @@ export default function ListingCard ({ isLoading, setIsLoading, user, currUser, 
                 Authorization: `Bearer ${token}`,
             },
             body: JSON.stringify({
-                header: newHeader,
+                header: listing.title,
                 user_id: listing.user_id,
                 user2_id: currUser.id
             })
@@ -54,16 +54,9 @@ export default function ListingCard ({ isLoading, setIsLoading, user, currUser, 
                 r.json((err) => setErrors(err));
             }
         })
-        setMessageModalShow(false)
     }
 
-    function handleInquiryInput(e){
-        e.preventDefault();
-        console.log(e.target.value)
-        newHeader = e.target.value
-    }
-
-    function StartConvoModal(props) {
+    function SuccessModal(props) {
         return (
             <Modal
                 {...props}
@@ -73,32 +66,9 @@ export default function ListingCard ({ isLoading, setIsLoading, user, currUser, 
             >
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
-                    Inquire:
+                   Inquiry Sent!
                 </Modal.Title>
             </Modal.Header>
-            <Modal.Body>
-                    <Form 
-                        onSubmit={handleListInquire} 
-                        id={listing.id} 
-                        >
-                        <div className="form-group">
-                            <label>Header*</label>
-                            <input 
-                                className="form-control" 
-                                placeholder="What listing is this for...?" 
-                                onChange={handleInquiryInput}
-                            ></input>
-                        </div>
-                        <div>
-                            <Button 
-                                className="listing-modal-submit"
-                                style={{ backgroundColor: "#6C63FF", margin: "1%"}}
-                                type="submit"
-                            >{isLoading ? "Loading..." : "Submit"}
-                            </Button>
-                        </div>
-                    </Form>
-            </Modal.Body>
             </Modal>
         );
     }    
@@ -145,12 +115,15 @@ export default function ListingCard ({ isLoading, setIsLoading, user, currUser, 
                     </Row>
                     <button 
                     className="contact-btn"
-                    style={{ backgroundColor: "#6C63FF", margin: "1%"}}
-                    onClick={() => setMessageModalShow(true)} 
+                    onClick={() => {
+                        setIsLoading(true);
+                        setMessageModalShow(true);
+                        handleListInquire();
+                    }} 
                     ><RiMailSendLine style={{ width: '3rem', height: '1rem' }}/></button>
                 </Card.Body>
             </Card>
-            <StartConvoModal
+            <SuccessModal
                 show={messageModalShow}
                 onHide={() => setMessageModalShow(false)}
              />
