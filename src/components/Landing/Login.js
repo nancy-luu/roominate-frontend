@@ -41,6 +41,7 @@ export default function Login( { onLogin, setCurrUser, setLoadingRequest, loadin
                     setCurrUser({username:"", email:"" , Listings:[]})
                     setLoadingRequest(loadingRequest+1)
                     onLogin(user);
+                    // history.push('/community');
                 });
               } else {
                 r.json().then((err) => setErrors(err));
@@ -63,24 +64,22 @@ export default function Login( { onLogin, setCurrUser, setLoadingRequest, loadin
             <Modal.Body>
                     <Form onSubmit={handleLoginSubmit}>
                         <div className="form-group">
-                            <label>User Name*</label>
+                            <label>User Name</label>
                             <input 
                                 type="username" 
                                 className="form-control" 
                                 id="username-input" 
-                                placeholder="Enter User Name" 
                                 onChange={(e) => setUsername(e.target.value)}
                                 autoComplete="off"
                                 value={username}
                             ></input>
                         </div>
                         <div className="form-group">
-                            <label>Password*</label>
+                            <label>Password</label>
                             <input 
                                 type="password" 
                                 className="form-control" 
                                 id="password-input" 
-                                placeholder="Password"
                                 autoComplete="current-password"
                                 onChange={(e) => setPassword(e.target.value)}
                                 value={password}

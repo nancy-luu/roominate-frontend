@@ -5,14 +5,14 @@ $thirdcolor: #CACACA;
 $mainfont: 'Montserrat', sans-serif;
 
 body {
-    min-width: 320px;
+    width: 100vw;
     min-height: 100vh;
     margin: 0;
     padding: 0;
-    background-image: url(landingpurple.jpg);
     background-size: cover;
     background-position: center center;
     background-attachment: fixed;
+    overflow-x: hidden;
 }
 
 .page-with-white-background {

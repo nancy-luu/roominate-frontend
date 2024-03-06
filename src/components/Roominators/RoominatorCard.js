@@ -26,6 +26,7 @@ export default function RoominatorCard({
     React.useState(false);
   const [conversation, setConversation] = useState("");
   let newHeader;
+  const [messageModalShow, setMessageModalShow] = React.useState(false);
 
   function handleStartConversation() {
     setIsLoading(true);
@@ -37,8 +38,8 @@ export default function RoominatorCard({
       },
       body: JSON.stringify({
         header: newHeader,
-        user_id: user.id,
-        user2_id: currUser.id,
+        user_id: currUser.id,
+        user2_id: user.id
       }),
     }).then((r) => {
       if (r.ok) {
@@ -51,6 +52,7 @@ export default function RoominatorCard({
       }
     });
     setMessageRoominatorShow(false);
+    setTimeout(() => setMessageModalShow(true), 400);
   }
 
   function handleHeaderInput(e) {
@@ -85,7 +87,7 @@ export default function RoominatorCard({
                 style={{ backgroundColor: "#6C63FF", margin: "1%" }}
                 type="submit"
               >
-                {isLoading ? "Loading..." : "Submit"}
+                {isLoading ? "Loading..." : "Send"}
               </Button>
             </div>
           </Form>
@@ -93,6 +95,23 @@ export default function RoominatorCard({
       </Modal>
     );
   }
+
+  function SuccessModal(props) {
+    return (
+        <Modal
+            {...props}
+            size="m"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+        >
+        <Modal.Header closeButton>
+            <Modal.Title id="contained-modal-title-vcenter">
+               Inquiry Sent!
+            </Modal.Title>
+        </Modal.Header>
+        </Modal>
+    );
+}    
 
   return (
     <div className="roominator-card-container">
@@ -150,6 +169,10 @@ export default function RoominatorCard({
       <StartConvoModal
         show={messageRoominatorShow}
         onHide={() => setMessageRoominatorShow(false)}
+      />
+      <SuccessModal
+        show={messageModalShow}
+        onHide={() => setMessageModalShow(false)}
       />
     </div>
   );

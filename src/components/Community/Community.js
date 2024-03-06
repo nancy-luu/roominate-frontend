@@ -10,7 +10,7 @@ import "./community.scss"
 const API = 'http://localhost:3000'
 
 
-export default function Community( ) {
+export default function Community({ currUser }) {
   const [featUsers, setFeatUsers] = useState([])
   const [featListings, setFeatListings] = useState([])
   const token = localStorage.getItem("token");
@@ -59,7 +59,12 @@ export default function Community( ) {
                 />
               </Col>
               <Col className="top-desc-wrapper">
-                <div className="top-title">Roominate is here for you</div>
+                 <div className="top-title">
+                    <p>
+                      Welcome, <b style={{color: '#6C63FF'}}>{currUser.username }</b>!
+                    </p>
+                    Roomininate is here for you:
+                 </div>
                 <div className="top-desc">
                   <FaCheck style={{ width: '3rem', height: '1rem', color: "#6C63FF" }}/>
                   Search by category and location

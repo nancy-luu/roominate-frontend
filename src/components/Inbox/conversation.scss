@@ -2,6 +2,25 @@
 
 .conversation-container{
     margin-right: 20px;
+
+}
+
+.modal-body{
+    a {
+        text-decoration: none;
+        color: white;
+        background-color: #9F99FF;
+        padding: 10px;
+        border-radius: 20px;
+    }
+
+    a:hover {
+        text-decoration: none;
+        color: white;
+        background-color: $maincolor;
+        padding: 10px;
+        border-radius: 20px;
+    }
 }
 
 .conversation-container-wrapper {
@@ -20,6 +39,7 @@
     text-align: left;
     box-shadow: -8px 8px 3px -4px rgba(0, 0, 0, 0.247);
     padding: 20px 20px 20px;
+    justify-content: center;
 
     .info-left{
         margin-top: 10px;

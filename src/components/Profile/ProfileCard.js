@@ -10,9 +10,10 @@ import MyProfilePhoto from "./MyProfilePhoto";
 import "./profilecard.scss"
 
 
-export default function ProfileCard ({ user, setUser, userList, isLoading, setIsLoading, categoryList, locationList, token, currUser, setLoadingRequest, loadingRequest, userType, showFileName, setShowFileName }){
+export default function ProfileCard ({ user, setUser, setCurrUser, userList, isLoading, setIsLoading, categoryList, locationList, token, currUser, setLoadingRequest, loadingRequest, userType, showFileName, setShowFileName }){
     const [profileEditShow, setProfileEditShow] = React.useState(false);
     const [file, setFile] = useState(null);
+    const [forceUpdate, setForceUpdate] = useState(false);
     const myToken = localStorage.getItem("token");
     let username
     let email
@@ -30,18 +31,6 @@ export default function ProfileCard ({ user, setUser, userList, isLoading, setIs
         const formData = new FormData()
         formData.append('image', file)
         formData.append('user_id', currUser.id)
-
-        fetch('http://localhost:3000/user_photos', {
-            method: 'POST',
-            headers: {
-                Authorization: `Bearer ${myToken}`,
-            },
-            body: formData
-        }).then((r) => {
-            if (r.ok){
-                return r.json()
-            }
-          }).then((data) => console.log(data))
 
         fetch(`http://localhost:3000/users/${currUser.id}`, {
             method: 'PATCH',
@@ -61,6 +50,20 @@ export default function ProfileCard ({ user, setUser, userList, isLoading, setIs
                 return r.json()
             }
           }).then((data) => console.log(data))
+
+          fetch('http://localhost:3000/user_photos', {
+            method: 'POST',
+            headers: {
+                Authorization: `Bearer ${myToken}`,
+            },
+            body: formData
+        }).then((r) => {
+            if (r.ok){
+                return r.json()
+            }
+          }).then((data) => {
+            console.log(data)
+        });
 
         setProfileEditShow(false)
         setLoadingRequest(loadingRequest+1)
@@ -197,6 +200,8 @@ export default function ProfileCard ({ user, setUser, userList, isLoading, setIs
                         setIsLoading={setIsLoading} 
                         token={token} user={user} 
                         currUser={currUser}
+                        setCurrUser={setCurrUser}
+                        loadingRequest={loadingRequest}
                 />
                 </div>
                 <div className="profile-right">

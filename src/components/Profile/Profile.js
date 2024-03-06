@@ -14,6 +14,7 @@ import "./profile.scss";
 export default function Profile({
   user,
   setUser,
+  setCurrUser,
   userList,
   isLoading,
   setIsLoading,
@@ -33,7 +34,6 @@ export default function Profile({
   const [file, setFile] = useState(null);
   const [myInvoices, setMyInvoices] = useState(null);
   const [invoiceTotal, setInvoiceTotal] = useState(null);
-  const [paidStyle, setPaidStyle] = useState("")
   const [showFileName, setShowFileName] = useState("")
   const myToken = localStorage.getItem("token");
   let title;
@@ -239,6 +239,7 @@ export default function Profile({
         <Container className="profile-wrapper">
             <ProfileCard
                 currUser={currUser}
+                setCurrUser={setCurrUser}
                 user={user}
                 setUser={setUser}
                 userList={userList}
@@ -272,7 +273,7 @@ export default function Profile({
             <div>
             {currUser.listings.length === 0 ? (
                 <Container className="no-listing-wrapper">
-                <img className="no-inbox-img" src="images/nolistings.png"></img>
+                <img className="no-inbox-img" src="images/nolistings.png" alt="no inbox"></img>
                 <div className="no-listing-text">
                     ( you currently have no listings )
                 </div>
@@ -282,8 +283,7 @@ export default function Profile({
                 <Row
                     xs={1}
                     md={4}
-                    className="g-4"
-                    className="d-flex justify-content-center"
+                    className="g-4 d-flex justify-content-center"
                 >
                     {currUser.listings.map((listing) => (
                     <MyListingCard
@@ -322,7 +322,8 @@ export default function Profile({
             <Col className="titlebanner">
                 <div className="myinvoicetitle">my invoices:</div>
             </Col>
-            <Container className="no-invoice-container">
+            {myInvoices && myInvoices.length > 0 ? 
+              <Container className="no-invoice-container">
                 <Container className="invoice-container">
                     <Row className="invoice-labels">
                         <Col className="mylisting-date">date:</Col>
@@ -333,25 +334,31 @@ export default function Profile({
                         <Col className="mylisting-amount">amount:</Col>
                         <Col></Col>
                     </Row>
-                    {myInvoices ? 
-                        myInvoices.map((i) => (
-                            <MyInvoice 
-                            singleInvoice={i}
-                            key={i.id}
-                            currUser={currUser}
-                            setIsLoading={setIsLoading} 
-                            isLoading={isLoading}
-                            loadingRequest={loadingRequest}
-                            setLoadingRequest={setLoadingRequest}
-                            />
-                            ))
-                            :
-                            <></>
-                        }
-                    <div className="myinvoice-owed">unpaid invoice totals:</div>
-                    <div className="myinvoice-owed-number">$ {invoiceTotal}</div>
+                        <div>
+                            {myInvoices.map((i) => (
+                                <MyInvoice 
+                                singleInvoice={i}
+                                key={i.id}
+                                currUser={currUser}
+                                setIsLoading={setIsLoading} 
+                                isLoading={isLoading}
+                                loadingRequest={loadingRequest}
+                                setLoadingRequest={setLoadingRequest}
+                                />
+                                ))}
+                            <div className="myinvoice-owed">unpaid invoice total:</div>
+                            <div className="myinvoice-owed-number">$ {invoiceTotal}</div>
+                        </div>
                 </Container>
-            </Container>
+              </Container>
+              :
+                <Container className="no-listing-wrapper">
+                  <img className="no-inbox-img" src="images/noinvoices.svg" alt="no inbox"></img>
+                  <div className="no-listing-text">
+                  ( you currently have no invoices )
+                  </div>
+                </Container>
+            }
           </Container>
       </div>
     </div>

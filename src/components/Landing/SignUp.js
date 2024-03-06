@@ -120,41 +120,38 @@ export default function SignUp({
         <Modal.Body>
           <Form onSubmit={handleSubmit}>
             <div className="form-group">
-              <label>User Name*</label>
+              <label>User Name</label>
               <input
                 type="username"
                 className="form-control"
                 id="username-input"
-                placeholder="Enter User Name"
                 onChange={handleSetName}
                 autoComplete="off"
               ></input>
             </div>
             <div className="form-group">
-              <label>Email*</label>
+              <label>Email</label>
               <input
                 type="email"
                 className="form-control"
                 id="email-input"
-                placeholder="Enter Email"
                 onChange={handleSetEmail}
               ></input>
             </div>
             <div className="form-group">
-              <label>Password*</label>
+              <label>Password</label>
               <input
                 type="password"
                 className="form-control"
                 id="password-input"
-                placeholder="Password"
                 autoComplete="on"
                 onChange={handleSetPassword}
               ></input>
             </div>
             <Modal.Title id="contained-modal-title-vcenter">
-              register your info:
+              Details:
             </Modal.Title>
-            <label>Account Type*</label>
+            <label>Account Type</label>
             <Select
               type="user_type"
               options={userType}
@@ -162,28 +159,27 @@ export default function SignUp({
             ></Select>
             {showChargeInput && (
                 <div className="form-group">
-                <label>Charge*</label>
+                <label>Charge</label>
                 <input
                     className="form-control"
-                    placeholder="per hour?"
+                    placeholder="$0/hr"
                     autoComplete="on"
                     value={user_charge}
                     onChange={handleSetCharge}
                 ></input>
                 </div>
             )}
-            <label>Location*</label>
+            <label>Location</label>
             <Select
               type="user_location"
               options={locationList}
               onChange={handleUserLocation}
             ></Select>
             <div className="form-group">
-              <label>About*</label>
+              <label>About</label>
               <input
                 className="form-control"
                 id="password-input"
-                placeholder="Tell us about yourself.."
                 autoComplete="on"
                 onChange={handleSetAbout}
               ></input>

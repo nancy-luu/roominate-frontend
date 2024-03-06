@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Row, Col } from "react-bootstrap";
+import { Link } from 'react-router-dom';
 import Container from "react-bootstrap/Container";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
@@ -21,8 +22,9 @@ export default function Conversation({
   const [messageCount, setMessageCount] = useState(0);
   const [showMessage, setShowMessage] = useState(false);
   const [message, setMessage] = useState("");
-  const [invoiceModalShow, setInvoiceModalShow] = useState(false);
   const [invoice, setInvoice] = useState(null);
+  const [invoiceModalShow, setInvoiceModalShow] = useState(false);
+  const [messageModalShow, setMessageModalShow] = React.useState(false);
   const token = localStorage.getItem("token");
   let messageText;
   let title;
@@ -86,6 +88,14 @@ export default function Conversation({
 
   function handleSendInvoice() {
     setIsLoading(true);
+
+    setIsLoading(true);
+    const totalHours = parseFloat(hours_worked);
+    const additionalCosts = parseFloat(additional_fees);
+  
+    const totalAmount = (totalHours * parseFloat(user.user_charge)) + additionalCosts;
+  
+
     fetch(`${API}/invoices`, {
       method: "POST",
       headers: {
@@ -98,7 +108,7 @@ export default function Conversation({
         paid: false,
         hours_worked,
         additional_fees,
-        amount,
+        amount: totalAmount,
         user_id: singleConversation.user.id,
         user2_id: singleConversation.user2.id,
       }),
@@ -110,8 +120,14 @@ export default function Conversation({
         });
       }
     });
-    console.log(hours_worked * user.charge + additional_fees);
+    console.log("_________________")
+    console.log(hours_worked)
+    console.log(user.user_charge)
+    console.log(additional_fees)
+    console.log(totalAmount)
+    console.log("****************")
     setInvoiceModalShow(false);
+    setTimeout(() => setMessageModalShow(true), 400);
   }
 
   function handleCreateTitle(e) {
@@ -192,17 +208,6 @@ export default function Conversation({
                 onChange={handleCreateCosts}
               ></input>
             </div>
-            {/* <div className="form-group">
-              <label>Total*</label>
-              <input
-                type="cost"
-                className="form-control"
-                id="cost-input"
-                autoComplete="on"
-                placeholder=""
-                onChange={handleCreateAmount}
-              ></input>
-            </div> */}
             <div>
               <Button
                 className="listing-modal-submit"
@@ -220,13 +225,33 @@ export default function Conversation({
 
   console.log(user);
 
+  function SuccessModal(props) {
+    return (
+        <Modal
+            {...props}
+            size="m"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+        >
+        <Modal.Header closeButton>
+            <Modal.Title id="contained-modal-title-vcenter">
+               Invoice Sent!
+            </Modal.Title>
+            <Modal.Body>
+                <Link to="/profile">See invoices</Link>
+            </Modal.Body>
+        </Modal.Header>
+        </Modal>
+    );
+}  
+
   return (
     <div className="conversation-container">
       <div className="conversation-card">
         <div className="conversation-title">
           " {singleConversation.header} "
         </div>
-        <Row className="conversation-button-wrapper d-flex justify-content-between">
+        <Row className="conversation-button-wrapper">
           <Col className="info-center">
             <div className="conversation-text">from:</div>
             <div className="conversation-info">
@@ -312,6 +337,11 @@ export default function Conversation({
       <SetInvoiceModalShow
         show={invoiceModalShow}
         onHide={() => setInvoiceModalShow(false)}
+      />
+      <SuccessModal
+        className="successModal"
+        show={messageModalShow}
+        onHide={() => setMessageModalShow(false)}
       />
     </div>
   );

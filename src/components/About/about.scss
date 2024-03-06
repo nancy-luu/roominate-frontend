@@ -1,24 +1,27 @@
 @import "../../global.scss";
 
 .about-container{
+    display: flex;
+    flex-direction: row;
     justify-content: center;
-    text-align: center;
+    align-items: center;
+    margin: 30px;
 
-    .about-wrap{
+    .about-left {
+        padding: 20px;
+    }
+
+    .about-right{
         justify-content: center;
         text-align: left;
-        width: 750px;
-        margin-top: 5%;
-        margin-bottom: 5%;
+        margin: 20px;
 
     
         .about-title{
             justify-content: center;
             text-align: left;
             font-family: $mainfont;
-            color: $maincolor;
             font-size: 30px;
-            font-weight: 700;
             padding-top: 10px;
         }
     

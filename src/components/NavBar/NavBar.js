@@ -17,7 +17,7 @@ export default function NavBar( {setUser} ) {
                 /></Link> 
               </div>
               <div className="right">
-                <Link className="navlink" to="/community" ><span>community</span></Link> 
+                <Link className="navlink" to="/" ><span>community</span></Link> 
                 <Link className="navlink" to="/listings" ><span>listings</span></Link> 
                 <Link className="navlink" to="/roominators" ><span>roominators</span></Link> 
                 <Link className="navlink" to="/profile"><span>profile</span></Link>

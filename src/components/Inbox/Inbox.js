@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Container from "react-bootstrap/Container";
 import Conversation from "./Conversation"; 
 import "./inbox.scss"
 const API = 'http://localhost:3000'
@@ -40,6 +39,7 @@ export default function Inbox ({ user, currUser, userList, isLoading, setIsLoadi
                         <img 
                             className="inbox-img"
                             src="images/inbox-icon.png"
+                            alt="inbox icon"
                         ></img>
                     </div>
                     <div className="inbox-container">
@@ -68,6 +68,7 @@ export default function Inbox ({ user, currUser, userList, isLoading, setIsLoadi
                         <img 
                             className="no-inbox-img"
                             src="images/emptyinbox.png"
+                            alt="empty icon"
                         ></img>
                     </div>
                     <div className="inbox-container">

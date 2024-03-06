@@ -16,7 +16,7 @@ import "./home.scss"
 
 export default function Home ( { 
     onLogin, 
-    user, setUser, 
+    user, setUser, setCurrUser,
     userList, setUserList,
     listings, setListings,
     loadingRequest, setLoadingRequest,
@@ -35,7 +35,7 @@ export default function Home ( {
                     <NavBar setUser={setUser}/>
                     <div className="content">
                         <Routes>
-                            <Route exact path="/community" element={ <Community/> }/>
+                            <Route exact path="/" element={ <Community currUser={currUser}/> }/>
                             <Route exact path="/listings" element={
                                 user ? 
                                 <Listings
@@ -64,7 +64,7 @@ export default function Home ( {
                                 />
                             } />
                             <Route exact path="/" element={
-                                <About currUser={currUser}/>
+                               <Community currUser={currUser}/>
                             } />
                             <Route exact path="/roominators" element={
                                 <Roominators 
@@ -85,6 +85,7 @@ export default function Home ( {
                             <Route exact path="/profile" element={
                                 <Profile 
                                     currUser={currUser}
+                                    setCurrUser={setCurrUser}
                                     user={user} 
                                     setUser={setUser} 
                                     userList={userList}

@@ -40,8 +40,8 @@ export default function ListingCard ({ isLoading, setIsLoading, user, currUser, 
             },
             body: JSON.stringify({
                 header: listing.title,
-                user_id: listing.user_id,
-                user2_id: currUser.id
+                user_id: currUser.id,
+                user2_id: listing.user_id,
             })
         })
         .then((r) => {
@@ -54,6 +54,7 @@ export default function ListingCard ({ isLoading, setIsLoading, user, currUser, 
                 r.json((err) => setErrors(err));
             }
         })
+        setTimeout(() => setMessageModalShow(true), 200);
     }
 
     function SuccessModal(props) {
@@ -117,7 +118,6 @@ export default function ListingCard ({ isLoading, setIsLoading, user, currUser, 
                     className="contact-btn"
                     onClick={() => {
                         setIsLoading(true);
-                        setMessageModalShow(true);
                         handleListInquire();
                     }} 
                     ><RiMailSendLine style={{ width: '3rem', height: '1rem' }}/></button>

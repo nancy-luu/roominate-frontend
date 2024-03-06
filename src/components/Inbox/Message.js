@@ -24,7 +24,7 @@ export default function Message ({ singleMessage, user, userList, isLoading, set
             r.json().then((userPhotos) => setUserPhotos(userPhotos));
           }
         })
-    }, []) ~
+    }, [])
 
     console.log(userList);
 
@@ -52,14 +52,19 @@ export default function Message ({ singleMessage, user, userList, isLoading, set
                         src={findMessageUser[0].user_photo.image}
                         style={{ width: '25rem' }}
                         onClick={() => setShowUserProfile(true)}
+                        alt="profile"
                     /> 
                     <div className="profile-info">
                         <div className="prof-modal-title">Account Type:</div> 
                         <div>{findMessageUser[0].user_type}</div>
                         <div className="prof-modal-title">Email:</div> 
                         <div>{findMessageUser[0].email}</div>
-                        <div className="prof-modal-title">Charge:</div> 
-                        <div>${findMessageUser[0].user_charge}/hr</div>
+                        {findMessageUser[0].user_charge >= 1 && 
+                            <>
+                                <div className="prof-modal-title">Charge:</div> 
+                                <div>${findMessageUser[0].user_charge}/hr</div>
+                            </>
+                        }
                         <div className="prof-modal-title">Location:</div> 
                         <div>{findMessageUser[0].user_location}</div>
                         <div className="prof-modal-title">About:</div> 
@@ -87,6 +92,7 @@ export default function Message ({ singleMessage, user, userList, isLoading, set
                                 src={findMessageUser[0].user_photo.image}
                                 style={{ width: '7rem' }}
                                 onClick={() => setShowUserProfile(true)}
+                                alt="sender"
                             />                        
                         </Col>
                     </Row>
@@ -107,6 +113,7 @@ export default function Message ({ singleMessage, user, userList, isLoading, set
                                 src={findMessageUser[0].user_photo.image}
                                 style={{ width: '7rem' }}
                                 onClick={() => setShowUserProfile(true)}
+                                alt="sender"
                             />
                             </Col>
                         </Row>

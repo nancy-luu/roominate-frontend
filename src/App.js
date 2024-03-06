@@ -110,6 +110,7 @@ const locationList = [
         onLogin={setCurrUser}
         user={currUser} 
         currUser={currUser}
+        setCurrUser={setCurrUser}
         setUser={setCurrUser}
         listings={listings} 
         setListings={setListings}
